@@ -1,7 +1,7 @@
 {
-  "name": "express-prototype",
-  "description": "GOVUK prototyping app in Express",
-  "version": "6.3.0",
+  "name": "theory-test-admission-reception-app",
+  "description": "Reception App",
+  "version": "0.0.1",
   "private": true,
   "engines": {
     "node": ">=6.11.1 <7.0"
