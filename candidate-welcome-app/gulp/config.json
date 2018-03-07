@@ -1,0 +1,20 @@
+{
+  "paths": {
+    "public": "public/",
+    "assets" : "app/assets/",
+    "docsAssets" : "docs/assets/",
+    "govukModules": "govuk_modules/",
+    "nodeModules": "node_modules/",
+    "lib": "lib/",
+    "dist": "dist/",
+    "build": "build/",
+    "app": "app/",
+    "temp": "temp/",
+    "docs": "docs/",
+    "assetFolder": "assets/"
+  },
+  "output": {
+    "lambdaDist": "lambda.zip",
+    "assetsDist": "assets.zip"
+  }
+}
