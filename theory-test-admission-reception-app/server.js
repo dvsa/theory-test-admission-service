@@ -3,6 +3,8 @@ const browserSync = require('browser-sync');
 const App = require('./build/app.js');
 const utils = require('./build/helpers/utils.js');
 
+const logger = require('logger');
+
 const {
 	app, runningLocally, env, setupData
 } = new App();
@@ -10,8 +12,7 @@ const {
 if (runningLocally) {
 	// Find a free port and start the server
 	utils.findAvailablePort(app, (port) => {
-	// TODO replace with Winston logger
-	// console.log(`Listening on port ${port}   url: http://localhost:${port}`);
+		logger.info(`Listening on port ${port}   url: http://localhost:${port}`);
 		if (env === 'production') {
 			app.listen(port);
 			setupData();
