@@ -1,0 +1,32 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "A façade to Winston, the Node.js logging framework.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.ftts.dvsacloud.uk/ftts/authentication.git"
+  },
+  "scripts": {
+    "default": "gulp",
+    "lint": "gulp lint",
+    "test": "gulp test"
+  },
+  "author": "Future Theory Test Alpha Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "winston": "^2.4.0",
+    "winston-cloudwatch": "^1.13.0",
+    "winston-console-formatter": "^1.0.0-beta.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.2",
+    "gulp-run": "^1.7.1",
+    "gulp-sequence": "^1.0.0"
+  }
+}
