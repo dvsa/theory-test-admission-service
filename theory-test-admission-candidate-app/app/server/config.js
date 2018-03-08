@@ -25,7 +25,7 @@ module.exports = {
 	cookieText: 'GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a>',
 
 	// Is the app running locally or not
-	runningLocally: 'false',
+	runningLocally: 'true',
 
 	// Url of the assets
 	assets: '/',

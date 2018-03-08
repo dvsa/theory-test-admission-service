@@ -7,7 +7,7 @@ module.exports = {
 	serviceName: 'Theory Test Reception Admissions',
 
 	// Default port that prototype runs on
-	port: '3000',
+	port: '4000',
 
 	// Enable or disable password protection on production
 	useAuth: 'true',
@@ -25,7 +25,7 @@ module.exports = {
 	cookieText: 'GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a>',
 
 	// Is the app running locally or not
-	runningLocally: 'false',
+	runningLocally: 'true',
 
 	// Url of the assets
 	assets: '/',
