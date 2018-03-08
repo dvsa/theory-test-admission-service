@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21eec8cf-3604-44d7-aea0-8209a6c35480" name="Default" comment="Fixed the logging issue so that the logger module is used properly.">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" />
+    <list default="true" id="21eec8cf-3604-44d7-aea0-8209a6c35480" name="Default" comment="Removed unnecessary winston dependences from the two apps, as they are already imported">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/create-git-hooks.sh" afterPath="$PROJECT_DIR$/create-git-hooks.sh" />
-      <change beforePath="$PROJECT_DIR$/logger/test/test-logger.js" afterPath="$PROJECT_DIR$/logger/test/test-logger.js" />
-      <change beforePath="$PROJECT_DIR$/theory-test-admission-candidate-app/app/server/services/configService.js" afterPath="$PROJECT_DIR$/theory-test-admission-candidate-app/app/server/services/configService.js" />
       <change beforePath="$PROJECT_DIR$/theory-test-admission-candidate-app/package.json" afterPath="$PROJECT_DIR$/theory-test-admission-candidate-app/package.json" />
-      <change beforePath="$PROJECT_DIR$/theory-test-admission-candidate-app/server.js" afterPath="$PROJECT_DIR$/theory-test-admission-candidate-app/server.js" />
-      <change beforePath="$PROJECT_DIR$/theory-test-admission-reception-app/app/server/services/configService.js" afterPath="$PROJECT_DIR$/theory-test-admission-reception-app/app/server/services/configService.js" />
       <change beforePath="$PROJECT_DIR$/theory-test-admission-reception-app/package.json" afterPath="$PROJECT_DIR$/theory-test-admission-reception-app/package.json" />
-      <change beforePath="$PROJECT_DIR$/theory-test-admission-reception-app/server.js" afterPath="$PROJECT_DIR$/theory-test-admission-reception-app/server.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,11 +25,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/theory-test-admission-reception-app/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="66" column="29" lean-forward="false" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+            <state relative-caret-position="752">
+              <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logger/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -73,7 +75,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/theory-test-admission-candidate-app/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -83,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test-logger.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/logger/test/test-logger.js">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="404">
+              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,21 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/logger/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/theory-test-admission-candidate-app/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="769">
-              <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="30" />
+            <state relative-caret-position="303">
+              <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -156,18 +148,18 @@
         <option value="$PROJECT_DIR$/candidate-welcome-app/package.json" />
         <option value="$PROJECT_DIR$/theory-test-admission-reception-app/app/server/config.js" />
         <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/app/server/config.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/logger/test/test-logger.js" />
         <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/app.local.js" />
         <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/.env" />
         <option value="$PROJECT_DIR$/logger/index.js" />
-        <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/package.json" />
         <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/app/server/services/configService.js" />
         <option value="$PROJECT_DIR$/theory-test-admission-reception-app/app/server/services/configService.js" />
-        <option value="$PROJECT_DIR$/theory-test-admission-reception-app/package.json" />
         <option value="$PROJECT_DIR$/theory-test-admission-reception-app/.env" />
         <option value="$PROJECT_DIR$/theory-test-admission-reception-app/server.js" />
         <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/server.js" />
+        <option value="$PROJECT_DIR$/theory-test-admission-reception-app/package.json" />
+        <option value="$PROJECT_DIR$/theory-test-admission-candidate-app/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -298,29 +290,11 @@
           <expand>
             <path>
               <item name="theory-test-admission-service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="theory-test-admission-candidate-app" type="462c0819:PsiDirectoryNode" />
+              <item name="logger" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="theory-test-admission-service" type="b2602c69:ProjectViewProjectNode" />
               <item name="theory-test-admission-reception-app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="theory-test-admission-service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="theory-test-admission-reception-app" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="theory-test-admission-service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="theory-test-admission-reception-app" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="theory-test-admission-service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="theory-test-admission-reception-app" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -468,20 +442,20 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <configuration name="check-security (1)" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/theory-test-admission-candidate-app/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="check-security" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-    </configuration>
     <configuration name="check-security-log" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/candidate-welcome-app/package.json" />
       <command value="run" />
       <scripts>
         <script value="check-security-log" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration name="clean (1)" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/theory-test-admission-reception-app/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clean" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -532,19 +506,19 @@
       <envs />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="npm.check-security (1)" />
-      <item index="1" class="java.lang.String" itemvalue="npm.prepush (1)" />
-      <item index="2" class="java.lang.String" itemvalue="npm.start" />
-      <item index="3" class="java.lang.String" itemvalue="npm.clean" />
-      <item index="4" class="java.lang.String" itemvalue="npm.start (1)" />
+      <item index="0" class="java.lang.String" itemvalue="npm.prepush (1)" />
+      <item index="1" class="java.lang.String" itemvalue="npm.start" />
+      <item index="2" class="java.lang.String" itemvalue="npm.clean" />
+      <item index="3" class="java.lang.String" itemvalue="npm.start (1)" />
+      <item index="4" class="java.lang.String" itemvalue="npm.clean (1)" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="npm.start (1)" />
-        <item index="1" class="java.lang.String" itemvalue="npm.start" />
-        <item index="2" class="java.lang.String" itemvalue="npm.clean" />
-        <item index="3" class="java.lang.String" itemvalue="npm.prepush (1)" />
-        <item index="4" class="java.lang.String" itemvalue="npm.check-security (1)" />
+        <item index="1" class="java.lang.String" itemvalue="npm.clean (1)" />
+        <item index="2" class="java.lang.String" itemvalue="npm.start" />
+        <item index="3" class="java.lang.String" itemvalue="npm.clean" />
+        <item index="4" class="java.lang.String" itemvalue="npm.prepush (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -570,7 +544,7 @@
       <workItem from="1520429381536" duration="10195000" />
       <workItem from="1520502660063" duration="21000" />
       <workItem from="1520502713483" duration="655000" />
-      <workItem from="1520503669000" duration="3823000" />
+      <workItem from="1520503669000" duration="4647000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of candatate-welcome-app">
       <created>1520433717141</created>
@@ -586,11 +560,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520446007979</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed the logging issue so that the logger module is used properly.">
+      <created>1520507989920</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1520507989921</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16108000" />
+    <option name="totallyTimeSpent" value="16932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -601,15 +582,15 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43651754" sideWeight="0.50858366" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3688029" sideWeight="0.50858366" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43651754" sideWeight="0.4914163" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3688029" sideWeight="0.4914163" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3190272" sideWeight="0.21888413" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3190272" sideWeight="0.21839081" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.4828326" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3190272" sideWeight="0.7811159" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3190272" sideWeight="0.7816092" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -639,7 +620,8 @@
     </ignored-roots>
     <MESSAGE value="Initial commit of candatate-welcome-app" />
     <MESSAGE value="Added theory-test-admissions-reception-app&#10;renamed candidate-app to theory-test-admissions-candidate-app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added theory-test-admissions-reception-app&#10;renamed candidate-app to theory-test-admissions-candidate-app" />
+    <MESSAGE value="Fixed the logging issue so that the logger module is used properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the logging issue so that the logger module is used properly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -878,22 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logger/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/create-git-hooks.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -976,22 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/theory-test-admission-candidate-app/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/theory-test-admission-reception-app/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="66" column="29" lean-forward="false" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/theory-test-admission-candidate-app/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1028,6 +978,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theory-test-admission-candidate-app/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logger/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theory-test-admission-reception-app/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
           <folding />
         </state>
       </provider>
