@@ -1,0 +1,31 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Ignore from project
+node_modules
+build
+temp
+npm-debug.log
+.npmrc
+.serverless
+.vscode
+*.tar
+*.zip
+.env
+.sass-cache
+.start.pid
+.port.tmp
+public
+lib/govuk_template.html
+govuk_modules
+node_modules/*
+.tmuxp.*
+dist
+/.idea/
+/ssl/

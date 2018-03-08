@@ -1,0 +1,30 @@
+{% macro searchGrid(data={}) %}
+
+<table>
+	<thead>
+		<tr>
+			{% for heading in data.Headings %}
+				<th scope="col" class="font-xsmall {{ heading.Classes }}">{{ heading.Text }}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for result in data.Results %}
+		<tr>
+			{% for dataItem in result %}
+				<td scope="row" class="font-xsmall">
+					{% if dataItem.Link %}
+						<a href="{{ dataItem.Link }}">{{ dataItem.Text }}</a>
+					{% else %}
+						<pre class="font-xsmall {{ dataItem.Classes }}">{{ dataItem.Text }}</pre>
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<br />	
+
+{% endmacro %}

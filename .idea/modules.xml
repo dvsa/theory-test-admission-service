@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/logger/logger.iml" filepath="$PROJECT_DIR$/logger/logger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" />
+    </modules>
+  </component>
+</project>

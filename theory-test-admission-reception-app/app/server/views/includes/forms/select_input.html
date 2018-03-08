@@ -1,0 +1,9 @@
+<div class="form-group">
+	<select class="form-control" id="select-box" name="select-box">
+		{% for option in SearchData.SearchOptions %}
+			<option value={{ option.OptionValue }} {{ "selected" if option.OptionSelected }}>
+				{{ option.OptionText }}
+			</option>
+		{% endfor %}
+	</select>
+</div>

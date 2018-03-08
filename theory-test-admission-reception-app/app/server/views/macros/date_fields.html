@@ -1,0 +1,24 @@
+{% macro dateFields(id=1, day='', month='', year='') %}
+<div class="form-group">
+	<div class="atf-flatpickr-replace">
+		<noscript>
+			<fieldset>
+				<div class="form-date">
+					<div class="form-group form-group-day">
+						<label class="form-label" for="date-day-{{ id }}">Day</label>
+						<input class="form-control" id="date-day-{{ id }}" name="date-day-{{ id }}" type="number" pattern="[0-9]*" min="0" max="31" value="{{ day }}">
+					</div>
+					<div class="form-group form-group-month">
+						<label class="form-label" for="date-month-{{ id }}">Month</label>
+						<input class="form-control" id="date-month-{{ id }}" name="date-month-{{ id }}" type="number" pattern="[0-9]*" min="0" max="12" value="{{ month }}">
+					</div>
+					<div class="form-group form-group-year">
+						<label class="form-label" for="date-year-{{ id }}">Year</label>
+						<input class="form-control" id="date-year-{{ id }}" name="date-year-{{ id }}" type="number" pattern="[0-9]*" min="0" max="2016" value="{{ year }}">
+					</div>
+				</div>
+			</fieldset>
+		</noscript>
+	</div>
+</div>
+{% endmacro %}

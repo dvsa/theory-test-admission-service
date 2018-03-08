@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Driver Theory Test Prototype
+{% endblock %}
+
+{% block page_content %}
+<style>
+    .fp-dln-div {
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="grid-row">
+    <div class="column-full">
+
+        {% if (loginAuthenticationError === 'true') %}
+        {% include "includes/login/login-authentication-error.html" %}
+        {% endif %}
+    </div>
+</div>
+
+<h1 class="heading-large">
+    Holding page
+</h1>
+
+
+
+
+{% endblock %}
+
+
