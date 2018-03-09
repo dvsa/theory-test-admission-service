@@ -5,6 +5,7 @@ import ConfigService from './services/configService';
 import AuthService from './services/auth';
 import SessionService from './services/sessionService';
 import matchRoutes from './middleware/matchRoutes';
+import CandidateDetailsController from './controllers/candidateDetailsController';
 
 
 // const logger = require('./logger');
@@ -14,16 +15,18 @@ export default class AppRouter {
 	constructor() {
 		this.authService = new AuthService();
 		this.routes = Router();
+		this.candidateDetailsController = new CandidateDetailsController();
 	}
 
 
 	paginationSettings = ConfigService.GetPaginationSettings();
 	urlRoot = ConfigService.GetUrlRoot();
 
+
 	init() {
 		this.setupRoutingMiddleware();
 		this.setGetHandlers();
-		// this.setPostHandlers();
+		this.setPostHandlers();
 		this.setupCatchallGetHandler();
 		this.setupPostToGetRedirect();
 		this.setupErrorHandler();
@@ -46,12 +49,24 @@ export default class AppRouter {
 		this.routes.get('/', (req, res) => {
 			res.render('index');
 		});
+
+
+		// Candidate details aka login page
+		this.routes.get('/candidate/candidate-details', (req, res) => {
+			res.render('candidate/candidate-details');
+		});
 	}
 
-	/*
+
 	setPostHandlers() {
+		this.routes.post(
+			'/candidate/candidate-details',
+			(req, res, next) => {
+				this.candidateDetailsController.checkBooking(req.body.DLN);
+			}
+		);
 	}
-	*/
+
 
 	setupRoutingMiddleware() {
 		// Add auth guard
