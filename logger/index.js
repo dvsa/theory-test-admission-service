@@ -1,3 +1,5 @@
+/* eslint global-require: 0 */
+
 function isProduction() {
 	return process.env.RUNNING_LOCALLY !== 'true';
 }

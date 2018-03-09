@@ -1,13 +1,12 @@
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
-const run = require('gulp-run');
+const mocha = require('gulp-mocha');
 const sequence = require('gulp-sequence');
 
 gulp.task('default', sequence('lint', 'test'));
 
 /**
  * Fail the build if ESLint standards are not met.
- * This applies only to production code, not test code.
  */
 gulp.task('lint', () => {
 	return gulp.src(['**/*.js', '!node_modules/**'])
@@ -16,10 +15,13 @@ gulp.task('lint', () => {
 		.pipe(eslint.failAfterError());
 });
 
-gulp.task('test', sequence('set-running-locally', 'set-verbose-logging', 'quasi-test'));
+/**
+ * Fail the build if unit tests do not pass.
+ */
+gulp.task('test', sequence('suppress-logging', 'set-running-locally', 'unit-test'));
 
-gulp.task('set-verbose-logging', () => {
-	process.env.LOG_LEVEL = 'debug';
+gulp.task('suppress-logging', () => {
+	process.env.LOG_LEVEL = 'error';
 	return true;
 });
 
@@ -28,7 +30,9 @@ gulp.task('set-running-locally', () => {
 	return true;
 });
 
-gulp.task('quasi-test', () => {
-	return run('node ./test/test-logger.js', {})
-		.exec();
+gulp.task('unit-test', () => {
+	return gulp.src(['test/**/*.js'])
+		.pipe(mocha({
+			reporter: 'spec',
+		}));
 });
