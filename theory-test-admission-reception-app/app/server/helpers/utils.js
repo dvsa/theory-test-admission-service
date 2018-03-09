@@ -10,16 +10,7 @@ const prompt = require('prompt');
 
 // Find an available port to run the server on
 exports.findAvailablePort = function anonFunc(app, callback) {
-	let port = null;
-
-	// When the server starts, we store the port in .port.tmp so it tries to restart
-	// on the same port
-	try {
-		port = Number(fs.readFileSync(path.join(__dirname, '/../.port.tmp')));
-	} catch (e) {
-		port = ConfigService.GetPort();
-	}
-	port = 3000;
+	let port = ConfigService.GetPort();
 
 	// Check port is free, else offer to change
 	portScanner.findAPortNotInUse(port, port + 50, '127.0.0.1', (error, availablePort) => {
