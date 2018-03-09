@@ -12,7 +12,7 @@ logger.add(winston.transports.Console, {
 	timestamp
 });
 
-logger.flush = function () {
+logger.flush = function flush() {
 };
 
 module.exports = logger;
