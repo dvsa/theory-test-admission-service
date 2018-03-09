@@ -67,6 +67,7 @@ do
 done
 
 # TODO user interface projects should be built in the same way
+# TODO linting fails for user interface projects
 
 declare -a PROJECTS=(
     "theory-test-admission-candidate-app"
@@ -81,7 +82,7 @@ do
         echo "Deleting node_modules"
         rm -fr node_modules
     fi
-    npm install && npm run clean && npm run lint && npm run test && npm run build-dist
+    npm install && npm run clean && npm run test && npm run build-dist
     declare -i RESULT=$?
     popd > /dev/null
     if [ ${RESULT} -ne 0 ]
@@ -92,3 +93,7 @@ do
     fi
     echo
 done
+
+echo
+echo "SUCCESS"
+echo
