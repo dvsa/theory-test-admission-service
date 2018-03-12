@@ -4,8 +4,10 @@ import path from 'path';
 import ConfigService from './services/configService';
 import AuthService from './services/auth';
 import SessionService from './services/sessionService';
+import sessionStorage from './middleware/manuallySetSessionData';
 import matchRoutes from './middleware/matchRoutes';
 import CandidateDetailsController from './controllers/candidateDetailsController';
+import TermsAndConditionsController from './controllers/termsConditionsController';
 
 
 // const logger = require('./logger');
@@ -16,6 +18,7 @@ export default class AppRouter {
 		this.authService = new AuthService();
 		this.routes = Router();
 		this.candidateDetailsController = new CandidateDetailsController();
+		this.termsAndConditionsController = new TermsAndConditionsController();
 	}
 
 
@@ -47,6 +50,7 @@ export default class AppRouter {
 
 		// Route index page
 		this.routes.get('/', (req, res) => {
+			sessionStorage(req, res, 'validSession', true);
 			res.render('index');
 		});
 
@@ -55,6 +59,11 @@ export default class AppRouter {
 		this.routes.get('/candidate/candidate-details', (req, res) => {
 			res.render('candidate/candidate-details');
 		});
+
+		// Video terms and Conditions
+		this.routes.get('/candidate/prepare-video', (req, res) => {
+			res.render('candidate/prepare-video');
+		});
 	}
 
 
@@ -62,7 +71,15 @@ export default class AppRouter {
 		this.routes.post(
 			'/candidate/candidate-details',
 			(req, res, next) => {
-				this.candidateDetailsController.checkBooking(req.body.DLN);
+				this.candidateDetailsController.checkBooking(req, res, next);
+			}
+		);
+
+
+		this.routes.post(
+			'/candidate/video-terms-conditions',
+			(req, res, next) => {
+				this.termsAndConditionsController.checkAgreement(req, res, next);
 			}
 		);
 	}

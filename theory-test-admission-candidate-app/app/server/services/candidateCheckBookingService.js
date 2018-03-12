@@ -2,8 +2,9 @@
 
 export default class CandidateCheckBookingService {
 
-	checkcandidateBooking(admissionID, candidateDLN) {
+	checkCandidateBooking(admissionID, candidateDLN) {
 		// TODO For Nat - integrate lambda/step function here
-		console.log('DLN: ', candidateDLN, '\nadmissionID: ', admissionID);
+		// console.log('DLN: ', candidateDLN, '\nadmissionID: ', admissionID);
+		return true; // return the actual value from the step-function
 	}
 }

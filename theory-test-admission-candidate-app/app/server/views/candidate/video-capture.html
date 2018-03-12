@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Driver Theory Test Prototype
+{% endblock %}
+
+{% block page_content %}
+<style>
+
+
+    span.arrow {
+        color: #005ea5;
+    }
+</style>
+
+<div class="grid-row">
+    <p class="heading-medium" style="padding-left:40px">
+        Holding page, video capture
+    </p>
+    <div style="float:right">
+        <button id="nextCandidateButton" class="button button-start">Continue</button>
+    </div>
+</div>
+
+<script type="application/javascript">
+    $('#nextCandidateButton').on('click', () => {
+    	window.location = '/candidate/report-reception';
+    })
+</script>
+
+
+
+
+{% endblock %}
+
+

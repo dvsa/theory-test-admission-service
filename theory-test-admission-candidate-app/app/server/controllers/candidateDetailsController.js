@@ -1,12 +1,22 @@
 import uuid from 'uuid/v4';
 import CandidateCheckBookingService from '../services/candidateCheckBookingService';
+import sessionStorage from '../middleware/manuallySetSessionData';
+
 
 export default class CandidateDetailsController {
-	constructor(){
+	constructor() {
 		this.candidateBookingService = new CandidateCheckBookingService();
 	}
-	checkBooking(candidateDLN) {
+	checkBooking(req, res, next) {
 		const admissionsId = uuid();
-		this.candidateBookingService.checkcandidateBooking(admissionsId, candidateDLN);
+		const candidateDLN = req.body.DLN;
+		const hasBooking = this.candidateBookingService.checkCandidateBooking(admissionsId, candidateDLN);
+		sessionStorage(req, res, 'bookingResult', { hasBooking, admissionsId });
+		if (hasBooking) {
+			sessionStorage(req, res, 'videoTermsAgreed', false);
+			res.redirect('/candidate/prepare-video');
+		} else {
+			res.redirect('/candidate/report-reception');
+		}
 	}
 }
