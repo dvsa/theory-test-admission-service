@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Driver Theory Test Prototype
+{% endblock %}
+
+{% block page_content %}
+<style>
+
+
+    span.arrow {
+        color: #005ea5;
+    }
+</style>
+{% if (data.bookingResult.hasBooking === false) %}
+{% include "includes/bookingProblem.html" %}
+{% endif %}
+<div class="grid-row">
+    <p class="heading-medium" style="padding-left:40px">
+        Please report to reception
+    </p>
+    <div style="float:right">
+        <button id="nextCandidateButton" class="button button-start">Next Candidate</button>
+    </div>
+</div>
+
+<script type="application/javascript">
+    $('#nextCandidateButton').on('click', () => {
+    	window.location = '/';
+    })
+    $(document).ready(() => {
+    	setTimeout(() => {
+    		window.location = '/';
+        }, 120000)
+    })
+</script>
+
+
+
+
+{% endblock %}
+
+
