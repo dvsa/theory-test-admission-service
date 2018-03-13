@@ -10,6 +10,7 @@ declare RESET="\033[0m"
 declare NODE_VERSION="v6.10.3"
 declare -a PROJECTS=(
     "logger"
+    "candidate-video-utilities"
     "compare-image-to-image-collection"
     "compare-video-to-image"
     "compare-video-to-image-collection"
