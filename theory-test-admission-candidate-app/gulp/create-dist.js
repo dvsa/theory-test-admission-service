@@ -18,15 +18,16 @@ gulp.task('create-dist', gulpSequence(
 	]
 ));
 
-gulp.task('create-dist-build', [
-	'build-app',
-	'build-entry',
-	'build-lib',
-	'build-node-modules',
-	'build-govuk-modules',
-	'build-assets',
-	'create-assets-folder'
-]);
+gulp.task(
+	'create-dist-build',
+	[
+		'build-app',
+		'build-entry',
+		'build-lib',
+		'build-node-modules',
+		'build-govuk-modules',
+		'build-assets']
+);
 
 gulp.task('build-app', () => {
 	return gulp.src([

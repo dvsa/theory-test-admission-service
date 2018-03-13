@@ -24,8 +24,7 @@ gulp.task('create-dist-build', [
 	'build-lib',
 	'build-node-modules',
 	'build-govuk-modules',
-	'build-assets',
-	'create-assets-folder'
+	'build-assets'
 ]);
 
 gulp.task('build-app', () => {
