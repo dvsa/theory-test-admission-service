@@ -24,7 +24,10 @@ exports.handler = (event, context, callback) => {
 	const { ReceivedData } = event;
 	const bookingService = new BookingService();
 	bookingService.bookings = ReceivedData;
-
-	exit(callback, null, bookingService.verifyBooking());
+	exit(callback, null, {
+		HasBooking: bookingService.verifyBooking(),
+		DrivingLicenceNumber: event.DrivingLicenceNumber,
+		AdmissionId: event.AdmissionId
+	});
 
 };

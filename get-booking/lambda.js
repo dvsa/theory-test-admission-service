@@ -28,6 +28,10 @@ exports.handler = (event, context, callback) => {
 	getBookingService.receivedDate = ReceivedDate;
 
 	// return success
-	exit(callback, null, getBookingService().getBooking());
+	exit(callback, null, {
+		ReceivedData: getBookingService().getBooking(),
+		DrivingLicenceNumber: event.DrivingLicenceNumber,
+		AdmissionId: event.AdmissionId
+	});
 
 };
