@@ -16,10 +16,19 @@ gulp.task('lint', () => {
 		.pipe(eslint.failAfterError());
 });
 
-/**
- * Fail the build if unit tests do not pass.
- */
-gulp.task('test', () => {
+gulp.task('test', sequence('set-running-locally', 'set-verbose-logging', 'quasi-test'));
+
+gulp.task('set-verbose-logging', () => {
+	process.env.LOG_LEVEL = 'debug';
+	return true;
+});
+
+gulp.task('set-running-locally', () => {
+	process.env.RUNNING_LOCALLY = 'true';
+	return true;
+});
+
+gulp.task('quasi-test', () => {
 	return run('node ./test/test-logger.js', {})
 		.exec();
 });

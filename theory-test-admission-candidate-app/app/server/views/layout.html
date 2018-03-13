@@ -38,6 +38,7 @@
 
 {% block content %}
 <main id="content" role="main">
+  {% include "includes/phase_banner_alpha.html" %}
 {% block page_content %}
 {% endblock %}
 </main>
@@ -47,7 +48,7 @@
   {% if useAutoStoreData %}
     <ul>
       <li>
-        <a href="{{urlRoot}}prototype-admin/clear-data">Clear data</a>
+        <a href="{{urlRoot}}admin/clear-data">Clear data</a>
       </li><br />
     </ul>
   {% endif %}

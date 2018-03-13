@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/compare-image-to-image-collection/compare-image-to-image-collection.iml" filepath="$PROJECT_DIR$/compare-image-to-image-collection/compare-image-to-image-collection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/compare-video-to-image/compare-video-to-image.iml" filepath="$PROJECT_DIR$/compare-video-to-image/compare-video-to-image.iml" />
+      <module fileurl="file://$PROJECT_DIR$/compare-video-to-image-collection/compare-video-to-image-collection.iml" filepath="$PROJECT_DIR$/compare-video-to-image-collection/compare-video-to-image-collection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/get-booking/get-booking.iml" filepath="$PROJECT_DIR$/get-booking/get-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/get-entitlements-from-dvla/get-entitlements-from-dvla.iml" filepath="$PROJECT_DIR$/get-entitlements-from-dvla/get-entitlements-from-dvla.iml" />
       <module fileurl="file://$PROJECT_DIR$/logger/logger.iml" filepath="$PROJECT_DIR$/logger/logger.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-check-candidate-booking/theory-test-check-candidate-booking.iml" filepath="$PROJECT_DIR$/theory-test-check-candidate-booking/theory-test-check-candidate-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-check-candidate-entitlements/theory-test-check-candidate-entitlements.iml" filepath="$PROJECT_DIR$/theory-test-check-candidate-entitlements/theory-test-check-candidate-entitlements.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-complete-admission/theory-test-complete-admission.iml" filepath="$PROJECT_DIR$/theory-test-complete-admission/theory-test-complete-admission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-detect-impersonator/theory-test-detect-impersonator.iml" filepath="$PROJECT_DIR$/theory-test-detect-impersonator/theory-test-detect-impersonator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-fetch-candidate-image/theory-test-fetch-candidate-image.iml" filepath="$PROJECT_DIR$/theory-test-fetch-candidate-image/theory-test-fetch-candidate-image.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-recognise-candidate/theory-test-recognise-candidate.iml" filepath="$PROJECT_DIR$/theory-test-recognise-candidate/theory-test-recognise-candidate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-start-admission/theory-test-start-admission.iml" filepath="$PROJECT_DIR$/theory-test-start-admission/theory-test-start-admission.iml" />
     </modules>
   </component>
 </project>

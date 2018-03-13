@@ -8,11 +8,11 @@ export default class Auth {
 	logInIfNeeded = (req, res, next) => {
 		if (Auth.urlExcludedFromLogin(req.originalUrl)) {
 			next();
-		} else if (!ConfigService.UseAuth()) {
+		} else if (!ConfigService.UseAuth() || (req.session.data.validSession)) {
 			// Do nothing if auth bypassed (dev mode)
 			next();
 		} else {
-			const loginPage = `${this.urlRoot}candidate-details`;
+			const loginPage = `${this.urlRoot}`;
 			this.ensureLoggedIn(loginPage, req, res, next);
 		}
 	};
@@ -20,7 +20,7 @@ export default class Auth {
 	static urlExcludedFromLogin(url) {
 		// We don't have urlRoot here - this is intentional as
 		// urlRoot has been stripped off at this point
-		const loginUrl = '/candidate-details';
+		const loginUrl = '/candidate/candidate-details';
 		const entryUrl = '/';
 
 		return (

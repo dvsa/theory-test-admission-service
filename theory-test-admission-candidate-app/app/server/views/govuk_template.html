@@ -35,7 +35,7 @@
   </head>
 
   <body class="{% block body_classes %}{% endblock %}">
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <script type="application/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
     {% block body_start %}{% endblock %}
 
@@ -99,11 +99,11 @@
 
     <div id="global-app-error" class="app-error hidden"></div>
 
-    <script src="{{ asset_path }}javascripts/govuk-template.js?0.22.3"></script>
+    <script type="application/javascript" src="{{ asset_path }}javascripts/govuk-template.js?0.22.3"></script>
 
     {% block body_end %}{% endblock %}
 
     
-    <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+    <script type="application/javascript">if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
   </body>
 </html>

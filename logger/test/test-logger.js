@@ -1,4 +1,4 @@
-const logger = require('../src/logger');
+const logger = require('../index');
 
 logger.error('This is a statement at ERROR');
 logger.warn('This is a statement at WARN');

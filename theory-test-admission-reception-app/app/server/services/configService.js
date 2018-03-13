@@ -1,5 +1,3 @@
-// setup environment variables with dotenv first
-require('dotenv').config();
 const config = require('./../config');
 
 export default class ConfigService {
