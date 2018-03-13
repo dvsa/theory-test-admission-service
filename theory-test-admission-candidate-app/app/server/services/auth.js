@@ -8,7 +8,7 @@ export default class Auth {
 	logInIfNeeded = (req, res, next) => {
 		if (Auth.urlExcludedFromLogin(req.originalUrl)) {
 			next();
-		} else if (!ConfigService.UseAuth() || (req.session.data.validSession)) {
+		} else if (!ConfigService.UseAuth() || (req.session.data.validSession && req.session.data.bookingResult.hasBooking)) {
 			// Do nothing if auth bypassed (dev mode)
 			next();
 		} else {
@@ -21,11 +21,13 @@ export default class Auth {
 		// We don't have urlRoot here - this is intentional as
 		// urlRoot has been stripped off at this point
 		const loginUrl = '/candidate/candidate-details';
+		const reportPage = '/candidate/report-reception';
 		const entryUrl = '/';
 
 		return (
 			url === loginUrl ||
-			url === entryUrl);
+			url === entryUrl) ||
+			url === reportPage;
 	}
 
 
@@ -38,7 +40,7 @@ export default class Auth {
 		}
 		localOptions = localOptions || {};
 
-		const url = localOptions.redirectTo || '/login';
+		const url = localOptions.redirectTo || '/';
 		const setReturnTo = (localOptions.setReturnTo === undefined) ? true : localOptions.setReturnTo;
 		if (!res.locals.data.isAuthenticated) {
 			if (setReturnTo && req.session) {

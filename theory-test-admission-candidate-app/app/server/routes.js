@@ -50,6 +50,7 @@ export default class AppRouter {
 
 		// Route index page
 		this.routes.get('/', (req, res) => {
+			sessionStorage(req, res, 'bookingResult', { hasBooking: false, admissionsId: '' });
 			sessionStorage(req, res, 'validSession', true);
 			res.render('index');
 		});
@@ -63,6 +64,11 @@ export default class AppRouter {
 		// Video terms and Conditions
 		this.routes.get('/candidate/prepare-video', (req, res) => {
 			res.render('candidate/prepare-video');
+		});
+
+		this.routes.get('/candidate/report-reception', (req, res) => {
+			sessionStorage(req, res, 'bookingResult', { hasBooking: false, admissionsId: '' });
+			res.render('candidate/report-reception');
 		});
 	}
 
