@@ -21,9 +21,9 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	const { receivedData } = event;
+	const { ReceivedData } = event;
 	const bookingService = new BookingService();
-	bookingService.bookings = receivedData;
+	bookingService.bookings = ReceivedData;
 
 	exit(callback, null, bookingService.verifyBooking());
 
