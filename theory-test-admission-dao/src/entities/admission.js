@@ -1,13 +1,13 @@
 class Admission {
 	constructor() {
-		this.admissionId = '';
-		this.drivingLicenceNumber = '';
-		this.commenced = '';
-		this.hasBooking = false;
-		this.isEntitled = false;
-		this.resemblesLicence = false;
-		this.resemblesSuspect = false;
-		this.licenceImageThreshold = 0;
+		this.AdmissionId = '';
+		this.DrivingLicenceNumber = '';
+		this.AdmissionStarted = '';
+		this.HasBooking = false;
+		this.IsEntitled = false;
+		this.ResemblesLicence = false;
+		this.ResemblesSuspect = false;
+		this.LicenceImageThreshold = 0;
 	}
 }
 

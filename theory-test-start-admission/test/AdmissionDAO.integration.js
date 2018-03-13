@@ -7,29 +7,28 @@ const AdmissionDAO = require('theory-test-admission-dao');
 
 describe('Test AdmissionDAO module', () => {
 	const parameters = {
-		drivingLicenceNumber: 'Test1234567890',
-		admissionId: '123456789'
+		DrivingLicenceNumber: 'Test1234567890',
+		AdmissionId: '123456789'
 	};
 
-	const admission1 = AdmissionDAO.createNewAdmissionRecord(parameters);
-	const admission1Id = admission1.admissionId;
+	const admission1 = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
+	const admission1Id = admission1.AdmissionId;
 
 	it('can create a new record', (done) => {
-		assert(admission1.admissionId, admission1Id);
-		assert(admission1.TYPE, 'ADMISSION');
+		assert(admission1.AdmissionId, admission1Id);
 		done();
 	});
 
 	it('can save a new record to the database', (done) => {
-		AdmissionDAO.save(admission1, (err, retVal) => {
-			assert(retVal.admissionId, admission1Id);
+		AdmissionDAO.create(admission1, (err, retVal) => {
+			assert(retVal.AdmissionId, admission1Id);
 			done();
 		});
 	});
 
-	it('can delete the record created just now', (done) => {
-		AdmissionDAO.delete(admission1, (err, retVal) => {
-			done();
+	it('can delete the record created just now', (deleteDone) => {
+		AdmissionDAO.delete(admission1.DrivingLicenceNumber, (err, retVal) => {
+			deleteDone();
 		});
 	});
 });
