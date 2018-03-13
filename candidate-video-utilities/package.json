@@ -1,0 +1,32 @@
+{
+  "name": "candidate-video-utilities",
+  "version": "1.0.0",
+  "description": "Utitily functions related to capturing candidates' videos.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvsa/theory-test-admission-service.git"
+  },
+  "scripts": {
+    "default": "gulp",
+    "lint": "gulp lint",
+    "test": "gulp test"
+  },
+  "author": "Future Theory Test Alpha Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "aws-sdk": "^2.208.0",
+    "logger": "file:../logger"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.2",
+    "gulp-mocha": "^5.0.0",
+    "gulp-sequence": "^1.0.0"
+  }
+}
