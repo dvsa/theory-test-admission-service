@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/get-entitlements-from-dvla/get-entitlements-from-dvla.iml" filepath="$PROJECT_DIR$/get-entitlements-from-dvla/get-entitlements-from-dvla.iml" />
       <module fileurl="file://$PROJECT_DIR$/logger/logger.iml" filepath="$PROJECT_DIR$/logger/logger.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-candidate-app/theory-test-admission-candidate-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-admission-dao/theory-test-admission-dao.iml" filepath="$PROJECT_DIR$/theory-test-admission-dao/theory-test-admission-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" filepath="$PROJECT_DIR$/theory-test-admission-reception-app/theory-test-admission-reception-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-check-candidate-booking/theory-test-check-candidate-booking.iml" filepath="$PROJECT_DIR$/theory-test-check-candidate-booking/theory-test-check-candidate-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-check-candidate-entitlements/theory-test-check-candidate-entitlements.iml" filepath="$PROJECT_DIR$/theory-test-check-candidate-entitlements/theory-test-check-candidate-entitlements.iml" />

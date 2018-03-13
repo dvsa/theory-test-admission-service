@@ -1,0 +1,42 @@
+{
+  "name": "theory-test-admission-dao",
+  "version": "1.0.0",
+  "description": "Admission DAO module that can be used by other modules.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.ftts.dvsacloud.uk/ftts/theory-test-admission-app.git"
+  },
+  "scripts": {
+    "default": "gulp",
+    "lint": "gulp lint",
+    "test": "gulp test"
+  },
+  "author": "Future Theory Test Alpha Team",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.200.0",
+    "eslint-plugin-import": "^2.9.0",
+    "expect": "^21.2.1",
+    "express": "4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.2",
+    "gulp-run": "^1.7.1",
+    "logger": "file:../logger",
+    "moment": "^2.20.1",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "expect": "^21.2.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-mocha": "^5.0.0",
+    "gulp-sequence": "^0.4.6",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-zip": "^4.0.0",
+    "nunjucks-date-filter": "^0.1.1",
+    "sinon": "^4.3.0",
+    "yargs": "^10.0.3"
+  }
+}

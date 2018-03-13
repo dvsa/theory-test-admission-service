@@ -18,9 +18,11 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "theory-test-admission-dao": "file:../theory-test-admission-dao"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
     "assert": "^1.4.1",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0",
