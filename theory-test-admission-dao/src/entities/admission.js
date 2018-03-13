@@ -2,7 +2,7 @@ class Admission {
 	constructor() {
 		this.admissionId = '';
 		this.drivingLicenceNumber = '';
-		this.commerced = '';
+		this.commenced = '';
 		this.hasBooking = false;
 		this.isEntitled = false;
 		this.resemblesLicence = false;

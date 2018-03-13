@@ -7,7 +7,7 @@ const logger = require('logger');
 const table = process.env.DDB_TABLE_ADMISSIONS;
 const primaryKeyName = 'TYPE';
 const primaryKeyValue = 'ADMISSION';
-const sortKeyName = 'commerced';
+const sortKeyName = 'commenced';
 const recordType = 'ADMISSION';
 
 class AdmissionDAO extends AbstractDTO {
@@ -78,7 +78,7 @@ class AdmissionDAO extends AbstractDTO {
 		admission.TYPE = recordType;
 		admission.admissionId = admissionId;
 		admission.drivingLicenceNumber = drivingLicenceNumber;
-		admission.commerced = new Date().getTime().toString();
+		admission.commenced = new Date().getTime().toString();
 		logger.info(`Created new Admission for Database: ${admission.admissionId}`);
 		return admission;
 	}
