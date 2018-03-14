@@ -1,10 +1,9 @@
-const assert = require('assert');
-const main = require('../src/main');
+const logger = require('logger');
 
 describe('Example Unit Test', () => {
 	describe('greeting', () => {
 		it('is "Hello World!"', () => {
-			assert.equal(main.greeting(), 'Hello World!');
+			logger.info('Hello World from Logger');
 		});
 	});
 });

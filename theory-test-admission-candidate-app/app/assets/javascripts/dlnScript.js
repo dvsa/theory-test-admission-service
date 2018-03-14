@@ -24,7 +24,6 @@ const FieldValidator = function() {
 			*/
 			control.on("focusout", function() { window.setTimeout(validate, 100) }).on("focus", removeValidationError);
 
-			// control.on("focus", removeValidationError)
 		},
 
 		validate = function() {
