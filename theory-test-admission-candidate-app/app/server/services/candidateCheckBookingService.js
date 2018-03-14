@@ -12,9 +12,11 @@ export default class CandidateCheckBookingService {
 		bookingStepFunction.startExecution(params, (err, data) => {
 			if (err) {
 				logger.error(err);
+				console.log('Error is: ', err);
 				return false; // an error occurred
 			}
 			logger.info(data);
+			console.log('Data is: ', data);
 			return data.HasBooking; // successful response
 		});
 
