@@ -26,22 +26,19 @@ Driver Theory Test Prototype
     Enter your driving licence number
 </h1>
     <form action="{{urlRoot}}candidate/candidate-details" method="post" class="form">
-        <div class="form-group">
+        <div id="DLN-control-group" class="form-group">
             <label for="DLN" class="form-label">
                 Your driving licence number
                 <span class="form-hint">
                     Example: MORGA657054SM9IJ
                 </span>
+                <span class="error-message" id="DLN-help"></span>
             </label>
             <input type="text"
                    id="DLN"
                    name="DLN"
                    class="form-control"
-                   style="text-transform: uppercase"
-                   required
-                   pattern="^[a-zA-Z9]{5}[0-9]{1}[0156]{1}[0-9]{1}[0-9]{2}[0-9]{1}[a-zA-Z]{2}[0-9]{1}[0-9A-Za-z]{2}$"
-                   minlength="16"
-                   maxlength="16">
+                   style="text-transform: uppercase">
         </div>
 
         <div class="form-group">
@@ -58,6 +55,7 @@ Driver Theory Test Prototype
     $('#DLN').focus();
 </script>
 
+<script type="application/javascript" src="{{ assets}}public/javascripts/dlnScript.js"
 
 
 {% endblock %}
