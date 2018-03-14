@@ -29,3 +29,15 @@ $path: "/public/images/";
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+span.whereToFind {
+  text-decoration: underline;
+  position: relative;
+  padding-left: 5px !important;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#dlnHelpToggle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
