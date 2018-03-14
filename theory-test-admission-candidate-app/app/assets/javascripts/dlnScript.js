@@ -15,7 +15,6 @@ const FieldValidator = function() {
 			control = $("#" + controlId)
 			controlGroup = $("#" + controlId + "-control-group")
 			controlHelp = $("#" + controlId + "-help")
-			console.log(controlGroup);
 
 			/*
 				The timeout on the function below resolves the conflict between
@@ -25,15 +24,12 @@ const FieldValidator = function() {
 			*/
 			control.on("focusout", function() { window.setTimeout(validate, 100) }).on("focus", removeValidationError)
 
-			// control.on("focus", removeValidationError)
 		},
 
 		validate = function() {
-		console.log('Validation called');
 
 			returnedValue = "";
 			var value = control.val();
-			console.log(value)
 			if ($.isFunction(removeSpaces)) {
 				value = removeSpaces(value);
 				control.val(value);
