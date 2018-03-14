@@ -13,6 +13,8 @@ Driver Theory Test Prototype
     }
 </style>
 
+<script type="application/javascript" src="{{ assets }}public/javascripts/helpToggler.js"></script>
+
 <div class="grid-row">
     <div class="column-full">
 
@@ -41,9 +43,15 @@ Driver Theory Test Prototype
                    style="text-transform: uppercase"
         </div>
 
-        <div class="form-group">
-            <span class="arrow">►</span>
-            <a href="#" style="padding-bottom:10px;">Where to find your driving licence number</a>
+        <div role="form-group" id="dlnHelpToggle">
+            <div role="button">
+                <span class="arrow">►</span>
+                <span class="summary whereToFind open" onclick="toggleHelper(this)">Where to find your driving licence number</span>
+            </div>
+            <div class="panel-indent whereToFind" data-help="dln-help" style="display: none;">
+                <p>Your driving licence number can be found in section 5 of your driving licence photocard</p>
+                <img id="whatLicenceImg" src="{{ assets }}public/images/driving_licence.png" alt="">
+            </div>
         </div>
 
         <div class="form-group">
@@ -51,9 +59,7 @@ Driver Theory Test Prototype
         </div>
     </form>
 
-<script type="application/javascript">
-    $('#DLN').focus();
-</script>
+
 
 <script type="application/javascript" src="{{ assets}}public/javascripts/dlnScript.js"
 
