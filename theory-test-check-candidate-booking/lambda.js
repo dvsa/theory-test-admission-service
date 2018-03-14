@@ -21,11 +21,11 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	const { Data, Request } = event;
+	const { Booking, Request } = event;
 	const Result = {
 		AdmissionId: Request.AdmissionId,
 		DrivingLicenceNumber: Request.DrivingLicenceNumber,
-		HasBooking: BookingService.verifyBooking(Data)
+		HasBooking: BookingService.verifyBooking(Booking)
 	};
 	exit(callback, null, Result);
 
