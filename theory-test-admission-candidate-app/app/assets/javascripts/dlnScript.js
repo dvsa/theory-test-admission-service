@@ -29,7 +29,7 @@ const FieldValidator = function() {
 		validate = function() {
 
 			returnedValue = "";
-			var value = control.val()
+			var value = control.val();
 			if ($.isFunction(removeSpaces)) {
 				value = removeSpaces(value);
 				control.val(value);
