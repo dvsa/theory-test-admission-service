@@ -9,7 +9,7 @@ export default class CandidateDetailsController {
 	}
 	checkBooking(req, res) {
 		const admissionsId = uuid();
-		const candidateDLN = req.body.DLN;
+		const candidateDLN = req.body.DLN.toString().toUpperCase();
 		this.candidateBookingService.admissionsId = admissionsId;
 		this.candidateBookingService.candidateDLN = candidateDLN;
 		const hasBooking = this.candidateBookingService.checkCandidateBooking();
