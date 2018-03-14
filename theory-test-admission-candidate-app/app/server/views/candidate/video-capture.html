@@ -1,35 +1,40 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Driver Theory Test Prototype
+Capture Candidate Video
 {% endblock %}
 
 {% block page_content %}
-<style>
 
-
-    span.arrow {
-        color: #005ea5;
-    }
-</style>
 
 <div class="grid-row">
-    <p class="heading-medium" style="padding-left:40px">
-        Holding page, video capture
-    </p>
-    <div style="float:right">
-        <button id="nextCandidateButton" class="button">Continue</button>
+    <div class="column-full">
+
+        <a href="candidate-prepare-video" class="link-back">Back</a>
+
+        <h1 class="heading-xlarge">
+            Capturing your video
+        </h1>
+
+        <p class="lede">A recording is required to ______, once you have clicked on the link to start the video, the recording will start and will last X seconds.</p>
+
+        <p><a href="">Start your recording</a></p>
+        <div class="video-box">
+            <br>
+        </div>
+        <br>
+        <p>Once you have finished your recording, you may:</p>
+        <ul class="list list-bullet">
+            <li><a href="">Replay your recording</a></li>
+            <li><a href="">Redo your recording</a></li>
+        </ul>
+
+        <p>
+            <a class="button" href="/candidate/report-reception" role="button">Submit recording</a>
+        </p>
+
     </div>
 </div>
-
-<script type="application/javascript">
-    $('#nextCandidateButton').on('click', () => {
-    	window.location = '/candidate/report-reception';
-    })
-</script>
-
-
-
 
 {% endblock %}
 

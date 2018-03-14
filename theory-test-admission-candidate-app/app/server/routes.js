@@ -80,14 +80,6 @@ export default class AppRouter {
 				this.candidateDetailsController.checkBooking(req, res, next);
 			}
 		);
-
-
-		this.routes.post(
-			'/candidate/video-terms-conditions',
-			(req, res, next) => {
-				this.termsAndConditionsController.checkAgreement(req, res, next);
-			}
-		);
 	}
 
 

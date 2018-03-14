@@ -3,7 +3,7 @@ Integration Test for AdmissionDAO
  */
 
 const assert = require('assert');
-const AdmissionDAO = require('theory-test-admission-dao');
+const AdmissionDAO = require('../../../theory-test-admission-dao/index');
 
 describe('Test AdmissionDAO module', () => {
 	const parameters = {
@@ -27,7 +27,7 @@ describe('Test AdmissionDAO module', () => {
 	});
 
 	it('can delete the record created just now', (deleteDone) => {
-		AdmissionDAO.delete(admission1.DrivingLicenceNumber, (err, retVal) => {
+		AdmissionDAO.delete(admission1.DrivingLicenceNumber, () => {
 			deleteDone();
 		});
 	});
