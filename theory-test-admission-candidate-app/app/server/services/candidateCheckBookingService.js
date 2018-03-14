@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+const logger = require('logger');
 
 export default class CandidateCheckBookingService {
 
@@ -10,8 +11,10 @@ export default class CandidateCheckBookingService {
 		};
 		bookingStepFunction.startExecution(params, (err, data) => {
 			if (err) {
+				logger.error(err);
 				return false; // an error occurred
 			}
+			logger.info(data);
 			return data.HasBooking; // successful response
 		});
 
