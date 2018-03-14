@@ -9,11 +9,12 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 	logger.info('Running start admission');
 	let response;
-	if (event.DrivingLicenceNumber && event.HasBooking && event.AdmissionId) {
+	const { Result } = event;
+	if (Result.DrivingLicenceNumber && Result.AdmissionId) {
 		const parameters = {
-			DrivingLicenceNumber: event.DrivingLicenceNumber,
-			HasBooking: event.HasBooking,
-			AdmissionId: event.AdmissionId
+			DrivingLicenceNumber: Result.DrivingLicenceNumber,
+			HasBooking: Result.HasBooking,
+			AdmissionId: Result.AdmissionId
 		};
 
 		const admission = AdmissionDAO.createNewAdmissionRecord(parameters);
@@ -21,13 +22,13 @@ exports.handler = (event, context, callback) => {
 			if (!err) {
 				response = {
 					AdmissionId: retVal.AdmissionId,
-					valid: true
+					valid: true,
+					HasBooking: Result.HasBooking
 				};
 				exit(callback, null, response);
 			}
 		});
 	}
-
 };
 
 /**
