@@ -1,9 +1,9 @@
-const logger = require('../../../logger/index');
+const assert = require('assert');
 
 describe('Example Unit Test', () => {
 	describe('greeting', () => {
 		it('is "Hello World!"', () => {
-			logger.info('Hello World from Logger');
+			assert.equal('Hello World!', 'Hello World!');
 		});
 	});
 });
