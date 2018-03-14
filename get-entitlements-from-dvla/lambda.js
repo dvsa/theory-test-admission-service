@@ -18,7 +18,7 @@ function exit(callback, error, response) {
 exports.handler = (event, context, callback) => {
 
 	// log inbound event
-	logger.debug('Received event: ', JSON.stringify(event));
+	logger.debug('Received event : ', JSON.stringify(event));
 
 	// invoke business logic
 	const result = main.greeting();
