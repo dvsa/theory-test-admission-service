@@ -6,11 +6,12 @@ const logger = require('logger');
 exports.handler = function (event, context, callback) {
 	logger.info('Running start admission');
 	let response;
-	if (event.DrivingLicenceNumber && event.AdmissionId) {
+	const { Result } = event;
+	if (Result.DrivingLicenceNumber && Result.AdmissionId) {
 		const parameters = {
-			DrivingLicenceNumber: event.DrivingLicenceNumber,
-			HasBooking: event.HasBooking,
-			AdmissionId: event.AdmissionId
+			DrivingLicenceNumber: Result.DrivingLicenceNumber,
+			HasBooking: Result.HasBooking,
+			AdmissionId: Result.AdmissionId
 		};
 
 		const admission = AdmissionDAO.createNewAdmissionRecord(parameters);
@@ -19,7 +20,7 @@ exports.handler = function (event, context, callback) {
 				response = {
 					AdmissionId: retVal.AdmissionId,
 					valid: true,
-					HasBooking: event.HasBooking
+					HasBooking: Result.HasBooking
 				};
 				callback(null, response);
 			}
