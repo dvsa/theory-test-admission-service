@@ -3,7 +3,7 @@ Integration Test for AdmissionDAO
  */
 
 const assert = require('assert');
-const AdmissionDAO = require('../../../theory-test-admission-dao/index');
+const AdmissionDAO = require('theory-test-admission-dao');
 
 describe('Test AdmissionDAO module', () => {
 	const parameters = {

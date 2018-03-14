@@ -20,25 +20,37 @@ Enter Candidate Drivers Licence Number
 
     <div class="grid-row">
         <div class="column-full">
-
-            <a href="login" class="link-back">Back</a>
+            <div class="breadcrumbs">
+                <ol>
+                    <li><a href="{{urlRoot}}">Home</a></li>
+                    <li aria-current="page"><span class="current-page-breadcrumb">Enter Driving Licence Number</span></li>
+                </ol>
+            </div>
 
             <form action="{{urlRoot}}candidate/candidate-details" method="post" class="form">
 
                 <fieldset class="form-group">
                     <legend>
                         <h1 class="heading-large">
-                            What is your driving license number?
+                            What is your driving licence number?
                         </h1>
                     </legend>
-                    <div class="form-date">
-                        <label class="form-label form-label-bold" for="ni-number">
-                            Your driving license number
+                    <div class="form-group" id="DLN-control-group">
+                        <label class="form-label form-label-bold" for="DLN">
+                            Your driving licence number
                             <span class="form-hint">
                 For example, MORGA657054SM9IJ
-              </span>
+                            </span>
+                            <span class="error-message"
+                                  id="DLN-help"
+                                  name="DLN"
+                                  class="form=control"></span>
                         </label>
-                        <input class="form-control" id="ni-number" type="text" name="ni-number">
+                        <input class="form-control"
+                               id="DLN"
+                               type="text"
+                               name="DLN"
+                               style="text-transform: uppercase">
                     </div>
                 </fieldset>
 
@@ -64,6 +76,5 @@ Enter Candidate Drivers Licence Number
 
 </main>
 
-<script type="application/javascript" src="{{assets}}public/javascripts/dlnScript.js"
-
-{% endblock %}
+<script type="application/javascript" src="{{assets}}public/javascripts/dlnScript.js"></script>
+        {% endblock %}
