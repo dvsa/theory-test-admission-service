@@ -18,7 +18,7 @@ exports.handler = (event, context, callback) => {
 			AdmissionId: event.AdmissionId
 		};
 
-		const admission = AdmissionDAO.createNewAdmissionRecord(parameters);
+		const admission = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
 		AdmissionDAO.create(admission, (err, retVal) => {
 			if (!err) {
 				response = {
