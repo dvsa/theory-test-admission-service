@@ -6,7 +6,7 @@ const logger = require('logger');
 exports.handler = function (event, context, callback) {
 	logger.info('Running start admission');
 	let response;
-	if (event.DrivingLicenceNumber && event.HasBooking && event.AdmissionId) {
+	if (event.DrivingLicenceNumber && event.AdmissionId) {
 		const parameters = {
 			DrivingLicenceNumber: event.DrivingLicenceNumber,
 			HasBooking: event.HasBooking,
@@ -18,7 +18,8 @@ exports.handler = function (event, context, callback) {
 			if (!err) {
 				response = {
 					AdmissionId: retVal.AdmissionId,
-					valid: true
+					valid: true,
+					HasBooking: event.HasBooking
 				};
 				callback(null, response);
 			}
