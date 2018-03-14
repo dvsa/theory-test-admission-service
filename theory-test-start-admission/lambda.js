@@ -24,7 +24,7 @@ exports.handler = (event, context, callback) => {
 				response = {
 					AdmissionId: retVal.AdmissionId,
 					valid: true,
-					HasBooking: event.HasBooking
+					HasBooking: retVal.HasBooking
 				};
 				exit(callback, null, response);
 			}
