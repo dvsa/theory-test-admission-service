@@ -12,8 +12,11 @@ class GetBookingService {
 		const { bookings } = BookingData;
 		let i = 0;
 		while (i < bookings.length) {
+			console.log('Carrying out loop at index: ', bookings[i].dln);
 			if (drivingLicenceNumber === bookings[i].dln) {
+				console.log('Found booking');
 				callback([bookings[i]]);
+				break;
 			}
 			i += 1;
 		}
