@@ -26,6 +26,6 @@ exports.handler = (event, context, callback) => {
 
 
 	// return success
-	exit(callback, null, GetBookingService().getBooking(DrivingLicenceNumber, Date));
+	exit(callback, null, GetBookingService.getBooking(DrivingLicenceNumber, Date));
 
 };
