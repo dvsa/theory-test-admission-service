@@ -1,19 +1,10 @@
-const VALID_BOOKING = [{
-	bookingId: 'AABBCC1234567',
-	dln: '32519228',
-	bookingDate: '14/03/18'
-}, {
-	bookingId: 'AABBCC1234564',
-	dln: '32519227',
-	bookingDate: '15/03/18'
-}, {
-	bookingId: 'AABBCC1234566',
-	dln: '32519226',
-	bookingDate: '16/03/18'
-}];
+const data = require('./bookings');
+
 
 class GetBookingService {
-
+	constructor() {
+		this.bookings = data.bookings;
+	}
 	/**
      * @param drivingLicenceNumber {string}
 	 * @param receivedDate {date}
@@ -22,9 +13,9 @@ class GetBookingService {
 	getBooking() {
 		const { drivingLicenceNumber } = this;
 		let i = 0;
-		while (i < VALID_BOOKING.length) {
-			if (drivingLicenceNumber === VALID_BOOKING[i].dln) {
-				return [VALID_BOOKING[i]];
+		while (i < this.bookings.length) {
+			if (drivingLicenceNumber === this.bookings[i].dln) {
+				return [this.bookings[i]];
 			}
 			i += 1;
 		}

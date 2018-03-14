@@ -7,10 +7,12 @@ export default class CandidateDetailsController {
 	constructor() {
 		this.candidateBookingService = new CandidateCheckBookingService();
 	}
-	checkBooking(req, res, next) {
+	checkBooking(req, res) {
 		const admissionsId = uuid();
 		const candidateDLN = req.body.DLN;
-		const hasBooking = this.candidateBookingService.checkCandidateBooking(admissionsId, candidateDLN);
+		this.candidateBookingService.admissionsId = admissionsId;
+		this.candidateBookingService.candidateDLN = candidateDLN;
+		const hasBooking = this.candidateBookingService.checkCandidateBooking();
 		sessionStorage(req, res, 'bookingResult', { hasBooking, admissionsId });
 		if (hasBooking) {
 			sessionStorage(req, res, 'videoTermsAgreed', false);
