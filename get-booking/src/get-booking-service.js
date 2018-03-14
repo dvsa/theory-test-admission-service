@@ -10,6 +10,7 @@ class GetBookingService {
      */
 	static getBooking(DrivingLicenceNumber, Date) {
 		const { bookings } = BookingData;
+		console.log(bookings);
 		let i = 0;
 		while (i < bookings.length) {
 			if (DrivingLicenceNumber === bookings[i].dln) {
