@@ -22,7 +22,8 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 
 	// invoke business logic
-	const { DrivingLicenceNumber, Date } = event;
+	const { Request } = event;
+	const { DrivingLicenceNumber, Date } = Request;
 
 
 	// return success
