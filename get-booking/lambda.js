@@ -27,6 +27,10 @@ exports.handler = (event, context, callback) => {
 
 	// return success
 	GetBookingService.getBooking(DrivingLicenceNumber, Date, (response) => {
-		exit(callback, null, response || []);
+		if (response === null) {
+			exit(callback, null, []);
+		} else {
+			exit(callback, null, response);
+		}
 	});
 };
