@@ -1,40 +1,51 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Driver Theory Test Prototype
+Login
 {% endblock %}
 
-{% block page_content %}
-<style>
+{% block proposition_header %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
+{% block header_class %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
-    span.arrow {
-        color: #005ea5;
-    }
-</style>
-<div class="grid-row">
-    <p class="heading-medium" style="padding-left:40px">
-        Please report to reception
-    </p>
-    <div style="float:right">
-        <button id="nextCandidateButton" class="button">Next Candidate</button>
+{% block content %}
+
+<main id="content" role="main">
+
+    <div class="grid-row">
+        <div class="column-full">
+
+            <a href="candidate-video-capture" class="link-back">Back</a>
+
+            <h1 class="heading-xlarge">
+                Please report to reception
+            </h1>
+
+            <p>
+                <a class="button" href="login" href="#" role="button">Next candidate</a>
+            </p>
+
+        </div>
     </div>
-</div>
+
+</main>
 
 <script type="application/javascript">
     $('#nextCandidateButton').on('click', () => {
-    	window.location = '/';
+        window.location = '/';
     })
     $(document).ready(() => {
-    	setTimeout(() => {
-    		window.location = '/';
+        setTimeout(() => {
+            window.location = '/';
         }, 120000)
     })
 </script>
 
-
-
-
 {% endblock %}
+
 
 

@@ -1,16 +1,44 @@
-{% extends "layout.html" %} {% block page_title %} Driver Theory Test Prototype {% endblock %} {% block page_content %}
+{% extends "layout.html" %}
 
-<div class="grid-row">
-	<div class="column-two-thirds">
+{% block page_title %}
+Login
+{% endblock %}
 
+{% block proposition_header %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
+{% block header_class %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
-		<h2 class="heading-medium">Welcome</h2>
-		<a class="button" href="{{urlRoot}}candidate/candidate-details">Start</a>
+{% block content %}
 
+<main id="content" role="main">
 
-
+	<div class="breadcrumbs">
+		<ol>
+			<li><a href="https://www.gov.uk">Home</a></li>
+			<li><a href="">Section</a></li>
+			<li>Subsection</li>
+		</ol>
 	</div>
-</div>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<h1 class="heading-xlarge">
+				Welcome
+			</h1>
+
+			<p>
+				<a class="button button-start" href="{{urlRoot}}candidate/candidate-details" href="#" role="button">Start now</a>
+			</p>
+
+		</div>
+	</div>
+
+</main>
 
 {% endblock %}
+

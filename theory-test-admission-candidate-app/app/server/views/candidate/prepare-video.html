@@ -1,28 +1,37 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Driver Theory Test Prototype
+Video Capture Instructions
 {% endblock %}
 
-{% block page_content %}
-<style>
+{% block proposition_header %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
+{% block header_class %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
-    span.arrow {
-        color: #005ea5;
-    }
-</style>
-<div class="grid-row">
-    <h1 class="heading-large">
-        Video terms and conditions
-    </h1>
-    <div class="form-group">
-        <span class="arrow">►</span>
-        <span>Click the button below to read the terms and conditions. You must accept them in order to proceed</span>
+{% block content %}
+
+<main id="content" role="main">
+
+    <div class="grid-row">
+        <div class="column-full">
+
+            <a href="candidate-details" class="link-back">Back</a>
+
+            <h1 class="heading-xlarge">
+                Instructions for capturing your video
+            </h1>
+
+            <p>
+                <a class="button" href="/candidate/video-capture" role="button">Continue</a>
+            </p>
+
+        </div>
     </div>
-    <a href="/candidate/video-terms-conditions" class="button" style="float:right;">Video terms and conditions</a>
-</div>
+
+</main>
 
 {% endblock %}
-
-
