@@ -22,16 +22,12 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 
 	// invoke business logic
-	const { DrivingLicenceNumber, ReceivedDate, AdmissionId } = event;
+	const { DrivingLicenceNumber, Date } = event;
 	const getBookingService = new GetBookingService();
 	getBookingService.drivingLicenceNumber = DrivingLicenceNumber;
-	getBookingService.receivedDate = ReceivedDate;
+	getBookingService.date = Date;
 
 	// return success
-	exit(callback, null, {
-		ReceivedData: getBookingService().getBooking(),
-		DrivingLicenceNumber,
-		AdmissionId
-	});
+	exit(callback, null, getBookingService().getBooking());
 
 };
