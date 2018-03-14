@@ -9,14 +9,13 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 	logger.info('Running start admission');
 	let response;
-	const { Result } = event;
-	console.log('Result is: ', Result);
-	if (Result.DrivingLicenceNumber && Result.AdmissionId) {
+	console.log('Result is: ', event);
+	if (event.DrivingLicenceNumber && event.AdmissionId) {
 		console.log('Executing lambda');
 		const parameters = {
-			DrivingLicenceNumber: Result.DrivingLicenceNumber,
-			HasBooking: Result.HasBooking,
-			AdmissionId: Result.AdmissionId
+			DrivingLicenceNumber: event.DrivingLicenceNumber,
+			HasBooking: event.HasBooking,
+			AdmissionId: event.AdmissionId
 		};
 
 		const admission = AdmissionDAO.createNewAdmissionRecord(parameters);
@@ -25,7 +24,7 @@ exports.handler = (event, context, callback) => {
 				response = {
 					AdmissionId: retVal.AdmissionId,
 					valid: true,
-					HasBooking: Result.HasBooking
+					HasBooking: event.HasBooking
 				};
 				exit(callback, null, response);
 			}
