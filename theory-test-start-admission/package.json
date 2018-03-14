@@ -12,7 +12,8 @@
     "clean": "gulp clean",
     "lint": "gulp lint",
     "test": "gulp test",
-    "build-dist": "gulp build"
+    "build-dist": "gulp build",
+    "integration-test": "gulp integration-test"
   },
   "author": "Future Theory Test Alpha Team",
   "license": "MIT",

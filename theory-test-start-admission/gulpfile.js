@@ -6,7 +6,7 @@ const sequence = require('gulp-sequence');
 const zip = require('gulp-zip');
 const { argv } = require('yargs');
 
-gulp.task('default', sequence('clean', 'lint', 'test', 'integration-test', 'build'));
+gulp.task('default', sequence('clean', 'lint', 'test', 'build'));
 
 /**
  * Delete the "dist" directory, if present.
@@ -29,7 +29,12 @@ gulp.task('lint', () => {
 /**
  * Fail the build if unit tests do not pass.
  */
-gulp.task('test', sequence('suppress-logging', 'set-running-locally', 'unit-test'));
+gulp.task('test', sequence('suppress-logging', 'set-running-locally', 'run-unit-test'));
+
+/**
+ * Fail the build if integration tests do not pass.
+ */
+gulp.task('integration-test', sequence('suppress-logging', 'set-running-locally', 'run-integration-test'));
 
 gulp.task('suppress-logging', () => {
 	process.env.LOG_LEVEL = 'error';
@@ -41,21 +46,21 @@ gulp.task('set-running-locally', () => {
 	return true;
 });
 
-gulp.task('unit-test', () => {
-	return gulp.src(['test/unit/*.js'])
+gulp.task('run-unit-test', () => {
+	return gulp.src(['test/**/*.js'])
+		.pipe(mocha({
+			reporter: 'spec'
+		}));
+});
+
+gulp.task('run-integration-test', () => {
+	return gulp.src(['integration-test/**/*.js'])
 		.pipe(mocha({
 			reporter: 'spec',
 			require: ['dotenv/config']
 		}));
 });
 
-gulp.task('integration-test', () => {
-	return gulp.src(['test/integration/*.js'])
-		.pipe(mocha({
-			reporter: 'spec',
-			require: ['dotenv/config']
-		}));
-});
 /**
  * Create a zip file which can be deployed to AWS Lambda, in the "dist" directory.
  * The target filename can be overriden with the command-line argument "lambda".

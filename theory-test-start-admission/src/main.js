@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const AdmissionDAO = require('theory-test-admission-dao');
 const logger = require('logger');
 
