@@ -28,17 +28,25 @@ Enter Candidate Drivers Licence Number
                 <fieldset class="form-group">
                     <legend>
                         <h1 class="heading-large">
-                            What is your driving license number?
+                            What is your driving licence number?
                         </h1>
                     </legend>
-                    <div class="form-date">
-                        <label class="form-label form-label-bold" for="ni-number">
-                            Your driving license number
+                    <div class="form-date" id="DLN-control-group">
+                        <label class="form-label form-label-bold" for="DLN">
+                            Your driving licence number
                             <span class="form-hint">
                 For example, MORGA657054SM9IJ
-              </span>
+                            </span>
+                            <span class="error-message"
+                                  id="DLN-help"
+                                  name="DLN"
+                                  class="form=control"/>
                         </label>
-                        <input class="form-control" id="ni-number" type="text" name="ni-number">
+                        <input class="form-control"
+                               id="DLN"
+                               type="text"
+                               name="DLN"
+                               style="text-transform: uppercase">
                     </div>
                 </fieldset>
 
@@ -66,4 +74,4 @@ Enter Candidate Drivers Licence Number
 
 <script type="application/javascript" src="{{assets}}public/javascripts/dlnScript.js"
 
-{% endblock %}
+        {% endblock %}
