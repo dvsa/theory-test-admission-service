@@ -45,6 +45,7 @@ gulp.task('unit-test', () => {
 	return gulp.src(['test/**/*.js'])
 		.pipe(mocha({
 			reporter: 'spec',
+			require: ['dotenv/config']
 		}));
 });
 
