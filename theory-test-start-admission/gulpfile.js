@@ -6,7 +6,7 @@ const sequence = require('gulp-sequence');
 const zip = require('gulp-zip');
 const { argv } = require('yargs');
 
-gulp.task('default', sequence('clean', 'lint', 'test', 'build'));
+gulp.task('default', sequence('clean', 'lint', 'test', 'integration-test', 'build'));
 
 /**
  * Delete the "dist" directory, if present.
@@ -42,13 +42,20 @@ gulp.task('set-running-locally', () => {
 });
 
 gulp.task('unit-test', () => {
-	return gulp.src(['test/**/*.js'])
+	return gulp.src(['test/unit/*.js'])
 		.pipe(mocha({
 			reporter: 'spec',
 			require: ['dotenv/config']
 		}));
 });
 
+gulp.task('integration-test', () => {
+	return gulp.src(['test/integration/*.js'])
+		.pipe(mocha({
+			reporter: 'spec',
+			require: ['dotenv/config']
+		}));
+});
 /**
  * Create a zip file which can be deployed to AWS Lambda, in the "dist" directory.
  * The target filename can be overriden with the command-line argument "lambda".
