@@ -1,69 +1,69 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Driver Theory Test Prototype
+Enter Candidate Drivers Licence Number
 {% endblock %}
 
-{% block page_content %}
-<style>
+{% block proposition_header %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
+{% block header_class %}
+<!-- blank to remove the proposition header -->
+{% endblock %}
 
-    span.arrow {
-        color: #005ea5;
-    }
-</style>
+{% block content %}
 
 <script type="application/javascript" src="{{ assets }}public/javascripts/helpToggler.js"></script>
 
-<div class="grid-row">
-    <div class="column-full">
+<main id="content" role="main">
 
-        {% if (loginAuthenticationError === 'true') %}
-        {% include "includes/login/login-authentication-error.html" %}
-        {% endif %}
+    <div class="grid-row">
+        <div class="column-full">
+
+            <a href="login" class="link-back">Back</a>
+
+            <form action="{{urlRoot}}candidate/candidate-details" method="post" class="form">
+
+                <fieldset class="form-group">
+                    <legend>
+                        <h1 class="heading-large">
+                            What is your driving license number?
+                        </h1>
+                    </legend>
+                    <div class="form-date">
+                        <label class="form-label form-label-bold" for="ni-number">
+                            Your driving license number
+                            <span class="form-hint">
+                For example, MORGA657054SM9IJ
+              </span>
+                        </label>
+                        <input class="form-control" id="ni-number" type="text" name="ni-number">
+                    </div>
+                </fieldset>
+
+                <div role="form-group" id="dlnHelpToggle">
+                    <div role="button">
+                        <span class="arrow">►</span>
+                        <span class="summary whereToFind open" onclick="toggleHelper(this)">Where to find your driving licence number</span>
+                    </div>
+                    <div class="panel panel-border-narrow" data-help="dln-help" style="display: none;">
+                        <p>Your driving licence number can be found in section 5 of your driving licence photocard</p>
+                        <img id="whatLicenceImg" src="{{ assets }}public/images/driving_licence.png" alt="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input class="button" type="submit" value="Continue">
+                </div>
+
+            </form>
+
+        </div>
     </div>
-</div>
 
-<h1 class="heading-large">
-    Enter your driving licence number
-</h1>
-    <form action="{{urlRoot}}candidate/candidate-details" method="post" class="form">
-        <div id="DLN-control-group" class="form-group">
-            <label for="DLN" class="form-label">
-                Your driving licence number
-                <span class="form-hint">
-                    Example: MORGA657054SM9IJ
-                </span>
-                <span class="error-message" id="DLN-help"></span>
-            </label>
-            <input type="text"
-                   id="DLN"
-                   name="DLN"
-                   class="form-control"
-                   style="text-transform: uppercase"
-        </div>
+</main>
 
-        <div role="form-group" id="dlnHelpToggle">
-            <div role="button">
-                <span class="arrow">►</span>
-                <span class="summary whereToFind open" onclick="toggleHelper(this)">Where to find your driving licence number</span>
-            </div>
-            <div class="panel-indent whereToFind" data-help="dln-help" style="display: none;">
-                <p>Your driving licence number can be found in section 5 of your driving licence photocard</p>
-                <img id="whatLicenceImg" src="{{ assets }}public/images/driving_licence.png" alt="">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input type="submit" class="button" value="Continue">
-        </div>
-    </form>
-
-
-
-<script type="application/javascript" src="{{ assets}}public/javascripts/dlnScript.js"
-
+<script type="application/javascript" src="{{assets}}public/javascripts/dlnScript.js"
 
 {% endblock %}
-
-
