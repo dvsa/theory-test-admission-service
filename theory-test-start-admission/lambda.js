@@ -9,9 +9,7 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 	logger.info('Running start admission');
 	let response;
-	console.log('Result is: ', event);
 	if (event.DrivingLicenceNumber && event.AdmissionId) {
-		console.log('Executing lambda');
 		const parameters = {
 			DrivingLicenceNumber: event.DrivingLicenceNumber,
 			HasBooking: event.HasBooking,
