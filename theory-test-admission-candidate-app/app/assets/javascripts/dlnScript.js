@@ -12,10 +12,9 @@ const FieldValidator = function() {
 			//If required field not sent, set to false
 			if (required == null) { fieldRequired = true; } else {fieldRequired = required}
 
-			control = $("#" + controlId)
-			controlGroup = $("#" + controlId + "-control-group")
-			controlHelp = $("#" + controlId + "-help")
-			console.log(controlGroup);
+			control = $("#" + controlId);
+			controlGroup = $("#" + controlId + "-control-group");
+			controlHelp = $("#" + controlId + "-help");
 
 			/*
 				The timeout on the function below resolves the conflict between
@@ -23,17 +22,15 @@ const FieldValidator = function() {
 				Without it the click event will not fire on the first user click (provided
 				there are validation errors)
 			*/
-			control.on("focusout", function() { window.setTimeout(validate, 100) }).on("focus", removeValidationError)
+			control.on("focusout", function() { window.setTimeout(validate, 100) }).on("focus", removeValidationError);
 
 			// control.on("focus", removeValidationError)
 		},
 
 		validate = function() {
-		console.log('Validation called');
 
 			returnedValue = "";
-			var value = control.val();
-			console.log(value)
+			var value = control.val()
 			if ($.isFunction(removeSpaces)) {
 				value = removeSpaces(value);
 				control.val(value);
