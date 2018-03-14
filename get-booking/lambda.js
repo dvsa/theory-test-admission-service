@@ -28,10 +28,10 @@ exports.handler = (event, context, callback) => {
 	// return success
 	GetBookingService.getBooking(DrivingLicenceNumber, Date, (response) => {
 		console.log('The response is: ', response);
-		if (response === null) {
-			exit(callback, null, []);
-		} else {
+		if (response.length === 1) {
 			exit(callback, null, response);
+		} else {
+			exit(callback, null, []);
 		}
 	});
 };
