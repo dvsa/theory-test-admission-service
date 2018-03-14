@@ -22,12 +22,10 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 
 	const { Data, Request } = event;
-	const bookingService = new BookingService();
-	bookingService.bookings = Data;
 	const Result = {
 		AdmissionId: Request.AdmissionId,
 		DrivingLicenceNumber: Request.DrivingLicenceNumber,
-		HasBooking: bookingService.verifyBooking()
+		HasBooking: BookingService.verifyBooking(Data)
 	};
 	exit(callback, null, Result);
 

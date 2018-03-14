@@ -5,8 +5,7 @@ class BookingService {
      * @returns {boolean}
      */
 
-	verifyBooking() {
-		const { bookings } = this;
+	static verifyBooking(bookings) {
 		if (bookings.length === 1) {
 			return true;
 		}

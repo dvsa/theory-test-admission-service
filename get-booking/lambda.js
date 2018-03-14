@@ -23,11 +23,9 @@ exports.handler = (event, context, callback) => {
 
 	// invoke business logic
 	const { DrivingLicenceNumber, Date } = event;
-	const getBookingService = new GetBookingService();
-	getBookingService.drivingLicenceNumber = DrivingLicenceNumber;
-	getBookingService.date = Date;
+
 
 	// return success
-	exit(callback, null, getBookingService().getBooking());
+	exit(callback, null, new GetBookingService().getBooking(DrivingLicenceNumber, Date));
 
 };

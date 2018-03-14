@@ -1,21 +1,19 @@
-const data = require('./bookings');
+const BookingData = require('./bookings');
 
 
 class GetBookingService {
-	constructor() {
-		this.bookings = data.bookings;
-	}
+
 	/**
      * @param drivingLicenceNumber {string}
 	 * @param receivedDate {date}
      * @returns {boolean}
      */
-	getBooking() {
-		const { drivingLicenceNumber } = this;
+	static getBooking(DrivingLicenceNumber, Date) {
+		const { bookings } = BookingData;
 		let i = 0;
-		while (i < this.bookings.length) {
-			if (drivingLicenceNumber === this.bookings[i].dln) {
-				return [this.bookings[i]];
+		while (i < bookings.length) {
+			if (DrivingLicenceNumber === bookings[i].dln) {
+				return [bookings[i]];
 			}
 			i += 1;
 		}

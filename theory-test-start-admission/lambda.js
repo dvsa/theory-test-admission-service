@@ -1,5 +1,34 @@
+require('dotenv').config();
+
+const AdmissionDAO = require('theory-test-admission-dao');
 const logger = require('logger');
-const main = require('./src/main');
+
+exports.handler = (event, context, callback) => {
+
+	// log inbound event
+	logger.debug('Received event: ', JSON.stringify(event));
+	logger.info('Running start admission');
+	let response;
+	if (event.DrivingLicenceNumber && event.HasBooking && event.AdmissionId) {
+		const parameters = {
+			DrivingLicenceNumber: event.DrivingLicenceNumber,
+			HasBooking: event.HasBooking,
+			AdmissionId: event.AdmissionId
+		};
+
+		const admission = AdmissionDAO.createNewAdmissionRecord(parameters);
+		AdmissionDAO.create(admission, (err, retVal) => {
+			if (!err) {
+				response = {
+					AdmissionId: retVal.AdmissionId,
+					valid: true
+				};
+				exit(callback, null, response);
+			}
+		});
+	}
+
+};
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -14,16 +43,3 @@ function exit(callback, error, response) {
 	callback(error, response);
 	logger.flush();
 }
-
-exports.handler = (event, context, callback) => {
-
-	// log inbound event
-	logger.debug('Received event: ', JSON.stringify(event));
-
-	// invoke business logic
-	const result = main.greeting();
-
-	// return success
-	exit(callback, null, result);
-
-};
