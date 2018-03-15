@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const moment = require('moment');
+const logger = require('logger');
 
 const bookingStepFunction = new AWS.StepFunctions();
 
@@ -7,6 +8,7 @@ export default class CandidateCheckBookingService {
 
 	static checkCandidateBooking(admissionId, candidateDLN, callback) {
 
+		logger.info('Check candidate booking executed');
 		const currentDate = moment(Number.parseInt(new Date().getTime(), 10)).toISOString(true);
 
 		const dln = `"DrivingLicenceNumber": "${candidateDLN}"`;
@@ -19,6 +21,7 @@ export default class CandidateCheckBookingService {
 			input: completeInput
 		};
 		this.doStartExecution(params, (response) => {
+			logger.info('Start execution executed and returned: ', response);
 			const descParams = {
 				executionArn: response.executionArn,
 			};
