@@ -37,6 +37,10 @@ export default class CandidateCheckBookingService {
 	}
 	static doStartExecution(params, callback) {
 		bookingStepFunction.startExecution(params, (error, data) => {
+			if (error) {
+				logger.error('Start execution failed with the following error: ', error);
+			}
+			logger.info('Start execution succeeded with the following response: ', data);
 			return callback(data);
 		});
 	}
