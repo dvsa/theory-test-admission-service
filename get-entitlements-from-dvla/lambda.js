@@ -1,17 +1,14 @@
-const logger = require('logger');
-const main = require('./src/main');
+const logger = require('../logger');
 
 const mockData = {
-  entitlements: {
-    dln_id_1: {
-      dln: 'dln_id_1',
-      valid: true
-    },
-    dln_id_2: {
-      dln: 'dln_id_2',
-      valid: false
-    }
-  }
+	entitlements: {
+		dln_id_1: {
+			valid: true
+		},
+		dln_id_2: {
+			valid: false
+		}
+	}
 };
 
 /**
@@ -33,6 +30,6 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event : ', JSON.stringify(event));
 
-  callback(null, mockData.entitlements[event.Request.DrivingLicenceNumber]);
+	exit(callback(null, mockData.entitlements[event.Request.DrivingLicenceNumber]));
 
 };

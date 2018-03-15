@@ -1,17 +1,16 @@
-const logger = require('logger');
-const main = require('./src/main');
+const logger = require('../logger');
 
 const mockData = {
-  images: {
-    dln_id_1: {
-      bucketName: 'bucket_1',
-      key: 'path_to_image_1'
-    },
-    dln_id_2: {
-      bucketName: 'bucket_2',
-      key: 'path_to_image_2'
-    }
-  }
+	images: {
+		dln_id_1: {
+			bucketName: 'bucket_1',
+			key: 'path_to_image_1'
+		},
+		dln_id_2: {
+			bucketName: 'bucket_2',
+			key: 'path_to_image_2'
+		}
+	}
 };
 
 /**
@@ -35,6 +34,6 @@ exports.handler = (event, context, callback) => {
 
 
 	// return success
-  callback(null, mockData.images[event.Request.DrivingLicenceNumber]);
+	exit(callback(null, mockData.images[event.Request.DrivingLicenceNumber]));
 
 };

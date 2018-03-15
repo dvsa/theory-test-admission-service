@@ -1,5 +1,5 @@
-const logger = require('logger');
-const main = require('./src/main');
+/* eslint-disable prefer-destructuring */
+const logger = require('../logger');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -28,12 +28,12 @@ exports.handler = (event, context, callback) => {
 		ResemblesSuspect: event.CompleteAdmissionResult[1][1].suspect_detected,
 		LicenceImageThreshold: event.CompleteAdmissionResult[1][0].LicenceImageThreshold
 	};
-	console.log('AdmissionId : ', AdmissionId);
-	console.log('admission object : ', JSON.stringify(AdmissionData));
+	logger.debug('AdmissionId : ', AdmissionId);
+	logger.debug('admission object : ', JSON.stringify(AdmissionData));
 	const response = {
 		AdmissionId,
 		AdmissionData
 	};
-	callback(null, response);
+	exit(callback(null, response));
 
 };
