@@ -20,10 +20,20 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
-
-	// return success
-	exit(callback, null, result);
+	// get values from event
+	const AdmissionId = event.Request.AdmissionId;
+	const AdmissionData = {
+		IsEntitled: event.CompleteAdmissionResult[0].isEntitled,
+		ResemblesLicence: event.CompleteAdmissionResult[1][0].ResemblesLicence,
+		ResemblesSuspect: event.CompleteAdmissionResult[1][1].suspect_detected,
+		LicenceImageThreshold: event.CompleteAdmissionResult[1][0].LicenceImageThreshold
+	};
+	console.log('AdmissionId : ', AdmissionId);
+	console.log('admission object : ', JSON.stringify(AdmissionData));
+	const response = {
+		AdmissionId,
+		AdmissionData
+	};
+	callback(null, response);
 
 };
