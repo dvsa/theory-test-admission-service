@@ -1,14 +1,12 @@
 const AWS = require('aws-sdk');
-const logger = require('logger');
 const moment = require('moment');
 
-
+const bookingStepFunction = new AWS.StepFunctions();
 
 export default class CandidateCheckBookingService {
 
 	static checkCandidateBooking(admissionId, candidateDLN, callback) {
-		const bookingStepFunction = new AWS.StepFunctions();
-		console.log('getting after declaration ');
+
 		const currentDate = moment(Number.parseInt(new Date().getTime(), 10)).toISOString(true);
 
 		const dln = `"DrivingLicenceNumber": "${candidateDLN}"`;
@@ -17,39 +15,37 @@ export default class CandidateCheckBookingService {
 		const completeInput = `{ "Request": {${dln}, ${aId}, ${date}} }`;
 
 		const params = {
-			stateMachineArn: ,
+			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_NAME,
 			input: completeInput
 		};
-		bookingStepFunction.startExecution(params, (err, data) => {
-			if (err) {
-				logger.error(err);
-				console.log('Error is: ', err);
-				return callback(false); // an error occurred
-			}
-			logger.info(data);
-			console.log('Data is: ', data.executionArn);
+		this.doStartExecution(params, (response) => {
 			const descParams = {
-				executionArn: data.executionArn,
+				executionArn: response.executionArn,
 			};
-			bookingStepFunction.describeExecution(descParams, (error, response) => {
-				while (response.status === 'RUNNING') {
-					console.log('Running loop');
-					bookingStepFunction.describeExecution(descParams, (loopError, loopResponse) => {
-						console.log('doing describe');
-						if (loopResponse.status === 'SUCCEEDED') {
-							console.log('got response: ', loopResponse);
-							return callback(loopResponse.output.HasBooking);
-						}
-						return false;
-					});
-				}
-				console.log('Describer exec: ', response);
-				return callback(false); // successful response
 
+			new Promise((r, j) => {
+				this.doDescribeExecution(r, j, descParams);
+			}).then((result) => {
+				const jsonResponse = JSON.parse(result.output);
+				return callback(jsonResponse.HasBooking);
 			});
-			return callback(false);
+
 		});
-
-
+	}
+	static doStartExecution(params, callback) {
+		bookingStepFunction.startExecution(params, (error, data) => {
+			return callback(data);
+		});
+	}
+	static doDescribeExecution(resolve, reject, params) {
+		bookingStepFunction.describeExecution(params, (error, response) => {
+			if (error) {
+				reject(error); // reject the promise
+			} else if (response.status !== 'SUCCEEDED') {
+				this.doDescribeExecution(resolve, null, params); // Try again
+			} else {
+				resolve(response); // Resolve the promise, pass the result.
+			}
+		});
 	}
 }
