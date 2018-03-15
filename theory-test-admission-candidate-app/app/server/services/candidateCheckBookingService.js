@@ -47,10 +47,13 @@ export default class CandidateCheckBookingService {
 	static doDescribeExecution(resolve, reject, params) {
 		bookingStepFunction.describeExecution(params, (error, response) => {
 			if (error) {
+				logger.error('Describe execution failed with the following error: ', error);
 				reject(error); // reject the promise
 			} else if (response.status !== 'SUCCEEDED') {
+				logger.info('Describe execution succeeded with the following response: ', response.status);
 				this.doDescribeExecution(resolve, null, params); // Try again
 			} else {
+				logger.info('Describe execution succeeded with the following response: ', response.status);
 				resolve(response); // Resolve the promise, pass the result.
 			}
 		});
