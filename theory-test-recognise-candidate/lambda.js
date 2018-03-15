@@ -20,10 +20,17 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
-
-	// return success
-	exit(callback, null, result);
-
+  let response;
+  if (event.found_matches) {
+    response = {
+      ResemblesLicence: true,
+      LicenceImageThreshold: event.threshold
+    };
+  } else {
+    response = {
+      ResemblesLicence: false,
+      LicenceImageThreshold: event.threshold
+    };
+  }
+  callback(null, response);
 };

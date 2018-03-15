@@ -1,6 +1,19 @@
 const logger = require('logger');
 const main = require('./src/main');
 
+const mockData = {
+  images: {
+    dln_id_1: {
+      bucketName: 'bucket_1',
+      key: 'path_to_image_1'
+    },
+    dln_id_2: {
+      bucketName: 'bucket_2',
+      key: 'path_to_image_2'
+    }
+  }
+};
+
 /**
  * Inform AWS that our Lambda's execution is complete.
  *
@@ -20,10 +33,8 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
 
 	// return success
-	exit(callback, null, result);
+  callback(null, mockData.images[event.Request.DrivingLicenceNumber]);
 
 };
