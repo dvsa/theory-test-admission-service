@@ -1,4 +1,4 @@
-const AWS = require('./AWSConfig');
+const AWS = require('aws-sdk');
 const moment = require('moment');
 
 const bookingStepFunction = new AWS.StepFunctions();
