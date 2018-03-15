@@ -21,6 +21,7 @@ declare -a PROJECTS=(
     "theory-test-complete-admission"
     "theory-test-detect-impersonator"
     "theory-test-fetch-candidate-image"
+    "theory-test-get-candidate-entitlements"
     "theory-test-recognise-candidate"
     "theory-test-start-admission"
     "theory-test-admission-candidate-app"
