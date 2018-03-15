@@ -17,7 +17,7 @@ export default class CandidateCheckBookingService {
 		const completeInput = `{ "Request": {${dln}, ${aId}, ${date}} }`;
 
 		const params = {
-			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_NAME,
+			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
 			input: completeInput
 		};
 		this.doStartExecution(params, (response) => {
