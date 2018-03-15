@@ -4,6 +4,7 @@ import path from 'path';
 import ConfigService from './services/configService';
 import AuthService from './services/auth';
 import SessionService from './services/sessionService';
+import VideoUploadService from './services/videoUploadService';
 import sessionStorage from './middleware/manuallySetSessionData';
 import matchRoutes from './middleware/matchRoutes';
 import CandidateDetailsController from './controllers/candidateDetailsController';
@@ -69,6 +70,11 @@ export default class AppRouter {
 		this.routes.get('/candidate/report-reception', (req, res) => {
 			sessionStorage(req, res, 'bookingResult', { hasBooking: false, admissionsId: '' });
 			res.render('candidate/report-reception');
+		});
+
+		// Video Upload URL
+		this.routes.get('/get-video-upload-url', (req, res) => {
+			res.send(VideoUploadService.getUploadVideoURL(req.params.admissionId, req.params.mimeType));
 		});
 	}
 

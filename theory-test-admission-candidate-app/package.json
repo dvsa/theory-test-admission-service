@@ -67,7 +67,8 @@
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3",
     "uuid": "^3.2.1",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "candidate-video-utilities": "file:../candidate-video-utilities"
   },
   "greenkeeper": {
     "ignore": [
