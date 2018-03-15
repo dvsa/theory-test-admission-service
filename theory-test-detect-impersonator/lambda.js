@@ -20,10 +20,15 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
-
-	// return success
-	exit(callback, null, result);
-
+  let response;
+  if (event.found_matches) {
+    response = {
+      suspect_detected: true
+    };
+  } else {
+    response = {
+      suspect_detected: false
+    };
+  }
+  callback(null, response);
 };
