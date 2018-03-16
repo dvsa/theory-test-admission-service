@@ -1,5 +1,9 @@
 const logger = require('logger');
-const main = require('./src/main');
+const transcode = require('./src/transcode');
+
+const BUCKET = process.env.BUCKET;
+const INPUT_DIRECTORY = process.env.CANDIDATE_WEBM_DIRECTORY;
+const OUTPUT_DIRECTORY = process.env.CANDIDATE_MPEG4_DIRECTORY;
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -20,6 +24,7 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
+	event.AdmissionId
 	// invoke business logic
 	const result = main.greeting();
 
