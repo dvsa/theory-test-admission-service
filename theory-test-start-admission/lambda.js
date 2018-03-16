@@ -5,11 +5,11 @@ exports.handler = (event, context, callback) => {
 
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
-	const { drivingLicenceNumber, admissionId, hasBooking } = event;
+	const { DrivingLicenceNumber, AdmissionId, HasBooking } = event;
 	const parameters = {
-		DrivingLicenceNumber: drivingLicenceNumber,
-		HasBooking: hasBooking,
-		AdmissionId: admissionId
+		DrivingLicenceNumber,
+		HasBooking,
+		AdmissionId
 	};
 
 	const admission = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
