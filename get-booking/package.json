@@ -18,7 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "moment": "^2.21.0"
   },
   "devDependencies": {
     "assert": "^1.4.1",

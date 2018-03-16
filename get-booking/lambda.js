@@ -25,9 +25,11 @@ exports.handler = (event, context, callback) => {
 	const { Request } = event;
 	const { DrivingLicenceNumber, Date } = Request;
 
-
-	// return success
-	GetBookingService.getBooking(DrivingLicenceNumber, Date, (response) => {
-		exit(callback, null, response);
+	new Promise((r, j) => {
+		GetBookingService.getBooking(r, j, DrivingLicenceNumber);
+	}).then((result) => {
+		exit(callback, null, result); // found booking
+	}).catch((result) => {
+		exit(callback, null, result); // no booking found
 	});
 };

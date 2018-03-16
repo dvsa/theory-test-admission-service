@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const AdmissionDAO = require('theory-test-admission-dao');
 const logger = require('logger');
 
@@ -7,27 +5,26 @@ exports.handler = (event, context, callback) => {
 
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
-	logger.info('Running start admission');
-	let response;
-	if (event.DrivingLicenceNumber && event.AdmissionId) {
-		const parameters = {
-			DrivingLicenceNumber: event.DrivingLicenceNumber,
-			HasBooking: event.HasBooking,
-			AdmissionId: event.AdmissionId
-		};
+	const { drivingLicenceNumber, admissionId, hasBooking } = event;
+	const parameters = {
+		DrivingLicenceNumber: drivingLicenceNumber,
+		HasBooking: hasBooking,
+		AdmissionId: admissionId
+	};
 
-		const admission = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
-		AdmissionDAO.create(admission, (err, retVal) => {
-			if (!err) {
-				response = {
-					AdmissionId: retVal.AdmissionId,
-					valid: true,
-					HasBooking: retVal.HasBooking
-				};
-				exit(callback, null, response);
-			}
-		});
-	}
+	const admission = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
+	AdmissionDAO.create(admission, (err, retVal) => {
+		if (!err) {
+			const response = {
+				AdmissionId: retVal.AdmissionId,
+				HasBooking: retVal.HasBooking
+			};
+			exit(callback, null, response);
+		} else {
+			logger.error('The following error occurred when trying to create a new admission record: ', err);
+			exit(callback, err, null);
+		}
+	});
 };
 
 /**

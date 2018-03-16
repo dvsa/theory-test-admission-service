@@ -1,16 +1,10 @@
 {
   "version": "1",
   "bookings": [{
-    "bookingId": "AABBCC1234567",
-    "dln": "MORGA657054SM9IJ",
-    "bookingDate": "14/03/18"
+    "dln": "MORGA657054SM9IJ"
   }, {
-    "bookingId": "AABBCC1234564",
-    "dln": "ABCDE123456FG7HI",
-    "bookingDate": "15/03/18"
+    "dln": "ABCDE123456FG7HI"
   }, {
-    "bookingId": "AABBCC1234566",
-    "dln": "AAAAA000000AA0AA",
-    "bookingDate": "16/03/18"
+    "dln": "AAAAA000000AA0AA"
   }]
 }

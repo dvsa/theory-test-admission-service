@@ -1,6 +1,7 @@
 import uuid from 'uuid/v4';
 import CandidateCheckBookingService from '../services/candidateCheckBookingService';
 import sessionStorage from '../middleware/manuallySetSessionData';
+
 const logger = require('logger');
 
 
@@ -9,12 +10,10 @@ export default class CandidateDetailsController {
 		this.candidateBookingService = new CandidateCheckBookingService();
 	}
 	checkBooking(req, res) {
-		const admissionsId = uuid();
-		const candidateDLN = req.body.DLN.toString().toUpperCase();
-		CandidateCheckBookingService.checkCandidateBooking(admissionsId, candidateDLN, (hasBooking) => {
-			logger.info('GotBooking: ', hasBooking);
-			sessionStorage(req, res, 'bookingResult', { hasBooking, admissionsId });
-			logger.info('Stored in session storage');
+		const admissionId = uuid();
+		const drivingLicenceNumber = req.body.DLN.toString().toUpperCase();
+		CandidateCheckBookingService.retrieveCandidateBooking(admissionId, drivingLicenceNumber, (hasBooking) => {
+			sessionStorage(req, res, 'bookingResult', { hasBooking, admissionId });
 			if (hasBooking) {
 				logger.info('has booking');
 				sessionStorage(req, res, 'videoTermsAgreed', false);
