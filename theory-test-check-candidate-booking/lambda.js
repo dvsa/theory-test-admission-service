@@ -1,6 +1,6 @@
 const logger = require('logger');
 
-const BookingService = require('./src/booking-service');
+const Bookings = require('./src/bookings');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -25,8 +25,9 @@ exports.handler = (event, context, callback) => {
 	const Result = {
 		AdmissionId: Request.AdmissionId,
 		DrivingLicenceNumber: Request.DrivingLicenceNumber,
-		HasBooking: BookingService.verifyBooking(Booking)
+		HasBooking: Bookings.hasBooking(Booking)
 	};
+
 	exit(callback, null, Result);
 
 };
