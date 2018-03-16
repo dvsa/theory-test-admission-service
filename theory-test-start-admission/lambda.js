@@ -1,31 +1,5 @@
-const AdmissionDAO = require('theory-test-admission-dao');
+const Admissions = require('./src/admissions');
 const logger = require('logger');
-
-exports.handler = (event, context, callback) => {
-
-	// log inbound event
-	logger.debug('Received event: ', JSON.stringify(event));
-	const { DrivingLicenceNumber, AdmissionId, HasBooking } = event;
-	const parameters = {
-		DrivingLicenceNumber,
-		HasBooking,
-		AdmissionId
-	};
-
-	const admission = AdmissionDAO.createAdmissionDatabaseRecord(parameters);
-	AdmissionDAO.create(admission, (err, retVal) => {
-		if (!err) {
-			const response = {
-				AdmissionId: retVal.AdmissionId,
-				HasBooking: retVal.HasBooking
-			};
-			exit(callback, null, response);
-		} else {
-			logger.error('The following error occurred when trying to create a new admission record: ', err);
-			exit(callback, err, null);
-		}
-	});
-};
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -40,3 +14,24 @@ function exit(callback, error, response) {
 	callback(error, response);
 	logger.flush();
 }
+
+exports.handler = (event, context, callback) => {
+
+	// log inbound event
+	logger.debug('Received event: ', JSON.stringify(event));
+
+	/*
+	 * Expected structure of event:
+	 * {
+	 *   DrivingLicenceNumber: 'XXX',
+	 *   AdmissionId: 'XXX',
+	 *   HasBooking: true
+	 * }
+	 */
+
+	Admissions.start(event.DrivingLicenceNumber, event.AdmissionId, event.HasBooking)
+		.then((result) => { exit(callback, null, result); })
+		.catch((error) => { exit(callback, error, null); });
+
+};
+
