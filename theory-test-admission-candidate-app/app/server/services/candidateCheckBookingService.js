@@ -2,78 +2,79 @@ const AWS = require('aws-sdk');
 const moment = require('moment');
 const logger = require('logger');
 
-const bookingStepFunction = new AWS.StepFunctions();
-const POLLING_INTERVAL = 500; // msec
+const stepFunctions = new AWS.StepFunctions();
+const POLLING_INTERVAL = 250; // msec
 
 export default class CandidateCheckBookingService {
 
-	static retrieveCandidateBooking(admissionId, candidateDLN, callback) {
+	/**
+   * @param drivingLicenceNumber
+   * @param admissionId
+   * @returns Promise<boolean>
+   */
+	static retrieveCandidateBooking(drivingLicenceNumber, admissionId) {
 
-		logger.info('Check candidate booking executed');
-		const currentDate = this.today();
-		const dln = `"DrivingLicenceNumber": "${candidateDLN}"`;
-		const aId = `"AdmissionId": "${admissionId}"`;
-		const date = `"Date": "${currentDate}"`;
-		const completeInput = `{ "Request": {${dln}, ${aId}, ${date}} }`;
-
-		const params = {
+		stepFunctions.startExecution({
 			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
-			input: completeInput
-		};
-		this.doStartExecution(params, (error, response) => {
-			if (!error) {
-				logger.info('Start execution executed and returned: ', response);
-				const descParams = {
-					executionArn: response.executionArn,
-				};
-
-				new Promise((r, j) => {
-					this.getExecutionOutput(r, j, descParams);
-				}).then((result) => {
-					if (result.status === 'SUCCEEDED') {
-						const jsonResponse = JSON.parse(result.output);
-						return callback(jsonResponse.HasBooking);
-					}
-					return callback(false); // step function failed
-				}).catch((err) => {
-					logger.error('The following error occurred polling for a response: ', err);
-					return callback(false);
+			input: this.createStepFunctionInput(drivingLicenceNumber, admissionId)
+		}).promise()
+			.then((result) => {
+				logger.info('Start execution executed and returned: ', result);
+				const execution = result.executionArn;
+				return this.await(execution).then((output) => {
+					const deserialized = JSON.parse(output);
+					return deserialized.HasBooking;
 				});
+			});
+	}
+
+	/**
+	 * @private
+   * @return {string}
+   */
+	static createStepFunctionInput(drivingLicenceNumber, admissionId) {
+		return JSON.stringify({
+			Request: {
+				DrivingLicenceNumber: drivingLicenceNumber,
+				AdmissionId: admissionId,
+				Date: this.today()
 			}
-			return callback(false); // Start execution failed, return no booking
 		});
 	}
-	static doStartExecution(params, callback) {
-		bookingStepFunction.startExecution(params, (error, data) => {
-			if (error) {
-				logger.error('Start execution failed with the following error: ', error);
-				return callback(error);
-			}
-			logger.info('Start execution succeeded with the following response: ', data);
-			return callback(null, data);
-		});
-	}
+
 	/**
 	 * @returns {string} ISO-8601 date component
 	 */
 	static today() {
 		return moment().format('YYYY-MM-DD');
 	}
+
+	/**
+   * @private
+   * @return {Promise<void>}
+   */
 	static sleep() {
 		return new Promise((resolve) => { setTimeout(resolve, POLLING_INTERVAL); });
 	}
-	static getExecutionOutput(resolve, reject, params) {
-		bookingStepFunction.describeExecution(params, (error, response) => {
-			if (error) {
-				logger.error('Describe execution failed with the following error: ', error);
-				reject(error); // reject the promise
-			} else if (response.status === 'RUNNING') {
-				logger.info('Describe execution succeeded with the following response: ', response.status);
-				this.sleep().then(this.doDescribeExecution(resolve, null, params)); // Try again
-			} else {
-				logger.info('Describe execution finished with the following response: ', response.status);
-				resolve(response); // Resolve the promise, pass the result.
-			}
-		});
+
+	/**
+   * @param execution {string} execution ARN from a StartExecutionOutput
+	 * @returns {Promise<string>} result of executing AWS Step Function
+   */
+	static await(execution) {
+		return stepFunctions.describeExecution({ executionArn: execution }).promise()
+			.then((description) => {
+				switch (description.status) {
+				case 'RUNNING':
+					return this.sleep().then(this.await(execution));
+				case 'SUCCEEDED':
+					return description.output;
+				case 'FAILED':
+				case 'TIMED_OUT':
+				case 'ABORTED':
+				default:
+					throw new Error(`Status of AWS Step Function is ${description.status}!`);
+				}
+			});
 	}
 }

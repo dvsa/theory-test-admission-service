@@ -12,16 +12,21 @@ export default class CandidateDetailsController {
 	checkBooking(req, res) {
 		const admissionId = uuid();
 		const drivingLicenceNumber = req.body.DLN.toString().toUpperCase();
-		CandidateCheckBookingService.retrieveCandidateBooking(admissionId, drivingLicenceNumber, (hasBooking) => {
-			sessionStorage(req, res, 'bookingResult', { hasBooking, admissionId });
-			if (hasBooking) {
-				logger.info('has booking');
-				sessionStorage(req, res, 'videoTermsAgreed', false);
-				res.redirect('/candidate/prepare-video');
-			} else {
-				logger.info('no booking');
-				res.redirect('/candidate/report-reception');
-			}
-		});
+		CandidateCheckBookingService.retrieveCandidateBooking(drivingLicenceNumber, admissionId)
+			.then((hasBooking) => {
+				sessionStorage(req, res, 'bookingResult', { hasBooking, admissionId });
+				if (hasBooking) {
+					logger.info('has booking');
+					sessionStorage(req, res, 'videoTermsAgreed', false);
+					res.redirect('/candidate/prepare-video');
+				} else {
+					logger.info('no booking');
+					res.redirect('/candidate/report-reception');
+				}
+			})
+			.catch((error) => {
+				// TODO return a 500 to the frontend!
+				logger.error('Step function did not execute successfully!', { error });
+			});
 	}
 }
