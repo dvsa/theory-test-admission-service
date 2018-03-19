@@ -8,7 +8,8 @@ const AdmissionDAO = require('theory-test-admission-dao');
 describe('Test AdmissionDAO module', () => {
 	const parameters = {
 		DrivingLicenceNumber: 'Test1234567890',
-		AdmissionId: '123456789'
+		AdmissionId: '123456789',
+		HasBooking: true
 	};
 
 	const admission1 = AdmissionDAO.createAdmissionDatabaseRecord(parameters);

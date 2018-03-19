@@ -1,22 +1,18 @@
 const assert = require('assert');
-const BookingService = require('../src/booking-service');
+const Bookings = require('../src/bookings');
 
-describe('Booking Service Tests', () => {
-	const bookingService = new BookingService();
+describe('Check Candidate Booking', () => {
 
-	it('returns true when one booking is received from get-booking lambda', () => {
-		bookingService.bookings = [1];
-		assert.equal(true, bookingService.verifyBooking());
+	it('returns true when one booking is received from get-booking', () => {
+		assert.equal(Bookings.hasBooking([1]), true);
 	});
 
-	it('returns false when more than one booking is received from get-booking lambda', () => {
-		bookingService.bookings = [1, 2, 3];
-		assert.equal(false, bookingService.verifyBooking());
+	it('returns false when more than one booking is received from get-booking', () => {
+		assert.equal(Bookings.hasBooking([1, 2, 3]), false);
 	});
 
-	it('returns false when no bookings are received from get-booking lambda', () => {
-		bookingService.bookings = [];
-		assert.equal(false, bookingService.verifyBooking());
+	it('returns false when zero bookings are received from get-booking', () => {
+		assert.equal(Bookings.hasBooking([]), false);
 	});
 
 });
