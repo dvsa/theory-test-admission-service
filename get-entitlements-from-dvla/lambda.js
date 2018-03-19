@@ -1,15 +1,6 @@
 const logger = require('../logger');
+const DVLAMockService = require('./src/entitlements');
 
-const mockData = {
-	entitlements: {
-		dln_id_1: {
-			valid: true
-		},
-		dln_id_2: {
-			valid: false
-		}
-	}
-};
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -25,11 +16,31 @@ function exit(callback, error, response) {
 	logger.flush();
 }
 
+/*
+ * Expected structure of event:
+ *
+ * {
+ *   Request: {
+ *     DrivingLicenceNumber: 'XXX'
+ *   }
+ * }
+ */
+
 exports.handler = (event, context, callback) => {
 
 	// log inbound event
 	logger.debug('Received event : ', JSON.stringify(event));
 
-	exit(callback(null, mockData.entitlements[event.Request.DrivingLicenceNumber]));
+	// invoke business logic
+	const { Request } = event;
+	const { DrivingLicenceNumber } = Request;
+
+	DVLAMockService.getEntitlementsFor(DrivingLicenceNumber)
+		.then((entitlements) => {
+			exit(callback, null, entitlements);
+		})
+		.catch((error) => {
+			exit(callback, error, null);
+		});
 
 };

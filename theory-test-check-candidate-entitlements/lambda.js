@@ -1,5 +1,5 @@
 const logger = require('logger');
-const main = require('./src/main');
+const Entitlements = require('./src/entitlements');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -15,21 +15,27 @@ function exit(callback, error, response) {
 	logger.flush();
 }
 
+/*
+ * Expected structure of event:
+ *
+ * {
+ *   Request: {
+ *     EntitlementData: {
+ *     		DrivingLicenceNumberMD5: 'XXX',
+ *     		HasEntitlements: false
+ *     }
+ *   }
+ * }
+ */
+
 exports.handler = (event, context, callback) => {
 
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-
-  let response;
-  if (event.valid) {
-    response = {
-      isEntitled: true
-    };
-  } else {
-    response = {
-      isEntitled: false
-    };
-  }
-  callback(null, response);
+	const { EntitlementData } = event;
+	const result = {
+		isEntitled: Entitlements.checkValidEntitlementsFor(EntitlementData)
+	};
+	exit(callback, null, result);
 };
