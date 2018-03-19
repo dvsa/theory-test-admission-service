@@ -1,5 +1,5 @@
 const logger = require('logger');
-const GetBookingService = require('./src/get-booking-service');
+const GetBookingService = require('./src/bookings');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -15,6 +15,16 @@ function exit(callback, error, response) {
 	logger.flush();
 }
 
+/*
+ * Expected structure of event:
+ *
+ * {
+ *   Request: {
+ *     DrivingLicenceNumber: 'XXX',
+ *     Date: 'XXX'
+ *   }
+ * }
+ */
 
 exports.handler = (event, context, callback) => {
 
@@ -22,12 +32,15 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 
 	// invoke business logic
-	const { DrivingLicenceNumber, Date } = event;
-	const getBookingService = new GetBookingService();
-	getBookingService.drivingLicenceNumber = DrivingLicenceNumber;
-	getBookingService.date = Date;
+	const { Request } = event;
+	const { DrivingLicenceNumber, Date } = Request;
 
-	// return success
-	exit(callback, null, getBookingService().getBooking());
+	GetBookingService.getBooking(DrivingLicenceNumber, Date)
+		.then((bookings) => {
+			exit(callback, null, bookings);
+		})
+		.catch((error) => {
+			exit(callback, error, null);
+		});
 
 };
