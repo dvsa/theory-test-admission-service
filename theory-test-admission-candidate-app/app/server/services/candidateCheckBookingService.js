@@ -1,6 +1,5 @@
 const AWS = require('aws-sdk');
 const moment = require('moment');
-const logger = require('logger');
 
 const stepFunctions = new AWS.StepFunctions();
 const POLLING_INTERVAL = 250; // msec
@@ -13,13 +12,11 @@ export default class CandidateCheckBookingService {
    * @returns Promise<boolean>
    */
 	static retrieveCandidateBooking(drivingLicenceNumber, admissionId) {
-
-		stepFunctions.startExecution({
+		return stepFunctions.startExecution({
 			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
 			input: this.createStepFunctionInput(drivingLicenceNumber, admissionId)
 		}).promise()
 			.then((result) => {
-				logger.info('Start execution executed and returned: ', result);
 				const execution = result.executionArn;
 				return this.await(execution).then((output) => {
 					const deserialized = JSON.parse(output);
@@ -29,7 +26,7 @@ export default class CandidateCheckBookingService {
 	}
 
 	/**
-	 * @private
+   * @private
    * @return {string}
    */
 	static createStepFunctionInput(drivingLicenceNumber, admissionId) {
@@ -66,7 +63,7 @@ export default class CandidateCheckBookingService {
 			.then((description) => {
 				switch (description.status) {
 				case 'RUNNING':
-					return this.sleep().then(this.await(execution));
+					return this.sleep().then(() => { return this.await(execution); });
 				case 'SUCCEEDED':
 					return description.output;
 				case 'FAILED':
