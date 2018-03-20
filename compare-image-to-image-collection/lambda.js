@@ -1,6 +1,6 @@
 const logger = require('logger');
-const DVLAMockService = require('./src/entitlements');
 
+const ImageService = require('./src/imageService');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -20,8 +20,9 @@ function exit(callback, error, response) {
  * Expected structure of event:
  *
  * {
- *   Request: {
- *     DrivingLicenceNumber: 'XXX'
+ *   ImageDetails: {
+ *     BucketName: 'XXX',
+ *     Key: 'XXX'
  *   }
  * }
  */
@@ -29,15 +30,14 @@ function exit(callback, error, response) {
 exports.handler = (event, context, callback) => {
 
 	// log inbound event
-	logger.debug('Received event : ', JSON.stringify(event));
+	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const { Request } = event;
-	const { DrivingLicenceNumber } = Request;
+	const { ImageDetails } = event;
+	const { BucketName, Key } = ImageDetails;
 
-	DVLAMockService.getEntitlementsFor(DrivingLicenceNumber)
-		.then((entitlements) => {
-			exit(callback, null, entitlements);
+	ImageService.compareImage(BucketName, Key)
+		.then((result) => {
+			exit(callback, null, result);
 		})
 		.catch((error) => {
 			exit(callback, error, null);
