@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 
-const BUCKET = process.env.CANDIDATE_VIDEO_BUCKET;
-const DIRECTORY = process.env.CANDIDATE_VIDEO_DIRECTORY;
+const BUCKET = process.env.ADMISSION_BUCKET;
+const DIRECTORY = process.env.CANDIDATE_WEBM_VIDEO_DIR;
 
 
 /**
