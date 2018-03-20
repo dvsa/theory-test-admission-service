@@ -28,8 +28,12 @@ Capture Candidate Video
         <div class="column-two-thirds">
             <section class="section">
                 <div class="container form-group">
-                    <div class="video-box">
+                    <div>
+                        <div id="vInstructions" class="vInstructions js-hidden"></div>
                         <video id="preview" autoplay muted>Video stream not available.</video>
+                        <div id="vButtons" class="vButtons js-hidden">
+                            <button id="record" class="button" value="Start Recording">Start Recording</button>
+                        </div>
                     </div>
                 </div>
 
@@ -39,10 +43,6 @@ Capture Candidate Video
             </section>
 
             <div id="vCountdown" class="vCountdown js-hidden"></div>
-            <div id="vInstructions" class="vInstructions js-hidden"></div>
-            <div id="vButtons" class="vButtons js-hidden">
-                <button id="record" class="button" value="Start Recording">Start Recording</button>
-            </div>
             <div id="vOverLay" class="vOverlay"></div>
             <div id="vComplete" class="vComplete js-hidden">
                 <div id="video-complete-play" class="video-complete-play">

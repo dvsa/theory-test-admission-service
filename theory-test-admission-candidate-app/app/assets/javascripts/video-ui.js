@@ -7,7 +7,7 @@ const instructions = {
 }
 
 const videoDimensions = {
-	height:480,
+	height:450,
 	width:600
 }
 
@@ -62,6 +62,8 @@ function positionOverlay() {
 	$('video#preview').attr('width', videoDimensions.width);
 	$('video#preview').attr('height', videoDimensions.height);
 	const offset = $('video#preview').offset();
+
+	/**
 	const offsetInstructions=offset;
 	offsetInstructions.height=100;
 	offsetInstructions.width=videoDimensions.width;
@@ -73,11 +75,12 @@ function positionOverlay() {
 	offsetButtons.height=80;
 	offsetButtons.width=videoDimensions.width;
 	$('#vButtons').css(offsetButtons);
+**/
 	const offsetOverlay={top:offset.top,left: offset.left};
 	offsetOverlay.width=videoDimensions.width/3;
 	offsetOverlay.left=offset.left +(videoDimensions.width-offsetOverlay.width)/2;
 	offsetOverlay.height=videoDimensions.height/2;
-	offsetOverlay.top=offset.top+ (videoDimensions.height-offsetOverlay.height)/2
+	offsetOverlay.top=offset.top+ (videoDimensions.height-offsetOverlay.height)- 30;
 	$('.vOverlay').css(offsetOverlay);
 	$('.vComplete').css(offsetOverlay);
 
@@ -85,7 +88,7 @@ function positionOverlay() {
 	offsetCountdown.width=videoDimensions.width/4;
 	offsetCountdown.left=offset.left +(videoDimensions.width-offsetCountdown.width)/2;
 	offsetCountdown.height=videoDimensions.height/3;
-	offsetCountdown.top=offset.top+ (videoDimensions.height-offsetCountdown.height)/2
+	offsetCountdown.top=offset.top+ (videoDimensions.height-offsetCountdown.height) - 60;
 	$('.vCountdown').css(offsetCountdown);
 }
 
@@ -139,6 +142,10 @@ $('#storeVideo').on('click', function(){
 	storeVideo(uploadStart, uploadComplete);
 
 })
+
+$( window ).resize(function() {
+	positionOverlay();
+});
 
 function uploadStart() {
 	$('.vOverlay').text(instructions.uploadStart);
