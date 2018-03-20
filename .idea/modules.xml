@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/candidate-video-utilities/candidate-video-utilities.iml" filepath="$PROJECT_DIR$/candidate-video-utilities/candidate-video-utilities.iml" />
-      <module fileurl="file://$PROJECT_DIR$/compare-image-to-image-collection/compare-image-to-image-collection.iml" filepath="$PROJECT_DIR$/compare-image-to-image-collection/compare-image-to-image-collection.iml" />
       <module fileurl="file://$PROJECT_DIR$/compare-video-to-image/compare-video-to-image.iml" filepath="$PROJECT_DIR$/compare-video-to-image/compare-video-to-image.iml" />
       <module fileurl="file://$PROJECT_DIR$/compare-video-to-image-collection/compare-video-to-image-collection.iml" filepath="$PROJECT_DIR$/compare-video-to-image-collection/compare-video-to-image-collection.iml" />
       <module fileurl="file://$PROJECT_DIR$/get-booking/get-booking.iml" filepath="$PROJECT_DIR$/get-booking/get-booking.iml" />
