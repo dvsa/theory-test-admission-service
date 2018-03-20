@@ -26,8 +26,8 @@ export default class CandidateDetailsController {
 				}
 			})
 			.catch((error) => {
-				// TODO return a 500 to the frontend!
 				logger.error('Step function did not execute successfully!', { error });
+				res.redirect('/candidate/report-reception');
 			});
 	}
 }
