@@ -1,6 +1,10 @@
 const validDrivingLicenceNumbers = require('./entitlements.json');
 const crypto = require('crypto');
 
+/**
+ * @desc: return a mock entitlement object
+ */
+
 class Entitlements {
 
 	/**

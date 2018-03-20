@@ -1,2 +1,2 @@
-module.exports = require('./src/compare');
+module.exports = require('./src/compare-video-to-image');
 
