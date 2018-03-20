@@ -59,6 +59,8 @@ function recordingComplete() {
 	$('#storeVideo').removeClass('js-hidden')
 }
 function positionOverlay() {
+	$('video#preview').attr('width', videoDimensions.width);
+	$('video#preview').attr('height', videoDimensions.height);
 	const offset = $('video#preview').offset();
 	const offsetInstructions=offset;
 	offsetInstructions.height=100;
