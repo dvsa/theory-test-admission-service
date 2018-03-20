@@ -57,7 +57,7 @@ span.whereToFind {
   font-weight: bold;
 }
 
-.vOverlay, .vButtons, .vInstructions, .vCountdown, .vComplete {
+.vOverlay, .vCountdown, .vComplete {
   position: absolute;
 }
 
@@ -66,6 +66,7 @@ span.whereToFind {
   color: black;
   padding-top: 10px;
   font-weight: 900;
+  height: 60px;
 }
 
 .vInstructions, .vButtons {
@@ -85,6 +86,8 @@ span.whereToFind {
 .vCountdown {
   text-align: center;
   font-size: 7em;
+  color: white;
+  font-weight: 800;
 }
 
 .vComplete {

@@ -15,7 +15,8 @@ export default class CandidateDetailsController {
 		const drivingLicenceNumber = req.body.DLN.toString().toUpperCase();
 		CandidateCheckBookingService.retrieveCandidateBooking(drivingLicenceNumber, admissionId)
 			.then((hasBooking) => {
-				sessionStorage(req, res, 'bookingResult', { hasBooking, admissionId });
+				const bookingResult = { hasBooking, admissionId };
+				sessionStorage(req, res, 'bookingResult', bookingResult);
 				if (hasBooking) {
 					logger.info('has booking');
 					sessionStorage(req, res, 'videoTermsAgreed', false);
