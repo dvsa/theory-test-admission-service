@@ -15,8 +15,15 @@ class MockRekognition {
 	 * @param ignored {null}
 	 * @param promise {function}
 	 */
-	searchFacesByImage(ignored) {
-		return this.searchData;
+	compareFaces(ignored) {
+		const that = this;
+		return {
+			promise() {
+				return new Promise((resolve) => {
+					resolve(that.searchData);
+				});
+			}
+		};
 	}
 
 }
