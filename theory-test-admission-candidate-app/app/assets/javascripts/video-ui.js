@@ -65,7 +65,7 @@ function positionOverlay() {
 	const offsetInstructions=offset;
 	offsetInstructions.height=100;
 	offsetInstructions.width=videoDimensions.width;
-	offsetInstructions.top=offset.top;
+	offsetInstructions.top=offset.top + 10;
 	offsetInstructions.left=offset.left;
 	$('#vInstructions').css(offsetInstructions);
 	const offsetButtons={top:offset.top,left: offset.left};
