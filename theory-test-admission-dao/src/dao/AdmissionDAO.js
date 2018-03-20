@@ -56,14 +56,22 @@ class AdmissionDAO extends AbstractDTO {
 		return admission;
 	}
 
+	/**
+	 * @returns {string} an ISO-8601 timestamp
+	 */
+	static now() {
+		return moment().toISOString();
+	}
+
 	static createAdmissionDatabaseRecord(parameters) {
 		const {
-			AdmissionId, DrivingLicenceNumber
+			AdmissionId, DrivingLicenceNumber, HasBooking
 		} = parameters;
 		const admission = new Admission();
 		admission.AdmissionId = AdmissionId;
 		admission.DrivingLicenceNumber = DrivingLicenceNumber;
-		admission.AdmissionStarted = moment(Number.parseInt(new Date().getTime(), 10)).toISOString(true);
+		admission.AdmissionStarted = this.now();
+		admission.HasBooking = HasBooking;
 		logger.info(`Created new Admission for Database: ${admission.AdmissionId}`);
 		return admission;
 	}

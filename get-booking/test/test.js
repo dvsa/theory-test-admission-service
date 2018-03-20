@@ -1,19 +1,26 @@
 const assert = require('assert');
-const GetBookingService = require('../src/get-booking-service');
+const Bookings = require('../src/bookings');
 
 describe('GetBooking Service Tests', () => {
-	const getBookingService = new GetBookingService();
 
-	it('returns a booking when a valid driving licence number is provided', () => {
-		getBookingService.drivingLicenceNumber = '32519228';
-		const data = getBookingService.getBooking();
-		assert.equal(true, (data.length === 1));
+	it('returns one booking when a valid driving licence number is provided', (done) => {
+		Bookings.getBooking('AAAAA000000AA0AA', '2000-01-01')
+			.then((result) => {
+				assert.equal(result.length, 1);
+				assert.equal(result[0].Date, '2000-01-01');
+				done();
+			})
+			.catch((error) => { done(error); });
+
 	});
 
-	it('returns no bookings when a invalid driving licence number is provided', () => {
-		getBookingService.drivingLicenceNumber = '00000000';
-		const data = getBookingService.getBooking();
-		assert.equal(true, data.length === 0);
+	it('returns zero bookings when an invalid driving licence number is provided', (done) => {
+		Bookings.getBooking('00000000', '2000-01-01')
+			.then((result) => {
+				assert.equal(result.length, 0);
+				done();
+			})
+			.catch((error) => { done(error); });
 	});
 
 });
