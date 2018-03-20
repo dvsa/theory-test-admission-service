@@ -15,7 +15,6 @@ export default class CandidateDetailsController {
 		const hasBooking = this.candidateBookingService.checkCandidateBooking();
 		sessionStorage(req, res, 'bookingResult', { hasBooking, admissionsId });
 		if (hasBooking) {
-			sessionStorage(req, res, 'videoTermsAgreed', false);
 			res.redirect('/candidate/prepare-video');
 		} else {
 			res.redirect('/candidate/report-reception');

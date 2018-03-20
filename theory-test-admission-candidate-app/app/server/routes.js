@@ -72,6 +72,15 @@ export default class AppRouter {
 			res.render('candidate/report-reception');
 		});
 
+		this.routes.get('/candidate/video-capture', (req, res) => {
+			const admissionId = req.session.data.bookingResult.admissionsId;
+			const mimeType = 'video/webm';
+			VideoUploadService.getUploadVideoURL(admissionId, mimeType, (data) => {
+				sessionStorage(req, res, 'uploadUrl', data);
+				res.render('candidate/video-capture');
+			});
+		});
+
 		// Video Upload URL
 		this.routes.get('/get-video-upload-url', (req, res) => {
 			res.send(VideoUploadService.getUploadVideoURL(req.params.admissionId, req.params.mimeType));
