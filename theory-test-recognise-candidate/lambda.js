@@ -1,5 +1,5 @@
 const logger = require('logger');
-const main = require('./src/main');
+const compareVideoToImage = require('compare-video-to-image');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -20,10 +20,19 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
-
-	// return success
-	exit(callback, null, result);
-
+	compareVideoToImage(event, (err, output) => {
+		let response;
+		if (output.found_matches) {
+			response = {
+				ResemblesLicence: true,
+				LicenceImageThreshold: output.threshold
+			};
+		} else {
+			response = {
+				ResemblesLicence: false,
+				LicenceImageThreshold: output.threshold
+			};
+		}
+		exit(callback, null, response);
+	});
 };

@@ -18,7 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "compare-video-to-image-collection": "file:../compare-video-to-image-collection"
   },
   "devDependencies": {
     "assert": "^1.4.1",

@@ -1,13 +1,22 @@
 const assert = require('assert');
-const compare = require('../src/compare');
+const ImageService = require('../src/imageService');
+const MockRekognition = require('./mock-rekognition');
+const IGNORED_BUCKET = 'not-exist-dir';
+const IGNORED_KEY = 'not-exist.png';
 
-describe('Comparison', () => {
+describe('Image Service Tests', () => {
 
-	it('succeeds', (done) => {
-
-		assert.ok(compare());
-		done();
-
+	it('resolves its Promise and returns false when candidate image does NOT match any DVLA images', (done) => {
+		const imageService = new ImageService(new MockRekognition(null, { FaceMatches: [] }));
+		imageService.compareImage(IGNORED_BUCKET, IGNORED_KEY)
+			.then((result) => {
+				assert.equal(result.ResemblesLicence, false)
+				done();
+			})
+			.catch((error) => {
+				console.log(error);
+				done(new Error('Promise should have resolved, but it rejected!'));
+			});
 	});
 
 });
