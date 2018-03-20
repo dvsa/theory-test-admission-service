@@ -186,7 +186,6 @@ function storeVideo(startHandler, endHandler) {
 		contentType: 'video/webm'
 	})
 		.done((err, data) => {
-		console.log('upload complete');
 			endHandler();
 		})
 		.fail((err, data) => {

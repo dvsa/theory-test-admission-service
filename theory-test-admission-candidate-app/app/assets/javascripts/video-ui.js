@@ -145,7 +145,7 @@ function uploadStart() {
 }
 
 function uploadComplete(){
-	window.href='/candidate/report-reception';
+	window.location='/candidate/report-reception';
 }
 
 function redoVideo(){
