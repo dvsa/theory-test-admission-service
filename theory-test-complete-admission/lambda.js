@@ -34,6 +34,6 @@ exports.handler = (event, context, callback) => {
 		AdmissionId,
 		AdmissionData
 	};
-	exit(callback(null, response));
+	exit(callback, null, response);
 
 };
