@@ -33,6 +33,6 @@ exports.handler = (event, context, callback) => {
 				LicenceImageThreshold: output.threshold
 			};
 		}
-		exit(callback(null, response));
+		exit(callback, null, response);
 	});
 };
