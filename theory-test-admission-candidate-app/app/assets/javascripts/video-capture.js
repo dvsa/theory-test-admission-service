@@ -41,8 +41,8 @@ function createMediaStream () {
 	return navigator.mediaDevices.getUserMedia({
 		audio: false,
 		video: {
-			width: videoDimensions.width,
-			height: videoDimensions.height,
+			width: 1280,
+			height: 720,
 			facingMode: 'user'
 		}
 	})
@@ -186,6 +186,7 @@ function storeVideo(startHandler, endHandler) {
 		contentType: 'video/webm'
 	})
 		.done((err, data) => {
+		console.log('upload complete');
 			endHandler();
 		})
 		.fail((err, data) => {
