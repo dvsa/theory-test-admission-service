@@ -15,6 +15,7 @@
   "author": "Future Theory Test Alpha Team",
   "license": "UNLICENSED",
   "dependencies": {
+    "aws-sdk": "latest",
     "logger": "file:../logger"
   },
   "devDependencies": {

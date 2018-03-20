@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-
+const logger = require('logger');
 
 class ImageService {
 
@@ -13,22 +13,26 @@ class ImageService {
 	 * @param promise {object}
 	 */
 	compareImage(bucketName, key) {
-		return this.rekognition.searchFacesByImage({
-			CollectionId: process.env.MOCK_DVLA_COLLECTION,
-			FaceMatchThreshold: process.env.IMAGE_COMPARISON_THRESHOLD,
-			Image: {
+		return this.rekognition.compareFaces({
+			SimilarityThreshold: process.env.IMAGE_COMPARISON_THRESHOLD,
+			SourceImage: {
 				S3Object: {
 					Bucket: bucketName,
 					Name: key
 				}
 			},
-			MaxFaces: process.env.IMAGE_SEARCH_MAX_RESULTS
+			TargetImage: {
+				S3Object: {
+					Bucket: process.env.MOCK_DVLA_IMAGE_BUCKET,
+					Name: key
+				}
+			}
 		}).promise()
 			.then((result) => {
 				logger.debug('AWS Rekognition SearchFacesByImage returned: ', JSON.stringify(result));
-				return({
-					"ResemblesLicence": result,
-					"LicenceImageThreshold": process.env.IMAGE_COMPARISON_THRESHOLD
+				return ({
+					ResemblesLicence: result.FaceMatches.length > 0,
+					LicenceImageThreshold: process.env.IMAGE_COMPARISON_THRESHOLD
 				});
 			}).catch((error) => {
 				logger.error('AWS Rekognition SearchFacesByImage returned: ', JSON.stringify(error));
