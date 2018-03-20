@@ -1,5 +1,4 @@
 const logger = require('logger');
-const main = require('./src/main');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -20,10 +19,11 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	// invoke business logic
-	const result = main.greeting();
 
 	// return success
-	exit(callback, null, result);
+	exit(callback, null, {
+		bucketName: 'bucketName',
+		key: 'path_to_image'
+	});
 
 };

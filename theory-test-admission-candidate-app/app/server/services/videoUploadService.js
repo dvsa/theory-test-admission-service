@@ -8,7 +8,10 @@ export default class VideoUploadService {
 	 * @param mimeType
 	 * @returns {Promise<string>}
 	 */
-	static getUploadVideoURL(admissionId, mimeType) {
-		return videoUtilities.createPutUrlForCandidateVideo(admissionId, mimeType);
+	static getUploadVideoURL(admissionId, mimeType, callback) {
+		videoUtilities.createPutUrlForCandidateVideo(admissionId, mimeType, (err, data) => {
+			// discard error
+			callback(data);
+		});
 	}
 }

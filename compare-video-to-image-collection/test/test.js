@@ -1,5 +1,5 @@
 const assert = require('assert');
-const compare = require('../src/compare');
+const compare = require('../src/compare-video-image-collection');
 
 describe('Comparison', () => {
 
