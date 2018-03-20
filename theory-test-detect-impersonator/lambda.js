@@ -1,5 +1,5 @@
-const logger = require('../logger');
-const compareVideoToCollection = require('../compare-image-to-image-collection');
+const logger = require('logger');
+const compareVideoToCollection = require('compare-video-to-image-collection');
 /**
  * Inform AWS that our Lambda's execution is complete.
  *
@@ -30,6 +30,6 @@ exports.handler = (event, context, callback) => {
 				suspect_detected: false
 			};
 		}
-		exit(callback(null, response));
+		exit(callback, null, response);
 	});
 };

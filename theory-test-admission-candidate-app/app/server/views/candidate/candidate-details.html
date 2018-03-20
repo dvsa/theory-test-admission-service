@@ -56,10 +56,10 @@ Enter Candidate Drivers Licence Number
 
                 <div role="form-group" id="dlnHelpToggle">
                     <div role="button">
-                        <span class="arrow">►</span>
+                        <span class="arrow">▼</span>
                         <span class="summary whereToFind open" onclick="toggleHelper(this)">Where to find your driving licence number</span>
                     </div>
-                    <div class="panel panel-border-narrow" data-help="dln-help" style="display: none;">
+                    <div class="panel panel-border-narrow js-hidden" data-help="dln-help">
                         <p>Your driving licence number can be found in section 5 of your driving licence photocard</p>
                         <img id="whatLicenceImg" src="{{ assets }}public/images/driving_licence.png" alt="">
                     </div>
@@ -73,6 +73,10 @@ Enter Candidate Drivers Licence Number
 
         </div>
     </div>
+    <script type="application/javascript">
+        const arrow = $('#dlnHelpToggle').find('span.arrow')
+        $(arrow).text('►');
+    </script>
 
 </main>
 

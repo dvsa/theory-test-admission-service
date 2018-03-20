@@ -20,11 +20,9 @@ function exit(callback, error, response) {
  *
  * {
  *   Request: {
- *     EntitlementData: {
  *     		DrivingLicenceNumberMD5: 'XXX',
  *     		HasEntitlements: false
  *     }
- *   }
  * }
  */
 
@@ -33,7 +31,7 @@ exports.handler = (event, context, callback) => {
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	const { EntitlementData } = event;
+	const EntitlementData = event;
 	const result = {
 		isEntitled: Entitlements.checkValidEntitlementsFor(EntitlementData)
 	};
