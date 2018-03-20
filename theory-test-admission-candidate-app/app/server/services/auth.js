@@ -40,7 +40,7 @@ export default class Auth {
 		}
 		localOptions = localOptions || {};
 
-		const url = localOptions.redirectTo || '/';
+		const url = localOptions.redirectTo || 'index';
 		const setReturnTo = (localOptions.setReturnTo === undefined) ? true : localOptions.setReturnTo;
 		if (!res.locals.data.isAuthenticated) {
 			if (setReturnTo && req.session) {
