@@ -30,6 +30,6 @@ exports.handler = (event, context, callback) => {
 				suspect_detected: false
 			};
 		}
-		exit(callback(null, response));
+		exit(callback, null, response);
 	});
 };
