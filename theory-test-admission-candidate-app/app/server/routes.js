@@ -73,7 +73,7 @@ export default class AppRouter {
 		});
 
 		this.routes.get('/candidate/video-capture', (req, res) => {
-			const admissionId = req.session.data.bookingResult.admissionsId;
+			const { admissionId } = req.session.data.bookingResult;
 			const mimeType = 'video/webm';
 			VideoUploadService.getUploadVideoURL(admissionId, mimeType, (data) => {
 				sessionStorage(req, res, 'uploadUrl', data);
