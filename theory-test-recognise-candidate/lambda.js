@@ -1,5 +1,5 @@
-const logger = require('../logger');
-const compareVideoToImage = require('../compare-video-to-image');
+const logger = require('logger');
+const compareVideoToImage = require('compare-video-to-image');
 
 /**
  * Inform AWS that our Lambda's execution is complete.

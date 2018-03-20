@@ -18,7 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "theory-test-check-candidate-entitlements": "file:../theory-test-check-candidate-entitlements"
   },
   "devDependencies": {
     "assert": "^1.4.1",

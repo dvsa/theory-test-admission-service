@@ -1,5 +1,5 @@
 /* eslint-disable prefer-destructuring */
-const logger = require('../logger');
+const logger = require('logger');
 
 /**
  * Inform AWS that our Lambda's execution is complete.
