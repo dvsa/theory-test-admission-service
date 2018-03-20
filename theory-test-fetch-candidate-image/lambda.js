@@ -34,6 +34,6 @@ exports.handler = (event, context, callback) => {
 
 
 	// return success
-	exit(callback(null, mockData.images[event.Request.DrivingLicenceNumber]));
+	exit(callback,null, mockData.images[event.Request.DrivingLicenceNumber]);
 
 };
