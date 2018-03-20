@@ -10,6 +10,7 @@ export default class CandidateDetailsController {
 		this.candidateBookingService = new CandidateCheckBookingService();
 	}
 	checkBooking(req, res) {
+
 		const admissionId = uuid();
 		const drivingLicenceNumber = req.body.DLN.toString().toUpperCase();
 		CandidateCheckBookingService.retrieveCandidateBooking(drivingLicenceNumber, admissionId)
