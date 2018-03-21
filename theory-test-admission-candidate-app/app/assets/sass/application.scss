@@ -66,7 +66,7 @@ span.whereToFind {
   color: black;
   padding-top: 10px;
   font-weight: 900;
-  height: 60px;
+  height: 50px;
 }
 
 .vInstructions, .vButtons {
@@ -82,12 +82,36 @@ span.whereToFind {
   padding-top: 10px;
 }
 
+#videoBox {
+  position: relative;
+}
+
 
 .vCountdown {
   text-align: center;
-  font-size: 7em;
-  color: white;
+  font-size: 6em;
   font-weight: 800;
+  color: white;
+}
+
+.vCountDownPlaying {
+  -webkit-text-stroke: 1px #000;
+  text-shadow:
+          1px 1px 0 #000,
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+}
+
+.vCountDownRecording {
+  -webkit-text-stroke: 1px red;
+  text-shadow:
+          1px 1px 0 red,
+          -1px -1px 0 red,
+          1px -1px 0 red,
+          -1px 1px 0 red,
+          1px 1px 0 red;
 }
 
 .vComplete {
@@ -109,4 +133,3 @@ video#preview {
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
 }
-

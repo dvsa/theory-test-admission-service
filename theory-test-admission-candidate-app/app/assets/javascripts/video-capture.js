@@ -41,8 +41,8 @@ function createMediaStream () {
 	return navigator.mediaDevices.getUserMedia({
 		audio: false,
 		video: {
-			width: 1280,
-			height: 720,
+			width: videoDimensions.width,
+			height: videoDimensions.height,
 			facingMode: 'user'
 		}
 	})
