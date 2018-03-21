@@ -1,4 +1,8 @@
-const AWS = require('aws-sdk');
+let AWS = require('aws-sdk');
+
+if (process.env.RUNNING_LOCALLY === 'true') {
+	AWS = require('./local/AWSConfig');
+}
 const moment = require('moment');
 
 const stepFunctions = new AWS.StepFunctions();

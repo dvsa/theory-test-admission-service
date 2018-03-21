@@ -33,6 +33,7 @@ gulp.task('build-app', () => {
 	return gulp.src([
 		`!${config.paths.app}/assets`,
 		`${config.paths.build}/**`,
+		`!${config.paths.build}/services/local/**`,
 	])
 		.pipe(gulp.dest(`${config.paths.temp}/build`));
 });
