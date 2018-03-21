@@ -1,9 +1,11 @@
 const logger = require('logger');
-const transcode = require('./src/transcode');
+const Transcoder = require('./src/transcoder');
 
-const BUCKET = process.env.BUCKET;
-const INPUT_DIRECTORY = process.env.CANDIDATE_WEBM_DIRECTORY;
-const OUTPUT_DIRECTORY = process.env.CANDIDATE_MPEG4_DIRECTORY;
+const INPUT_DIRECTORY = process.env.CANDIDATE_WEBM_VIDEO_DIR;
+const OUTPUT_DIRECTORY = process.env.CANDIDATE_MPEG4_VIDEO_DIR;
+
+const INPUT_EXTENSION = 'webm';
+const OUTPUT_EXTENSION = 'mp4';
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -19,16 +21,28 @@ function exit(callback, error, response) {
 	logger.flush();
 }
 
+/*
+ * Expected structure of event:
+ *
+ * {
+ *   AdmissionId: 'xxx'
+ * }
+ */
+
 exports.handler = (event, context, callback) => {
 
 	// log inbound event
 	logger.debug('Received event: ', JSON.stringify(event));
 
-	event.AdmissionId
-	// invoke business logic
-	const result = main.greeting();
+	const input = `${INPUT_DIRECTORY}/${event.AdmissionId}.${INPUT_EXTENSION}`;
+	const output = `${OUTPUT_DIRECTORY}/${event.AdmissionId}.${OUTPUT_EXTENSION}`;
 
-	// return success
-	exit(callback, null, result);
+	new Transcoder().transcode(input, output)
+		.then(() => {
+			exit(callback, null, null); // success
+		})
+		.catch((error) => {
+			exit(callback, error, null);
+		});
 
 };
