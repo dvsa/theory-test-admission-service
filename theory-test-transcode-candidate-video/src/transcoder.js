@@ -1,14 +1,15 @@
 const AWS = require('aws-sdk');
 
-const PIPELINE_ID = process.env.ELASTIC_TRANSCODER_PIPELINE_ID;
-
 /**
  * 'Generic 1080p'
  *
  * @see https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/system-presets.html
  * @type {string}
  */
-const PRESET_ID = '1351620000001-000001';
+const DEFAULT_PRESET_ID = '1351620000001-000001';
+
+const PIPELINE_ID = process.env.ELASTIC_TRANSCODER_PIPELINE_ID;
+const PRESET_ID = process.env.ELASTIC_TRANSCODER_PRESET_ID || DEFAULT_PRESET_ID;
 
 const POLLING_INTERVAL = 250; // msec
 
@@ -79,7 +80,7 @@ class Transcoder {
 				case 'In Progress':
 					return Transcoder.sleep()
 						.then(() => {
-							return Transcoder.awaitJobCompletion(id).bind(this);
+							return this.awaitJobCompletion(id).bind(this);
 						});
 				case 'Canceled': // yes, that is the correct spelling
 				case 'Error':
