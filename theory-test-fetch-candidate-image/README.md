@@ -4,7 +4,7 @@ Copy and image from the DVLA mock storage to the DVSA candidate image storage
 
 This is production ready lambda for the aplha version,  
 
-This lambda received a reference to the source image and a reference to where the image shoudl be copy to 
+This lambda receives a reference to the source image and a reference to where the image should be copy to 
 
 It uses the following evironment variables
 ```$xslt
