@@ -176,7 +176,19 @@ function playbackVideo (startHandler, endHandler) {
 
 function storeVideo(startHandler, endHandler) {
 	startHandler();
-	$.ajax({
+	/**
+	 * TODO
+	 * In order for the UI to perform for user research, this method has been
+	 * refactored for the time being.
+	 * The ajax call has been commented out, so a file will NOT be uploaded
+	 * Instead of the upload, a small delay is triggered to simulate the upload delay.
+	 * To re-instate the correct upload functionality, uncomment the ajax call and remove the timeout
+	 */
+	setTimeout(function(){
+		endHandler();
+	}, 1000 * 3+ Math.floor(Math.random() * Math.floor(3)));
+	/**
+	 $.ajax({
 		url: uploadUrl,
 		method: 'PUT',
 		crossDomain: true,
@@ -191,6 +203,7 @@ function storeVideo(startHandler, endHandler) {
 		.fail((err, data) => {
 		console.log('Upload error: ', err);
 		})
+	 */
 }
 
 
