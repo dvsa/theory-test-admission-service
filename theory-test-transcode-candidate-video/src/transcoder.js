@@ -80,7 +80,7 @@ class Transcoder {
 				case 'In Progress':
 					return Transcoder.sleep()
 						.then(() => {
-							return this.awaitJobCompletion(id).bind(this);
+							return this.awaitJobCompletion.apply(this, [id]);
 						});
 				case 'Canceled': // yes, that is the correct spelling
 				case 'Error':
