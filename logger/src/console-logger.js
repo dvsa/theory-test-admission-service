@@ -1,3 +1,6 @@
+/**
+ * This is the entry point to create the local logger.
+ */
 const winston = require('winston');
 const wcf = require('winston-console-formatter');
 

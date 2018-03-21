@@ -1,3 +1,6 @@
+/**
+ * This is the entry point to create the CloudWatch logger.
+ */
 const winston = require('winston');
 const CloudWatchTransport = require('winston-cloudwatch');
 
