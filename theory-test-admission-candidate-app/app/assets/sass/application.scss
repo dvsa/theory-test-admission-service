@@ -90,8 +90,28 @@ span.whereToFind {
 .vCountdown {
   text-align: center;
   font-size: 6em;
-  color: white;
   font-weight: 800;
+  color: white;
+}
+
+.vCountDownPlaying {
+  -webkit-text-stroke: 1px #000;
+  text-shadow:
+          1px 1px 0 #000,
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+}
+
+.vCountDownRecording {
+  -webkit-text-stroke: 1px red;
+  text-shadow:
+          1px 1px 0 red,
+          -1px -1px 0 red,
+          1px -1px 0 red,
+          -1px 1px 0 red,
+          1px 1px 0 red;
 }
 
 .vComplete {

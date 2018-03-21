@@ -96,6 +96,7 @@ function positionOverlay() {
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
 	setInstructionsText(instructions);
+	$('#vCountdown').text('');
 	$('#vCountdown').removeClass('js-hidden');
 	const timer = setInterval(function(){
 		$('#vCountdown').text(time--);
@@ -119,16 +120,20 @@ function removeOverlayBorder(){
 }
 
 function recordStartHandler(){
+	$('#vCountdown').removeClass('vCountDownPlaying');
+	$('#vCountdown').addClass('vCountDownRecording');
 	doCountdown(4, instructions.recording);
 }
 
 function recordEndHandler(){
+	$('#vCountdown').removeClass('vCountDownRecording');
 	recordingComplete();
 }
 
 
 function recordButtonClicked () {
 	$('.vButtons').addClass('js-hidden');
+	$('#vCountdown').addClass('vCountDownPlaying');
 	doCountdown(5,instructions.recordPressed, doRecording, recordStartHandler, recordEndHandler);
 }
 
