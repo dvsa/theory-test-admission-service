@@ -3,7 +3,6 @@ const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3();
 
-// following values to be replaced by env vars . ej process.env.ADMISSION_BUCKET;
 const SOURCE_IMAGE_PATH = process.env.DVLA_IMAGES_ENDPOINT;
 const DESTINATION_BUCKET = process.env.ADMISSION_BUCKET;
 const DESTINATION_DIRECTORY = process.env.DVLA_LICENCE_IMAGES_DIR;
