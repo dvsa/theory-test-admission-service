@@ -19,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/theory-test-fetch-candidate-image/theory-test-fetch-candidate-image.iml" filepath="$PROJECT_DIR$/theory-test-fetch-candidate-image/theory-test-fetch-candidate-image.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-recognise-candidate/theory-test-recognise-candidate.iml" filepath="$PROJECT_DIR$/theory-test-recognise-candidate/theory-test-recognise-candidate.iml" />
       <module fileurl="file://$PROJECT_DIR$/theory-test-start-admission/theory-test-start-admission.iml" filepath="$PROJECT_DIR$/theory-test-start-admission/theory-test-start-admission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theory-test-transcode-candidate-video/theory-test-transcode-candidate-video.iml" filepath="$PROJECT_DIR$/theory-test-transcode-candidate-video/theory-test-transcode-candidate-video.iml" />
     </modules>
   </component>
 </project>
