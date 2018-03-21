@@ -16,6 +16,18 @@ export default class CandidateCheckBookingService {
    * @returns Promise<boolean>
    */
 	static retrieveCandidateBooking(drivingLicenceNumber, admissionId) {
+		/**
+		 * TODO
+		 * In order for the UI to perform for user research, this method has been
+		 * refactored for the time being to always return a 'true' value,
+		 * meaning that any DLN entered in the UI will allow the UI flow to continue.
+		 * To restore and re-activate the step-function, delete the following line and uncomment the code starting
+		 * 'return stepFunctions.startExecution(....
+		 */
+
+
+		return new Promise((resolve) => { resolve(true); });
+		/**
 		return stepFunctions.startExecution({
 			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
 			input: this.createStepFunctionInput(drivingLicenceNumber, admissionId)
@@ -27,6 +39,7 @@ export default class CandidateCheckBookingService {
 					return deserialized.HasBooking;
 				});
 			});
+		 * */
 	}
 
 	/**
