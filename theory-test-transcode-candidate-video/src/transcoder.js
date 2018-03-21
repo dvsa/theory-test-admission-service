@@ -77,7 +77,7 @@ class Transcoder {
 				case 'Complete':
 					return undefined; // success
 				case 'Submitted':
-				case 'In Progress':
+				case 'Progressing':
 					return Transcoder.sleep()
 						.then(() => {
 							return this.awaitJobCompletion.apply(this, [id]);

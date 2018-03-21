@@ -36,7 +36,7 @@ class StubAWSElasticTranscoder {
 
 	readJob(params) {
 		this.attempts -= 1;
-		const status = (this.attempts === 0) ? 'Complete' : 'In Progress';
+		const status = (this.attempts === 0) ? 'Complete' : 'Progressing';
 		assert.equal(params.Id, 'id');
 		return this.operational ? {
 			promise() {
