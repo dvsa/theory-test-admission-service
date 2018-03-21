@@ -28,12 +28,39 @@ Capture Candidate Video
         <div class="column-two-thirds">
             <section class="section">
                 <div class="container form-group">
-                    <div>
+                    <div id="videoBox" style="text-align:center">
                         <div id="vInstructions" class="vInstructions js-hidden"></div>
                         <video id="preview" autoplay muted>Video stream not available.</video>
                         <div id="vButtons" class="vButtons js-hidden">
                             <button id="record" class="button" value="Start Recording">Start Recording</button>
                         </div>
+                        <div id="vOverLay" class="vOverlay"></div>
+                        <div id="vCountdown" class="vCountdown js-hidden"></div>
+                        <div id="vComplete" class="vComplete js-hidden">
+                            <div id="video-complete-play" class="video-complete-play">
+                                <a id="video-play">
+
+                                    <p class="heading-small" style="margin:0">
+                                        Replay your recording
+                                    </p><span class="arrow"><img src="{{ assets}}public/images/play-button.png"></span>
+                                </a>
+                            </div>
+                            <div id="video-complete-redo" class="video-complete-redo">
+                                <a id="redo-video">
+
+                                    <p class="heading-small" style="margin:0">
+                                        Redo your recording
+                                    </p><span class="arrow"><img src="{{ assets}}public/images/redo.png"></span>
+                                </a>
+                            </div>
+                            <div>
+                                <br/>
+                                <a id="storeVideo" class="button" role="button">Submit recording</a>
+                            </div>
+                        </div>
+
+
+                    </div>
                     </div>
                 </div>
 
@@ -42,33 +69,8 @@ Capture Candidate Video
                 </div>
             </section>
 
-            <div id="vCountdown" class="vCountdown js-hidden"></div>
-            <div id="vOverLay" class="vOverlay"></div>
-            <div id="vComplete" class="vComplete js-hidden">
-                <div id="video-complete-play" class="video-complete-play">
-                    <a id="video-play">
-
-                        <p class="heading-small" style="margin:0">
-                            Replay your recording
-                        </p><span class="arrow"><img src="{{ assets}}public/images/play-button.png"></span>
-                    </a>
-                </div>
-                <div id="video-complete-redo" class="video-complete-redo">
-                    <a id="redo-video">
-
-                        <p class="heading-small" style="margin:0">
-                            Redo your recording
-                        </p><span class="arrow"><img src="{{ assets}}public/images/redo.png"></span>
-                    </a>
-                </div>
-                <div>
-                    <br/>
-                    <a id="storeVideo" class="button" role="button">Submit recording</a>
-                </div>
-            </div>
 
 
-        </div>
         <div class="column-one-third">
             <aside class="govuk-related-items" role="complementary">
 

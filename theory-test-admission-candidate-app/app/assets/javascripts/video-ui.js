@@ -7,8 +7,9 @@ const instructions = {
 }
 
 const videoDimensions = {
-	height:450,
-	width:600
+	width: 1280,
+	height: 720,
+	ratio: 3
 }
 
 /**
@@ -46,60 +47,61 @@ function show (button, handler) {
 function displayPreStartInstructions() {
 	$('.vComplete').addClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
-	$('.vInstructions').text(instructions.preStart);
+	setInstructionsText(instructions.preStart);
 	$('.vInstructions').removeClass('js-hidden');
 	addOverlayBorder();
 	enable('#record', recordButtonClicked);
 }
 
 function recordingComplete() {
-	$('.vInstructions').text('');
+	setInstructionsText('');
 	$('.vComplete').removeClass('js-hidden');
 	removeOverlayBorder();
 	$('#storeVideo').removeClass('js-hidden')
 }
+
+function setInstructionsText(text) {
+	$('.vInstructions').text(text);
+}
 function positionOverlay() {
-	$('video#preview').attr('width', videoDimensions.width);
-	$('video#preview').attr('height', videoDimensions.height);
-	const offset = $('video#preview').offset();
 
-	/**
-	const offsetInstructions=offset;
-	offsetInstructions.height=100;
-	offsetInstructions.width=videoDimensions.width;
-	offsetInstructions.top=offset.top + 10;
-	offsetInstructions.left=offset.left;
-	$('#vInstructions').css(offsetInstructions);
-	const offsetButtons={top:offset.top,left: offset.left};
-	offsetButtons.top=offset.top+videoDimensions.height-80;
-	offsetButtons.height=80;
-	offsetButtons.width=videoDimensions.width;
-	$('#vButtons').css(offsetButtons);
-**/
-	const offsetOverlay={top:offset.top,left: offset.left};
-	offsetOverlay.width=videoDimensions.width/3;
-	offsetOverlay.left=offset.left +(videoDimensions.width-offsetOverlay.width)/2;
-	offsetOverlay.height=videoDimensions.height/2;
-	offsetOverlay.top=offset.top+ (videoDimensions.height-offsetOverlay.height)- 30;
+	$('video#preview').css({width:videoDimensions.width/videoDimensions.ratio, height:videoDimensions.height/videoDimensions.ratio})
+	const previewOffset = $('video#preview').position();
+	const previewHeight = $('video#preview').height();
+	const previewWidth = $('video#preview').width();
+	const instructionsHeight = $('#vInstructions').height() + 10;
+	console.log(previewOffset, previewWidth, previewHeight);
+	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
+		width: previewWidth/3,
+		height: previewHeight/2,
+		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2})
+
+	$('.vCountdown').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
+		width: previewWidth/3,
+		height: previewHeight/2,
+		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2});
+	$('#vComplete').css({left: previewOffset.left + (previewWidth - previewWidth/2)/2,
+		width: previewWidth/2,
+		height: previewHeight/2,
+		top: (previewOffset.top - instructionsHeight) + (previewHeight - previewHeight/2)/2});
+	 /**
+	const offsetOverlay={top:previewOffset.top + 120,left: previewOffset.left + previewWidth/3 , height: previewHeight - 120, width: previewWidth/3};
+	console.log(offsetOverlay, 'Height: ', previewHeight, 'Width: ', previewWidth);
 	$('.vOverlay').css(offsetOverlay);
-	$('.vComplete').css(offsetOverlay);
-
-	const offsetCountdown={top: offset.top ,left: offset.left};
-	offsetCountdown.width=videoDimensions.width/4;
-	offsetCountdown.left=offset.left +(videoDimensions.width-offsetCountdown.width)/2;
-	offsetCountdown.height=videoDimensions.height/3;
-	offsetCountdown.top=offset.top+ (videoDimensions.height-offsetCountdown.height) - 60;
-	$('.vCountdown').css(offsetCountdown);
+	$('.vCountdown').css(offsetOverlay);
+	const completeOffset={top: previewOffset.top, left: previewOffset.left + previewWidth/3, }
+	$('#vComplete').css(previewOffset);
+*/
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
-	$('#vInstructions').text(instructions);
+	setInstructionsText(instructions);
 	$('#vCountdown').removeClass('js-hidden');
 	const timer = setInterval(function(){
 		$('#vCountdown').text(time--);
 		if(time === -1) {
 			clearInterval(timer);
-			$('#vCountdown').text('');
+			setInstructionsText('');
 			$('#vCountdown').addClass('js-hidden');
 			if(handler) {
 				handler(handlerStart, handlerEnd);
@@ -148,7 +150,7 @@ $( window ).resize(function() {
 });
 
 function uploadStart() {
-	$('.vOverlay').text(instructions.uploadStart);
+	setInstructionsText(instructions.uploadStart);
 	$('.vComplete').addClass('js-hidden');
 	$('.vOverlay').removeClass('js-hidden');
 }
@@ -166,15 +168,16 @@ function replayVideo(){
 }
 
 function playbackStart(){
-	$('.vInstructions').text(instructions.playbackStart);
+	setInstructionsText(instructions.playbackStart);
 	$('.vComplete').addClass('js-hidden');
 	$('.vButtons').addClass('js-hidden');
 }
 
 function playbackComplete(){
-	$('.vInstructions').text('');
+	setInstructionsText('');
 	$('#vComplete').removeClass('js-hidden');
 }
+
 
 $(document).ready(function(){
 	positionOverlay();
