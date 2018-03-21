@@ -12,8 +12,7 @@ export default class CandidateCheckBookingService {
    * @returns Promise<boolean>
    */
 	static retrieveCandidateBooking(drivingLicenceNumber, admissionId) {
-		return new Promise(resolve => {resolve(true);});
-		/* return stepFunctions.startExecution({
+		return stepFunctions.startExecution({
 			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
 			input: this.createStepFunctionInput(drivingLicenceNumber, admissionId)
 		}).promise()
@@ -23,7 +22,7 @@ export default class CandidateCheckBookingService {
 					const deserialized = JSON.parse(output);
 					return deserialized.HasBooking;
 				});
-			}); */
+			});
 	}
 
 	/**

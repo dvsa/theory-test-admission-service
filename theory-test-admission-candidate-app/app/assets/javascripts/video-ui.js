@@ -69,7 +69,7 @@ function positionOverlay() {
 	const previewOffset = $('video#preview').position();
 	const previewHeight = $('video#preview').height();
 	const previewWidth = $('video#preview').width();
-	const instructionsHeight = $('#vInstructions').height() + 10;
+	const instructionsHeight = $('#vInstructions').height();
 	console.log(previewOffset, previewWidth, previewHeight);
 	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
 		width: previewWidth/3,
