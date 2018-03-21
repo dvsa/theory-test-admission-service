@@ -1,18 +1,33 @@
 const assert = require('assert');
-const Bookings = require('../src/bookings');
+const AdmissionDAO = require('../src/dao/AdmissionDAO');
+const MockDynamoDB = require('./MockDynamoDB');
 
-describe('Check Candidate Booking', () => {
+describe('Test AdmissionDAO module', () => {
+	const parameters = {
+		DrivingLicenceNumber: 'Test1234567890',
+		AdmissionId: '123456789',
+		HasBooking: true
+	};
+	const admissionDAO = new AdmissionDAO(MockDynamoDB);
 
-	it('returns true when one booking is received from get-booking', () => {
-		assert.equal(Bookings.hasBooking([1]), true);
+	it('can create a new record', (done) => {
+		const newAdmission = admissionDAO.createAdmission(parameters, (error, result) => {
+			assert(result.HasBooking, true);
+			done();
+		});
 	});
 
-	it('returns false when more than one booking is received from get-booking', () => {
-		assert.equal(Bookings.hasBooking([1, 2, 3]), false);
+	it('can update a record', (done) => {
+		const newAdmission = admissionDAO.updateAdmission(parameters, (error, result) => {
+			console.log('koalas: ', result);
+			done();
+		});
 	});
 
-	it('returns false when zero bookings are received from get-booking', () => {
-		assert.equal(Bookings.hasBooking([]), false);
+	it('can delete a record', (done) => {
+		const newAdmission = admissionDAO.createAdmission(parameters, (error, result) => {
+			assert(result.HasBooking, true);
+			done();
+		});
 	});
-
 });

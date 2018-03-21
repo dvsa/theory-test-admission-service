@@ -12,15 +12,18 @@
     "clean": "gulp clean",
     "lint": "gulp lint",
     "test": "gulp test",
-    "build-dist": "gulp build"
+    "build-dist": "gulp build",
+    "integration-test": "gulp integration-test"
   },
   "author": "Future Theory Test Alpha Team",
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger"
+    "logger": "file:../logger",
+    "moment": "^2.21.0"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
     "assert": "^1.4.1",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0",

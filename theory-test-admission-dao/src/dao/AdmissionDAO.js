@@ -1,83 +1,31 @@
 const AbstractDTO = require('./AbstractDAO');
 const Admission = require('../entities/admission');
 
-
-const logger = require('logger');
-const moment = require('moment');
-
 const table = process.env.DDB_TABLE_ADMISSIONS;
 const primaryKeyName = 'DrivingLicenceNumber';
 const primaryKeyValue = 'DrivingLicenceNumber';
 const sortKeyName = 'AdmissionStarted';
 
 class AdmissionDAO extends AbstractDTO {
-	constructor(value) {
-		super(table, value, primaryKeyName);
+	constructor(db) {
+		super(table, primaryKeyName, db);
 	}
 
-	static create(admission, callback) {
-		logger.info('Calling Save Admission from DAO');
-		const admissionForDB = AdmissionDAO.createAdmissionDatabaseRecord(admission);
-		super.save(admissionForDB, table, (err, savedAdmission) => {
+	createAdmission(admissionParams, callback) {
+		super.save(new Admission(admissionParams), (err, savedAdmission) => {
 			callback(err, savedAdmission);
 		});
 	}
 
 	// requires an object that contains only the admissionId and those fields that we wish to update
-	static update(entity, callback) {
-		super.update(entity, entity.admissionId, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, updatedRecord) => {
-			const record = AdmissionDAO.createAdmissionFromDataBase(updatedRecord);
-			callback(err, record);
+	updateAdmission(admissionParams, callback) {
+		super.update(admissionParams, admissionParams.admissionId, sortKeyName, primaryKeyName, primaryKeyValue, (err, updatedRecord) => {
+			callback(err, updatedRecord);
 		});
 	}
 
-	static updateAll(admission, callback) {
-		const admissionForDB = AdmissionDAO.createAdmissionDatabaseRecord(admission);
-		super.update(admissionForDB, admissionForDB.admissionId, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, updatedRecord) => {
-			const record = AdmissionDAO.createAdmissionFromDataBase(updatedRecord);
-			callback(err, record);
-		});
-	}
-
-	static createAdmissionFromDatabase(parameters) {
-		const {
-			AdmissionId, DrivingLicenceNumber, AdmissionStarted, HasBooking, IsEntitled, ResemblesLicence,
-			ResemblesSuspect, LicenceImageThreshold
-		} = parameters;
-		const admission = new Admission();
-		admission.AdmissionId = AdmissionId;
-		admission.DrivingLicenceNumber = DrivingLicenceNumber;
-		admission.AdmissionStarted = AdmissionStarted;
-		admission.HasBooking = HasBooking;
-		admission.IsEntitled = IsEntitled;
-		admission.ResemblesLicence = ResemblesLicence;
-		admission.ResemblesSuspect = ResemblesSuspect;
-		admission.LicenceImageThreshold = LicenceImageThreshold;
-		return admission;
-	}
-
-	/**
-	 * @returns {string} an ISO-8601 timestamp
-	 */
-	static now() {
-		return moment().toISOString();
-	}
-
-	static createAdmissionDatabaseRecord(parameters) {
-		const {
-			AdmissionId, DrivingLicenceNumber, HasBooking
-		} = parameters;
-		const admission = new Admission();
-		admission.AdmissionId = AdmissionId;
-		admission.DrivingLicenceNumber = DrivingLicenceNumber;
-		admission.AdmissionStarted = this.now();
-		admission.HasBooking = HasBooking;
-		logger.info(`Created new Admission for Database: ${admission.AdmissionId}`);
-		return admission;
-	}
-
-	static delete(DrivingLicenceNumber, callback) {
-		super.delete(DrivingLicenceNumber, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, retVal) => {
+	deleteAdmission(DrivingLicenceNumber, callback) {
+		super.delete(DrivingLicenceNumber, sortKeyName, primaryKeyName, primaryKeyValue, (err, retVal) => {
 			callback(err, retVal);
 		});
 	}

@@ -31,6 +31,12 @@ gulp.task('lint', () => {
  */
 gulp.task('test', sequence('suppress-logging', 'set-running-locally', 'unit-test'));
 
+/**
+ * Fail the build if integration tests do not pass.
+ */
+gulp.task('integration-test', sequence('suppress-logging', 'set-running-locally', 'run-integration-test'));
+
+
 gulp.task('suppress-logging', () => {
 	process.env.LOG_LEVEL = 'error';
 	return true;
@@ -45,6 +51,13 @@ gulp.task('unit-test', () => {
 	return gulp.src(['test/**/*.js'])
 		.pipe(mocha({
 			reporter: 'spec',
+		}));
+});
+gulp.task('run-integration-test', () => {
+	return gulp.src(['integration-test/**/*.js'])
+		.pipe(mocha({
+			reporter: 'spec',
+			require: ['dotenv/config']
 		}));
 });
 
