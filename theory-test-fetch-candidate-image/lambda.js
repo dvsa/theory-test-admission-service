@@ -4,10 +4,9 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
 // following values to be replaced by env vars . ej process.env.ADMISSION_BUCKET;
-const SOURCE_BUCKET = 'dvsa.ftts.adm.juan-admissions';
-const SOURCE_DIRECTORY = 'one-DVLA-images';
-const DESTINATION_BUCKET = 'dvsa.ftts.adm.juan-admissions';
-const DESTINATION_DIRECTORY = 'one-candidate-photo';
+const SOURCE_IMAGE_PATH = process.env.DVLA_IMAGES_ENDPOINT;
+const DESTINATION_BUCKET = process.env.ADMISSION_BUCKET;
+const DESTINATION_DIRECTORY = process.env.DVLA_LICENCE_IMAGES_DIR;
 
 /**
  * Inform AWS that our Lambda's execution is complete.
@@ -28,7 +27,7 @@ exports.handler = (event, context, callback) => {
 	logger.debug('Received event: ', JSON.stringify(event));
 
 	const params = {
-		CopySource: `/${SOURCE_BUCKET}/${SOURCE_DIRECTORY}/${event.Request.DrivingLicenceNumber}.jpg`,
+		CopySource: `/${SOURCE_IMAGE_PATH}/${event.Request.DrivingLicenceNumber}.jpg`,
 		Bucket: DESTINATION_BUCKET,
 		Key: `/${DESTINATION_DIRECTORY}/${event.Request.AdmissionId}.jpg`
 	};
