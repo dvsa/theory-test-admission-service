@@ -84,14 +84,6 @@ function positionOverlay() {
 		width: previewWidth/2,
 		height: previewHeight/2,
 		top: (previewOffset.top - instructionsHeight) + (previewHeight - previewHeight/2)/2});
-	 /**
-	const offsetOverlay={top:previewOffset.top + 120,left: previewOffset.left + previewWidth/3 , height: previewHeight - 120, width: previewWidth/3};
-	console.log(offsetOverlay, 'Height: ', previewHeight, 'Width: ', previewWidth);
-	$('.vOverlay').css(offsetOverlay);
-	$('.vCountdown').css(offsetOverlay);
-	const completeOffset={top: previewOffset.top, left: previewOffset.left + previewWidth/3, }
-	$('#vComplete').css(previewOffset);
-*/
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
