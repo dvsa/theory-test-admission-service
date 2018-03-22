@@ -2,11 +2,11 @@
   "name": "theory-test-admission-dao",
   "version": "1.0.0",
   "description": "TODO",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dvsa/theory-test-admission-service.git"
   },
-  "main": "lambda.js",
   "scripts": {
     "default": "gulp",
     "clean": "gulp clean",

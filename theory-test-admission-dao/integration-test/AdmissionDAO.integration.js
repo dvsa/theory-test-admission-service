@@ -1,41 +1,34 @@
-/*
-Integration Test for AdmissionDAO
- */
-
+require('./AWSConfig');
 const assert = require('assert');
 const AdmissionDAO = require('../src/dao/AdmissionDAO');
 
 describe('Test AdmissionDAO module', () => {
 
 	const admissionDAO = new AdmissionDAO();
-	it('can create and save a new record', (done) => {
-		const parameters = {
-			DrivingLicenceNumber: 'Test1234567890',
-			AdmissionId: '123456789',
-			HasBooking: true
-		};
-		admissionDAO.createAdmission(parameters, (error, result) => {
-			assert(result.AdmissionId, '123456789');
-			done();
-		});
-	});
-	it('can update an existing record', (done) => {
-		const parameters = {
-			DrivingLicenceNumber: 'Test1234567890',
-			IsEntitled: true
-		};
-		admissionDAO.updateAdmission(parameters, (error, result) => {
-			console.log('yoyoyo: ', error);
-			assert(result.IsEntitled, true);
-			done();
-		});
-	});
+	const drivingLicenceNumber = 'Test1234567890';
+	const admissionId = '12345678';
 
-	// it('can delete the record created just now', (done) => {
-	// 	admissionDAO.deleteAdmission('Test1234567890', (error, result) => {
-	// 		console.log('RESULT: ', error);
-	// 		assert(result);
-	// 		done();
-	// 	});
-	// });
+	it('can create a new item', (done) => {
+		admissionDAO.createAdmission(drivingLicenceNumber, admissionId, true).then(() => {
+			done();
+		}).catch((error) => {
+			done(error);
+		});
+	});
+	it('can update an existing item', (done) => {
+		admissionDAO.updateAdmission(drivingLicenceNumber, admissionId, { IsEntitled: false }).then(() => {
+			done();
+		}).catch((error) => {
+			done(error);
+		});
+	});
+	it('can get an existing item', (done) => {
+		admissionDAO.getMostRecentAdmission(drivingLicenceNumber).then((result) => {
+			assert.equal(result.Items.length, 1);
+			assert.equal(result.Items[0].DrivingLicenceNumber, drivingLicenceNumber);
+			done();
+		}).catch((error) => {
+			done(error);
+		});
+	});
 });

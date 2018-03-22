@@ -1,4 +1,4 @@
-const DAO = require('theory-test-admission-dao');
+const AdmissionDAO = require('theory-test-admission-dao');
 
 class Admissions {
 
@@ -8,17 +8,17 @@ class Admissions {
    * @param hasBooking {boolean}
    * @returns Promise<object>
    */
+
+
 	static start(drivingLicenceNumber, admissionId, hasBooking) {
 
 		return new Promise((resolve, reject) => {
-
-			// TODO the contract with the DAO is wrong
-			const admission = DAO.createAdmissionDatabaseRecord({
+			const admissionDAO = new AdmissionDAO();
+			admissionDAO.createAdmission({
 				DrivingLicenceNumber: drivingLicenceNumber,
 				AdmissionId: admissionId,
 				HasBooking: hasBooking
-			});
-			DAO.create(admission, (error, result) => {
+			}, (error, result) => {
 				if (!error) {
 					resolve({
 						HasBooking: result.HasBooking
@@ -27,11 +27,8 @@ class Admissions {
 					reject(error);
 				}
 			});
-
 		});
-
 	}
-
 }
 
 module.exports = Admissions;
