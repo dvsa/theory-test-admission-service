@@ -28,6 +28,7 @@ exports.handler = (event, context, callback) => {
 		ResemblesSuspect: event.CompleteAdmissionResult[1][1].suspect_detected,
 		LicenceImageThreshold: event.CompleteAdmissionResult[1][0].LicenceImageThreshold
 	};
+	// TODO: Call the AdmissionDao to update the existing record with the above data.
 	logger.debug('AdmissionId : ', AdmissionId);
 	logger.debug('admission object : ', JSON.stringify(AdmissionData));
 	const response = {
