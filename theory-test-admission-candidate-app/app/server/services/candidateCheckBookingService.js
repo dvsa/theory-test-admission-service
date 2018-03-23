@@ -26,8 +26,8 @@ export default class CandidateCheckBookingService {
 		 */
 
 
-		return new Promise((resolve) => { resolve(true); });
-		/**
+		// return new Promise((resolve) => { resolve(true); });
+
 		return stepFunctions.startExecution({
 			stateMachineArn: process.env.SFN_START_CANDIDATE_ADMISSION_ARN,
 			input: this.createStepFunctionInput(drivingLicenceNumber, admissionId)
@@ -39,7 +39,7 @@ export default class CandidateCheckBookingService {
 					return deserialized.HasBooking;
 				});
 			});
-		 * */
+
 	}
 
 	/**
