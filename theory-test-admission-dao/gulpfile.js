@@ -74,7 +74,8 @@ gulp.task('build', () => {
 	return gulp.src([
 		'lambda.js',
 		'src/**/*',
-		'node_modules/**/*'
+		'node_modules/**/*',
+		'!src/local/*',
 	], { base: '.' })
 		.pipe(zip(filename))
 		.pipe(gulp.dest('dist/'));
