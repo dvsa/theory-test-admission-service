@@ -1,4 +1,3 @@
-require('./AWSConfig');
 const assert = require('assert');
 const AdmissionDAO = require('../src/dao/AdmissionDAO');
 
