@@ -2,7 +2,6 @@ const instructions = {
 	preStart: 'There will be a five second countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
 	recordPressed: 'The recording is about to start ....',
 	recording:'Recording...',
-	playbackStart:'Playing back recording ...',
 	uploadStart: 'Uploading video, please wait ...'
 }
 
@@ -175,7 +174,6 @@ function replayVideo(){
 }
 
 function playbackStart(){
-	setInstructionsText(instructions.playbackStart);
 	$('.vCountdown').removeClass('js-hidden');
 	$('.vCountdown').css({'font-size':'1em', color: 'green'});
 	$('.vCountdown').text('Playing...');
@@ -183,7 +181,6 @@ function playbackStart(){
 }
 
 function playbackComplete(){
-	setInstructionsText('');
 	$('.vCountdown').addClass('js-hidden');
 	$('.vCountdown').css({'font-size':'3em', color: 'white'})
 	$('.vCountdown').text('');
