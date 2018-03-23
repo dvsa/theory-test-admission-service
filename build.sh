@@ -23,6 +23,7 @@ declare -a PROJECTS=(
     "theory-test-fetch-candidate-image"
     "theory-test-recognise-candidate"
     "theory-test-start-admission"
+    "theory-test-admission-dao"
     "theory-test-admission-candidate-app"
     "theory-test-admission-reception-app"
 )

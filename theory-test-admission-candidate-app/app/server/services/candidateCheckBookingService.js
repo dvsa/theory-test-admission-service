@@ -39,7 +39,7 @@ export default class CandidateCheckBookingService {
 					return deserialized.HasBooking;
 				});
 			});
-		 * */
+		*/
 	}
 
 	/**

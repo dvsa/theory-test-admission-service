@@ -1,23 +1,24 @@
-const DAO = require('theory-test-admission-dao');
+const AdmissionDAO = require('theory-test-admission-dao');
 
 class Admissions {
 
 	/**
-	 * This method takes the following params to create the admission page.
-	 * @param drivingLicenceNumber {string}
-	 * @param admissionId {string}
-     * @param hasBooking {boolean}
-     * @returns Promise<object>
-     */
+   * @param drivingLicenceNumber {string}
+   * @param admissionId {string}
+   * @param hasBooking {boolean}
+   * @returns Promise<object>
+   */
+
+
 	static start(drivingLicenceNumber, admissionId, hasBooking) {
 
 		return new Promise((resolve, reject) => {
-			const admission = DAO.createAdmissionDatabaseRecord({
+			const admissionDAO = new AdmissionDAO();
+			admissionDAO.createAdmission({
 				DrivingLicenceNumber: drivingLicenceNumber,
 				AdmissionId: admissionId,
 				HasBooking: hasBooking
-			});
-			DAO.create(admission, (error, result) => {
+			}, (error, result) => {
 				if (!error) {
 					resolve({
 						HasBooking: result.HasBooking
@@ -26,11 +27,8 @@ class Admissions {
 					reject(error);
 				}
 			});
-
 		});
-
 	}
-
 }
 
 module.exports = Admissions;
