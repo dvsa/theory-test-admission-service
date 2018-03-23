@@ -9,7 +9,8 @@ const instructions = {
 const videoDimensions = {
 	width: 1280,
 	height: 720,
-	ratio: 3
+	ratio: 3,
+	instructionsHeight: 80
 }
 
 /**
@@ -45,6 +46,7 @@ function show (button, handler) {
 }
 
 function displayPreStartInstructions() {
+	$('.vInstructions').css({'height': videoDimensions.instructionsHeight + 'px'})
 	$('.vComplete').addClass('js-hidden');
 	$('#vRightInstructions').removeClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
@@ -57,9 +59,13 @@ function displayPreStartInstructions() {
 function recordingComplete() {
 	setInstructionsText('');
 	$('#vRightInstructions').addClass('js-hidden');
+	$('.vInstructions').css({'height': 0});
+	setupPlayback(playbackStart, playbackComplete);
+	$('video#playback').removeClass('js-hidden');
+	$('video#preview').addClass('js-hidden');
 	$('.vComplete').removeClass('js-hidden');
 	removeOverlayBorder();
-	$('#storeVideo').removeClass('js-hidden')
+	$('#storeVideo').removeClass('js-hidden');
 }
 
 function setInstructionsText(text) {
@@ -68,6 +74,8 @@ function setInstructionsText(text) {
 function positionOverlay() {
 
 	$('video#preview').css({width:videoDimensions.width/videoDimensions.ratio, height:videoDimensions.height/videoDimensions.ratio})
+
+	$('video#playback').css({width:videoDimensions.width/videoDimensions.ratio, height:videoDimensions.height/videoDimensions.ratio})
 	const previewOffset = $('video#preview').position();
 	const previewHeight = $('video#preview').height();
 	const previewWidth = $('video#preview').width();
@@ -157,22 +165,28 @@ function uploadComplete(){
 }
 
 function redoVideo(){
+	$('video#playback').addClass('js-hidden');
+	$('video#preview').removeClass('js-hidden');
 	startPreview(displayPreStartInstructions);
 }
 
 function replayVideo(){
-	playbackVideo(playbackStart, playbackComplete);
+	playRecording();
 }
 
 function playbackStart(){
 	setInstructionsText(instructions.playbackStart);
-	$('.vComplete').addClass('js-hidden');
-	$('.vButtons').addClass('js-hidden');
+	$('.vCountdown').removeClass('js-hidden');
+	$('.vCountdown').css({'font-size':'1em', color: 'green'});
+	$('.vCountdown').text('Playing...');
+
 }
 
 function playbackComplete(){
 	setInstructionsText('');
-	$('#vComplete').removeClass('js-hidden');
+	$('.vCountdown').addClass('js-hidden');
+	$('.vCountdown').css({'font-size':'3em', color: 'white'})
+	$('.vCountdown').text('');
 }
 
 

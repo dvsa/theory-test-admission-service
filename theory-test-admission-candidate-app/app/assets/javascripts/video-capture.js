@@ -54,7 +54,7 @@ function createMediaStream () {
  */
 function preview (stream, handler) {
 	return new Promise((resolve, reject) => {
-		const video = document.querySelector('video')
+		const video = document.querySelector('video#preview');
 		if (stream) {
 			// enable preview
 			video.srcObject = stream
@@ -127,6 +127,29 @@ function asArrayBuffer (blob) {
 		}
 		fileReader.readAsArrayBuffer(blob)
 	})
+}
+
+function setupPlayback(startHandler, endHandler){
+	const playback = document.querySelector('video#playback');
+	playback.src=window.URL.createObjectURL(blob);
+	playback.onloadedmetadata = () => {
+		playback.currentTime = 0;
+		playback.pause()
+	}
+	playback.onplay = () => {
+		console.log('playback is starting');
+		startHandler();
+	}
+	playback.onended = () => {
+		console.log('playback has ended');
+		endHandler();
+	}
+
+}
+
+function playRecording(){
+	const playback = document.querySelector('video#playback');
+	playback.play()
 }
 
 

@@ -25,10 +25,12 @@ Capture Candidate Video
             Record your Video Statement
         </h1>
 
-        <div class="column-one-half">
+        <div class="column-one-half" style="padding-left:0">
             <section class="section">
                 <div class="container form-group">
                     <div id="videoBox" style="text-align:center">
+
+                        <video id="playback" muted class="js-hidden">Video stream not available.</video>
                         <video id="preview" autoplay muted>Video stream not available.</video>
                         <div id="vInstructions" class="vInstructions js-hidden"></div>
                         <div id="vButtons" class="vButtons js-hidden">
@@ -36,16 +38,15 @@ Capture Candidate Video
                         </div>
                         <div id="vOverLay" class="vOverlay"></div>
                         <div id="vCountdown" class="vCountdown js-hidden"></div>
-                        <div id="vComplete" class="vComplete js-hidden">
+                        <div id="vComplete" class="vComplete js-hidden"  style="text-align:left">
                             <div id="video-complete-play" class="video-complete-play">
                                 <a id="video-play" href="#">
-                                        Replay your recording
-                                    </p>
+                                    Replay your recording
                                 </a>
                             </div>
                             <div id="video-complete-redo" class="video-complete-redo">
                                 <a id="redo-video" href="#">
-                                        Redo your recording
+                                    Redo your recording
                                 </a>
                             </div>
                             <div style="margin-top:20px">
@@ -61,6 +62,7 @@ Capture Candidate Video
 
 
                     </div>
+
                     </div>
                 </div>
 

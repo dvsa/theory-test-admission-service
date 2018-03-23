@@ -57,7 +57,7 @@ span.whereToFind {
   font-weight: bold;
 }
 
-.vOverlay, .vCountdown, .vComplete {
+.vOverlay, .vCountdown {
   position: absolute;
 }
 
@@ -66,7 +66,6 @@ span.whereToFind {
   color: black;
   padding-top: 10px;
   font-weight: 900;
-  height: 80px;
 }
 
 .vInstructions, .vButtons {
@@ -125,10 +124,9 @@ span.whereToFind {
 
 .video-complete-play , .video-complete-redo {
   cursor: pointer;
-  margin-top: 40px;
 }
 
-video#preview {
+video#preview, video#playback {
   transform: rotateY(180deg);
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
