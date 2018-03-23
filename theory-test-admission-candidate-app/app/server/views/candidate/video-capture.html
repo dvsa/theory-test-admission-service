@@ -14,13 +14,16 @@ Capture Candidate Video
             <ol>
                 <li><a href="{{urlRoot}}">Start</a></li>
                 <li aria-current="page">Enter Driving Licence Number</li>
-                <li aria-current="page"><span class="current-page-breadcrumb">Capturing your Video</span></li>
+                <li aria-current="page"><span class="current-page-breadcrumb">Record your Video Statement</span></li>
             </ol>
         </div>
 
         <div id="uploadUrl" class="js-hidden">
             {{data.uploadUrl}}
         </div>
+        <h1 class="heading-large">
+            Record your Video Statement
+        </h1>
 
         <div class="column-one-half">
             <section class="section">
@@ -50,9 +53,14 @@ Capture Candidate Video
                                     </p><span class="arrow"><img src="{{ assets}}public/images/redo.png"></span>
                                 </a>
                             </div>
+                            <div style="margin-top:20px">
+                                <p>
+                                    If you are satisfied, click the button to Submit your Video Statement
+                                </p>
+                            </div>
                             <div>
                                 <br/>
-                                <a id="storeVideo" class="button" role="button">Submit recording</a>
+                                <a id="storeVideo" class="button" role="button">Submit Video Statement</a>
                             </div>
                         </div>
 
@@ -69,7 +77,7 @@ Capture Candidate Video
 
 
         <div class="column-one-half">
-            <aside class="govuk-related-items" role="complementary">
+            <aside id="vRightInstructions" class="govuk-related-items" role="complementary">
 
                 <h2 class="heading-medium" id="subsection-title">Capturing your video</h2>
                 <ul class="bullet">
@@ -79,7 +87,6 @@ Capture Candidate Video
                     <li>Religious or medical headwear is permitted.</li>
                     <li>Try to keep a straight face and avoid smiling.</li>
                     <li>If you’re unhappy with the results you can record it again.</li>
-                    <li>When satisfied, submit the video and proceed to reception.</li>
                 </ul>
 
             </aside>

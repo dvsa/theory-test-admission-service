@@ -46,6 +46,7 @@ function show (button, handler) {
 
 function displayPreStartInstructions() {
 	$('.vComplete').addClass('js-hidden');
+	$('#vRightInstructions').removeClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
 	setInstructionsText(instructions.preStart);
 	$('.vInstructions').removeClass('js-hidden');
@@ -55,6 +56,7 @@ function displayPreStartInstructions() {
 
 function recordingComplete() {
 	setInstructionsText('');
+	$('#vRightInstructions').addClass('js-hidden');
 	$('.vComplete').removeClass('js-hidden');
 	removeOverlayBorder();
 	$('#storeVideo').removeClass('js-hidden')
@@ -81,7 +83,7 @@ function positionOverlay() {
 	$('#vComplete').css({left: previewOffset.left + (previewWidth - previewWidth/2)/2,
 		width: previewWidth/2,
 		height: previewHeight/2,
-		top: (previewOffset.top) + (previewHeight - previewHeight/2)/2});
+		top: (previewOffset.top) });
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){

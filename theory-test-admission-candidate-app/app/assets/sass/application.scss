@@ -135,5 +135,9 @@ video#preview {
 }
 
 .govuk-related-items li {
-  list-style-type: circle;
+  list-style-type: disc
+}
+
+ul.bullet {
+  padding-left: 30px;
 }
