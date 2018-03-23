@@ -2,7 +2,7 @@ let AWS = require('aws-sdk');
 const moment = require('moment');
 
 if (process.env.RUNNING_LOCALLY === 'true') {
-	AWS = require('../local/AWSConfig');
+	AWS = require('../local/AWSConfig'); // eslint-disable-line
 }
 const table = process.env.DDB_TABLE_ADMISSIONS; // Admissions
 const index = process.env.DDB_TABLE_INDEX; // RecentAdmissionsIndex
