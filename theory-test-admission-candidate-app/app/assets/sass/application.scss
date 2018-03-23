@@ -66,7 +66,7 @@ span.whereToFind {
   color: black;
   padding-top: 10px;
   font-weight: 900;
-  height: 50px;
+  height: 80px;
 }
 
 .vInstructions, .vButtons {
@@ -89,7 +89,7 @@ span.whereToFind {
 
 .vCountdown {
   text-align: center;
-  font-size: 6em;
+  font-size: 3em;
   font-weight: 800;
   color: white;
 }
@@ -132,4 +132,8 @@ video#preview {
   transform: rotateY(180deg);
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+.govuk-related-items li {
+  list-style-type: circle;
 }

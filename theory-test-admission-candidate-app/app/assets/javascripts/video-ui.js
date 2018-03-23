@@ -1,6 +1,6 @@
 const instructions = {
-	preStart: 'Position yourself so that your face shows inside the red box, then press \'Start Recording\'',
-	recordPressed: 'Recording will start in ....',
+	preStart: 'There will be a five second countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
+	recordPressed: 'The recording is about to start ....',
 	recording:'Recording...',
 	playbackStart:'Playing back recording ...',
 	uploadStart: 'Uploading video, please wait ...'
@@ -69,20 +69,19 @@ function positionOverlay() {
 	const previewOffset = $('video#preview').position();
 	const previewHeight = $('video#preview').height();
 	const previewWidth = $('video#preview').width();
-	const instructionsHeight = $('#vInstructions').height();
 	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
 		width: previewWidth/3,
 		height: previewHeight/2,
-		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2})
+		top: (previewOffset.top) + (previewHeight - previewHeight/2)/2})
 
-	$('.vCountdown').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
-		width: previewWidth/3,
-		height: previewHeight/2,
-		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2});
+	$('.vCountdown').css({left: previewOffset.left,
+		width: '40px',
+		height: '40px',
+		top: (previewOffset.top )});
 	$('#vComplete').css({left: previewOffset.left + (previewWidth - previewWidth/2)/2,
 		width: previewWidth/2,
 		height: previewHeight/2,
-		top: (previewOffset.top - instructionsHeight) + (previewHeight - previewHeight/2)/2});
+		top: (previewOffset.top) + (previewHeight - previewHeight/2)/2});
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
