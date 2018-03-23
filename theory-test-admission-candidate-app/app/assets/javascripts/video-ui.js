@@ -80,8 +80,8 @@ function positionOverlay() {
 		width: '40px',
 		height: '40px',
 		top: (previewOffset.top )});
-	$('#vComplete').css({left: previewOffset.left + (previewWidth - previewWidth/2)/2,
-		width: previewWidth/2,
+	$('#vComplete').css({left: previewOffset.left ,
+		width: previewWidth,
 		height: previewHeight/2,
 		top: (previewOffset.top) });
 }
