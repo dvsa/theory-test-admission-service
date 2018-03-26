@@ -160,7 +160,11 @@ function uploadStart() {
 }
 
 function uploadComplete(){
-	window.location='/candidate/report-reception';
+	setInstructionsText('Upload complete!  Please wait ...');
+	setTimeout(function(){
+		window.location='/candidate/report-reception';
+
+	}, 5000);
 }
 
 function redoVideo(){
@@ -175,14 +179,14 @@ function replayVideo(){
 
 function playbackStart(){
 	$('.vCountdown').removeClass('js-hidden');
-	$('.vCountdown').css({'font-size':'1em', color: 'green'});
+	$('.vCountdown').css({'font-size':'1em', color: 'white', 'font-weight': 900, 'background-color':'#000', 'width': '90px'});
 	$('.vCountdown').text('Playing...');
 
 }
 
 function playbackComplete(){
 	$('.vCountdown').addClass('js-hidden');
-	$('.vCountdown').css({'font-size':'3em', color: 'white'})
+	$('.vCountdown').css({'font-size':'3em', color: 'white', 'font-weight':400, 'background-color':'transparent', 'width':'auto'})
 	$('.vCountdown').text('');
 }
 

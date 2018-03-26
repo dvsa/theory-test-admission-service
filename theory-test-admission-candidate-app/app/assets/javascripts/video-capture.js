@@ -137,12 +137,11 @@ function setupPlayback(startHandler, endHandler){
 		playback.pause()
 	}
 	playback.onplay = () => {
-		console.log('playback is starting');
 		startHandler();
 	}
 	playback.onended = () => {
-		console.log('playback has ended');
 		endHandler();
+		playback.currentTime = 0;
 	}
 
 }
