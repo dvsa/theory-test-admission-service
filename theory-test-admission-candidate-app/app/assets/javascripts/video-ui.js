@@ -1,15 +1,15 @@
 const instructions = {
-	preStart: 'Position yourself so that your face shows inside the red box, then press \'Start Recording\'',
-	recordPressed: 'Recording will start in ....',
+	preStart: 'There will be a five second countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
+	recordPressed: 'The recording is about to start ....',
 	recording:'Recording...',
-	playbackStart:'Playing back recording ...',
 	uploadStart: 'Uploading video, please wait ...'
 }
 
 const videoDimensions = {
 	width: 1280,
 	height: 720,
-	ratio: 3
+	ratio: 3,
+	instructionsHeight: 80
 }
 
 /**
@@ -45,7 +45,9 @@ function show (button, handler) {
 }
 
 function displayPreStartInstructions() {
+	$('.vInstructions').css({'height': videoDimensions.instructionsHeight + 'px'})
 	$('.vComplete').addClass('js-hidden');
+	$('#vRightInstructions').removeClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
 	setInstructionsText(instructions.preStart);
 	$('.vInstructions').removeClass('js-hidden');
@@ -55,9 +57,14 @@ function displayPreStartInstructions() {
 
 function recordingComplete() {
 	setInstructionsText('');
+	$('#vRightInstructions').addClass('js-hidden');
+	$('.vInstructions').css({'height': 0});
+	setupPlayback(playbackStart, playbackComplete);
+	$('video#playback').removeClass('js-hidden');
+	$('video#preview').addClass('js-hidden');
 	$('.vComplete').removeClass('js-hidden');
 	removeOverlayBorder();
-	$('#storeVideo').removeClass('js-hidden')
+	$('#storeVideo').removeClass('js-hidden');
 }
 
 function setInstructionsText(text) {
@@ -66,23 +73,24 @@ function setInstructionsText(text) {
 function positionOverlay() {
 
 	$('video#preview').css({width:videoDimensions.width/videoDimensions.ratio, height:videoDimensions.height/videoDimensions.ratio})
+
+	$('video#playback').css({width:videoDimensions.width/videoDimensions.ratio, height:videoDimensions.height/videoDimensions.ratio})
 	const previewOffset = $('video#preview').position();
 	const previewHeight = $('video#preview').height();
 	const previewWidth = $('video#preview').width();
-	const instructionsHeight = $('#vInstructions').height();
 	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
 		width: previewWidth/3,
 		height: previewHeight/2,
-		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2})
+		top: (previewOffset.top) + (previewHeight - previewHeight/2)/2})
 
-	$('.vCountdown').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
-		width: previewWidth/3,
+	$('.vCountdown').css({left: previewOffset.left,
+		width: '40px',
+		height: '40px',
+		top: (previewOffset.top )});
+	$('#vComplete').css({left: previewOffset.left ,
+		width: previewWidth,
 		height: previewHeight/2,
-		top: (previewOffset.top +instructionsHeight) + (previewHeight - previewHeight/2)/2});
-	$('#vComplete').css({left: previewOffset.left + (previewWidth - previewWidth/2)/2,
-		width: previewWidth/2,
-		height: previewHeight/2,
-		top: (previewOffset.top - instructionsHeight) + (previewHeight - previewHeight/2)/2});
+		top: (previewOffset.top) });
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
@@ -152,26 +160,34 @@ function uploadStart() {
 }
 
 function uploadComplete(){
-	window.location='/candidate/report-reception';
+	setInstructionsText('Upload complete!  Please wait ...');
+	setTimeout(function(){
+		window.location='/candidate/report-reception';
+
+	}, 5000);
 }
 
 function redoVideo(){
+	$('video#playback').addClass('js-hidden');
+	$('video#preview').removeClass('js-hidden');
 	startPreview(displayPreStartInstructions);
 }
 
 function replayVideo(){
-	playbackVideo(playbackStart, playbackComplete);
+	playRecording();
 }
 
 function playbackStart(){
-	setInstructionsText(instructions.playbackStart);
-	$('.vComplete').addClass('js-hidden');
-	$('.vButtons').addClass('js-hidden');
+	$('.vCountdown').removeClass('js-hidden');
+	$('.vCountdown').css({'font-size':'1em', color: 'white', 'font-weight': 900, 'background-color':'#000', 'width': '90px'});
+	$('.vCountdown').text('Playing...');
+
 }
 
 function playbackComplete(){
-	setInstructionsText('');
-	$('#vComplete').removeClass('js-hidden');
+	$('.vCountdown').addClass('js-hidden');
+	$('.vCountdown').css({'font-size':'3em', color: 'white', 'font-weight':400, 'background-color':'transparent', 'width':'auto'})
+	$('.vCountdown').text('');
 }
 
 

@@ -57,7 +57,7 @@ span.whereToFind {
   font-weight: bold;
 }
 
-.vOverlay, .vCountdown, .vComplete {
+.vOverlay, .vCountdown {
   position: absolute;
 }
 
@@ -66,7 +66,6 @@ span.whereToFind {
   color: black;
   padding-top: 10px;
   font-weight: 900;
-  height: 50px;
 }
 
 .vInstructions, .vButtons {
@@ -89,7 +88,7 @@ span.whereToFind {
 
 .vCountdown {
   text-align: center;
-  font-size: 6em;
+  font-size: 3em;
   font-weight: 800;
   color: white;
 }
@@ -125,11 +124,18 @@ span.whereToFind {
 
 .video-complete-play , .video-complete-redo {
   cursor: pointer;
-  margin-top: 40px;
 }
 
-video#preview {
+video#preview, video#playback {
   transform: rotateY(180deg);
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+.govuk-related-items li {
+  list-style-type: disc
+}
+
+ul.bullet {
+  padding-left: 30px;
 }
