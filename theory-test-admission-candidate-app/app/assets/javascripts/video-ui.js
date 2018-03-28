@@ -1,5 +1,5 @@
 const instructions = {
-	preStart: 'There will be a five second countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
+	preStart: 'There will be a five 5 countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
 	recordPressed: 'The recording is about to start ....',
 	recording:'Recording...',
 	uploadStart: 'Submitting video, please wait ...'
