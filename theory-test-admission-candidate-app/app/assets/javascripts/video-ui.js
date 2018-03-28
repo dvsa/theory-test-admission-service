@@ -47,6 +47,7 @@ function show (button, handler) {
 function displayPreStartInstructions() {
 	$('.vInstructions').css({'height': videoDimensions.instructionsHeight + 'px'})
 	$('.vComplete').addClass('js-hidden');
+	$('#vRightInstructions').removeClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
 	setInstructionsText(instructions.preStart);
 	$('.vInstructions').removeClass('js-hidden');

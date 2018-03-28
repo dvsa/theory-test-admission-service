@@ -1,29 +1,27 @@
 {
-  "name": "theory-test-admission-dao",
+  "name": "theory-test-transcode-candidate-video",
   "version": "1.0.0",
   "description": "TODO",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dvsa/theory-test-admission-service.git"
   },
+  "main": "lambda.js",
   "scripts": {
     "default": "gulp",
     "clean": "gulp clean",
     "lint": "gulp lint",
     "test": "gulp test",
-    "build-dist": "gulp build",
-    "integration-test": "gulp integration-test"
+    "build-dist": "gulp build"
   },
   "author": "Future Theory Test Alpha Team",
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "latest",
-    "logger": "file:../logger",
-    "moment": "^2.21.0"
+    "candidate-video-utilities": "file:../candidate-video-utilities",
+    "logger": "file:../logger"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1",
     "assert": "^1.4.1",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.16.0",

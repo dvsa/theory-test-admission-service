@@ -1,85 +1,123 @@
-const AbstractDTO = require('./AbstractDAO');
-const Admission = require('../entities/admission');
-
-
-const logger = require('logger');
+let AWS = require('aws-sdk');
 const moment = require('moment');
 
-const table = process.env.DDB_TABLE_ADMISSIONS;
-const primaryKeyName = 'DrivingLicenceNumber';
-const primaryKeyValue = 'DrivingLicenceNumber';
-const sortKeyName = 'AdmissionStarted';
+if (process.env.RUNNING_LOCALLY === 'true') {
+	AWS = require('../local/AWSConfig'); // eslint-disable-line
+}
+const table = process.env.DDB_TABLE_ADMISSIONS; // Admissions
+const index = process.env.DDB_TABLE_INDEX; // RecentAdmissionsIndex
 
-class AdmissionDAO extends AbstractDTO {
-	constructor(value) {
-		super(table, value, primaryKeyName);
-	}
+class AdmissionDAO {
 
-	static create(admission, callback) {
-		logger.info('Calling Save Admission from DAO');
-		const admissionForDB = AdmissionDAO.createAdmissionDatabaseRecord(admission);
-		super.save(admissionForDB, table, (err, savedAdmission) => {
-			callback(err, savedAdmission);
-		});
-	}
-
-	// requires an object that contains only the admissionId and those fields that we wish to update
-	static update(entity, callback) {
-		super.update(entity, entity.admissionId, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, updatedRecord) => {
-			const record = AdmissionDAO.createAdmissionFromDataBase(updatedRecord);
-			callback(err, record);
-		});
-	}
-
-	static updateAll(admission, callback) {
-		const admissionForDB = AdmissionDAO.createAdmissionDatabaseRecord(admission);
-		super.update(admissionForDB, admissionForDB.admissionId, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, updatedRecord) => {
-			const record = AdmissionDAO.createAdmissionFromDataBase(updatedRecord);
-			callback(err, record);
-		});
-	}
-
-	static createAdmissionFromDatabase(parameters) {
-		const {
-			AdmissionId, DrivingLicenceNumber, AdmissionStarted, HasBooking, IsEntitled, ResemblesLicence,
-			ResemblesSuspect, LicenceImageThreshold
-		} = parameters;
-		const admission = new Admission();
-		admission.AdmissionId = AdmissionId;
-		admission.DrivingLicenceNumber = DrivingLicenceNumber;
-		admission.AdmissionStarted = AdmissionStarted;
-		admission.HasBooking = HasBooking;
-		admission.IsEntitled = IsEntitled;
-		admission.ResemblesLicence = ResemblesLicence;
-		admission.ResemblesSuspect = ResemblesSuspect;
-		admission.LicenceImageThreshold = LicenceImageThreshold;
-		return admission;
+	constructor(database) {
+		this.database = database || AdmissionDAO.createDynamoDBDocumentClient();
 	}
 
 	/**
-	 * @returns {string} an ISO-8601 timestamp
+	 * @private
 	 */
-	static now() {
-		return moment().toISOString();
-	}
-
-	static createAdmissionDatabaseRecord(parameters) {
-		const {
-			AdmissionId, DrivingLicenceNumber, HasBooking
-		} = parameters;
-		const admission = new Admission();
-		admission.AdmissionId = AdmissionId;
-		admission.DrivingLicenceNumber = DrivingLicenceNumber;
-		admission.AdmissionStarted = this.now();
-		admission.HasBooking = HasBooking;
-		logger.info(`Created new Admission for Database: ${admission.AdmissionId}`);
-		return admission;
-	}
-
-	static delete(DrivingLicenceNumber, callback) {
-		super.delete(DrivingLicenceNumber, sortKeyName, primaryKeyName, primaryKeyValue, table, (err, retVal) => {
-			callback(err, retVal);
+	static createDynamoDBDocumentClient() {
+		return new AWS.DynamoDB.DocumentClient({
+			params: { TableName: table },
+			service: new AWS.DynamoDB({
+				apiVersion: '2012-08-10'
+			})
 		});
+	}
+
+	/**
+	 * Promises to create an item (i.e. INSERT a row) in the Admissions table.
+	 *
+	 * This happens once we know the candidate's Driving Licence Number, and have interrogated the booking system.
+	 *
+	 * @param {string} drivingLicenceNumber part of composite primary key
+	 * @param {string} admissionId part of composite primary key
+	 * @param {boolean} hasBooking mandatory for business logic reasons, though that's not enforced by DynamoDB
+	 * @returns {Promise<void>}
+	 */
+	createAdmission(drivingLicenceNumber, admissionId, hasBooking) {
+		return this.database.put({
+			Item: {
+				DrivingLicenceNumber: drivingLicenceNumber,
+				AdmissionId: admissionId,
+				HasBooking: hasBooking,
+				AdmissionStarted: moment().toISOString()
+			}
+		}).promise();
+	}
+
+	/**
+	 * Promises to update an item (i.e. UPDATE a row) in the Admissions table.
+	 *
+	 * This happens after we've captured the candidate's video, and have performed various business operations.
+	 * The intention is that we persist various facts about the candidate (or rather, the candidate's admission workflow),
+	 * allowing the receptionist to retrieve those facts in the (near) future.
+	 *
+	 * So, to achieve any useful work the caller ought supply properties, e.g.:
+	 * {
+	 *   IsEntitled: true,
+	 *   ... etc.
+	 * }
+	 * @param {string} drivingLicenceNumber part of composite primary key
+	 * @param {string} admissionId part of composite primary key
+	 * @param {object} properties attributes of the candidate's admission workflow
+	 * @returns {Promise<void>}
+	 */
+	updateAdmission(drivingLicenceNumber, admissionId, properties) {
+		return this.database.update({
+			Key: {
+				DrivingLicenceNumber: drivingLicenceNumber,
+				AdmissionId: admissionId
+			},
+			UpdateExpression: AdmissionDAO.createUpdateExpression(properties),
+			ExpressionAttributeValues: AdmissionDAO.createUpdateExpressionValues(properties)
+		}).promise();
+	}
+
+	/**
+	 * @param drivingLicenceNumber
+	 * @returns {Promise<object>}
+	 */
+	getMostRecentAdmission(drivingLicenceNumber) {
+		return this.database.query({
+			KeyConditionExpression: 'DrivingLicenceNumber = :dln',
+			ExpressionAttributeValues: {
+				':dln': drivingLicenceNumber
+			},
+			IndexName: index,
+			Select: 'ALL_ATTRIBUTES'
+		}).promise();
+	}
+
+	/**
+	 * @param {object} attributes
+	 * @return {string}
+	 * @private
+	 */
+	static createUpdateExpression(attributes) {
+		let expression = 'SET ';
+		let first = true;
+		Object.getOwnPropertyNames(attributes)
+			.forEach((key) => {
+				if (!first) { expression += ', '; }
+				expression += `${key}= :${key}`;
+				first = false;
+			});
+		return expression;
+	}
+
+	/**
+	 * @param {object} attributes
+	 * @return {object}
+	 * @private
+	 */
+	static createUpdateExpressionValues(attributes) {
+		const expressionValues = {};
+		Object.getOwnPropertyNames(attributes)
+			.forEach((key) => {
+				expressionValues[`:${key}`] = attributes[key];
+			});
+		return expressionValues;
 	}
 
 }
