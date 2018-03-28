@@ -32,7 +32,7 @@ $path: "/assets/public/images/";
 
 span.arrow {
   color: #005ea5;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 span.whereToFind {
@@ -62,10 +62,8 @@ span.whereToFind {
 }
 
 .vInstructions {
-  text-align: center;
   color: black;
   padding-top: 10px;
-  font-weight: 900;
 }
 
 .vInstructions, .vButtons {
@@ -77,14 +75,12 @@ span.whereToFind {
 }
 
 .vButtons {
-  text-align: center;
   padding-top: 10px;
 }
 
 #videoBox {
   position: relative;
 }
-
 
 .vCountdown {
   text-align: center;
@@ -95,41 +91,38 @@ span.whereToFind {
 
 .vCountDownPlaying {
   -webkit-text-stroke: 1px #000;
-  text-shadow:
-          1px 1px 0 #000,
-          -1px -1px 0 #000,
-          1px -1px 0 #000,
-          -1px 1px 0 #000,
-          1px 1px 0 #000;
+  text-shadow: 1px 1px 0 #000,
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 .vCountDownRecording {
   -webkit-text-stroke: 1px red;
-  text-shadow:
-          1px 1px 0 red,
-          -1px -1px 0 red,
-          1px -1px 0 red,
-          -1px 1px 0 red,
-          1px 1px 0 red;
+  text-shadow: 1px 1px 0 red,
+  -1px -1px 0 red,
+  1px -1px 0 red,
+  -1px 1px 0 red,
+  1px 1px 0 red;
 }
 
 .vComplete {
   text-align: center;
 }
 
-
 #record {
   opacity: 1;
 }
 
-.video-complete-play , .video-complete-redo {
+.video-complete-play, .video-complete-redo {
   cursor: pointer;
 }
 
 video#preview, video#playback {
   transform: rotateY(180deg);
-  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-  -moz-transform:rotateY(180deg); /* Firefox */
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
 }
 
 .govuk-related-items li {
@@ -138,4 +131,16 @@ video#preview, video#playback {
 
 ul.bullet {
   padding-left: 30px;
+}
+
+.countDownPlaying {
+  font-size: 1em;
+  color: white;
+  font-weight: 900;
+  background-color: #000;
+  width: 110px !important;
+}
+
+#vRightInstructions {
+  margin-top: 0 !important;
 }

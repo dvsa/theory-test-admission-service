@@ -2,7 +2,7 @@ const instructions = {
 	preStart: 'There will be a five second countdown before the video begins. Then look at the camera and remain still for a further 5 seconds.',
 	recordPressed: 'The recording is about to start ....',
 	recording:'Recording...',
-	uploadStart: 'Uploading video, please wait ...'
+	uploadStart: 'Submitting video, please wait ...'
 }
 
 const videoDimensions = {
@@ -47,7 +47,6 @@ function show (button, handler) {
 function displayPreStartInstructions() {
 	$('.vInstructions').css({'height': videoDimensions.instructionsHeight + 'px'})
 	$('.vComplete').addClass('js-hidden');
-	$('#vRightInstructions').removeClass('js-hidden');
 	$('.vButtons').removeClass('js-hidden');
 	setInstructionsText(instructions.preStart);
 	$('.vInstructions').removeClass('js-hidden');
@@ -57,7 +56,6 @@ function displayPreStartInstructions() {
 
 function recordingComplete() {
 	setInstructionsText('');
-	$('#vRightInstructions').addClass('js-hidden');
 	$('.vInstructions').css({'height': 0});
 	setupPlayback(playbackStart, playbackComplete);
 	$('video#playback').removeClass('js-hidden');
@@ -78,8 +76,8 @@ function positionOverlay() {
 	const previewOffset = $('video#preview').position();
 	const previewHeight = $('video#preview').height();
 	const previewWidth = $('video#preview').width();
-	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/3)/2,
-		width: previewWidth/3,
+	$('.vOverlay').css({left: previewOffset.left + (previewWidth - previewWidth/4)/2,
+		width: previewWidth/4,
 		height: previewHeight/2,
 		top: (previewOffset.top) + (previewHeight - previewHeight/2)/2})
 
@@ -91,6 +89,7 @@ function positionOverlay() {
 		width: previewWidth,
 		height: previewHeight/2,
 		top: (previewOffset.top) });
+	$('.vInstructions').css({width:previewWidth})
 }
 
 function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
@@ -111,7 +110,7 @@ function doCountdown(time, instructions, handler, handlerStart, handlerEnd){
 }
 
 function addOverlayBorder(){
-	$('.vOverlay').css('border',"dashed red 1px");
+	$('.vOverlay').css('border',"dashed red 2px");
 }
 
 function removeOverlayBorder(){
@@ -160,10 +159,9 @@ function uploadStart() {
 }
 
 function uploadComplete(){
-	setInstructionsText('Upload complete!  Please wait ...');
+	setInstructionsText('Submission complete!  Please wait ...');
 	setTimeout(function(){
 		window.location='/candidate/report-reception';
-
 	}, 5000);
 }
 
@@ -179,14 +177,14 @@ function replayVideo(){
 
 function playbackStart(){
 	$('.vCountdown').removeClass('js-hidden');
-	$('.vCountdown').css({'font-size':'1em', color: 'white', 'font-weight': 900, 'background-color':'#000', 'width': '90px'});
+	$('.vCountdown').addClass('countDownPlaying');
 	$('.vCountdown').text('Playing...');
 
 }
 
 function playbackComplete(){
 	$('.vCountdown').addClass('js-hidden');
-	$('.vCountdown').css({'font-size':'3em', color: 'white', 'font-weight':400, 'background-color':'transparent', 'width':'auto'})
+	$('.vCountdown').removeClass('countDownPlaying');
 	$('.vCountdown').text('');
 }
 
