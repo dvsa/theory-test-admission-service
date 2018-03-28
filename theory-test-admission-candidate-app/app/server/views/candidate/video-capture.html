@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Capture Candidate Video
+Record your Video
 {% endblock %}
 
 {% block page_content %}
@@ -13,8 +13,8 @@ Capture Candidate Video
         <div class="breadcrumbs">
             <ol>
                 <li><a href="{{urlRoot}}">Start</a></li>
-                <li aria-current="page">Enter Driving Licence Number</li>
-                <li aria-current="page"><span class="current-page-breadcrumb">Record your Video Statement</span></li>
+                <li aria-current="page">Enter driving licence number</li>
+                <li aria-current="page"><span class="current-page-breadcrumb">Record your video</span></li>
             </ol>
         </div>
 
@@ -22,41 +22,41 @@ Capture Candidate Video
             {{data.uploadUrl}}
         </div>
         <h1 class="heading-large">
-            Record your Video Statement
+            Record your video
         </h1>
 
         <div class="column-one-half" style="padding-left:0">
             <section class="section">
                 <div class="container form-group">
-                    <div id="videoBox" style="text-align:center">
+                    <div id="videoBox">
 
                         <video id="playback" muted class="js-hidden">Video stream not available.</video>
                         <video id="preview" autoplay muted>Video stream not available.</video>
                         <div id="vInstructions" class="vInstructions js-hidden"></div>
                         <div id="vButtons" class="vButtons js-hidden">
-                            <button id="record" class="button" value="Start Recording">Start Recording</button>
+                            <button id="record" class="button" value="Start Recording">Start recording</button>
                         </div>
                         <div id="vOverLay" class="vOverlay"></div>
                         <div id="vCountdown" class="vCountdown js-hidden"></div>
                         <div id="vComplete" class="vComplete js-hidden"  style="text-align:left">
                             <div id="video-complete-play" class="video-complete-play">
                                 <a id="video-play" href="#">
-                                    Replay your recording
+                                    Replay my video
                                 </a>
                             </div>
                             <div id="video-complete-redo" class="video-complete-redo">
                                 <a id="redo-video" href="#">
-                                    Redo your recording
+                                    Record my video again
                                 </a>
                             </div>
                             <div style="margin-top:20px">
                                 <p>
-                                    If you are satisfied, click the button to Submit your Video Statement
+                                    If you are satisfied, click the button to submit your video
                                 </p>
                             </div>
                             <div>
                                 <br/>
-                                <a id="storeVideo" class="button" role="button">Submit Video Statement</a>
+                                <a id="storeVideo" class="button" role="button">Submit video</a>
                             </div>
                         </div>
 
@@ -75,17 +75,14 @@ Capture Candidate Video
 
         <div class="column-one-half">
             <aside id="vRightInstructions" class="govuk-related-items" role="complementary">
-
-                <h2 class="heading-medium" id="subsection-title">Capturing your video</h2>
                 <ul class="bullet">
                     <li>Position your face inside the red square.</li>
                     <li>Remove your glasses or any eye wear.</li>
                     <li>Keep hair away from your face.</li>
                     <li>Religious or medical headwear is permitted.</li>
-                    <li>Try to keep a straight face and avoid smiling.</li>
+                    <li>Have a neutral expression and your mouth closed.</li>
                     <li>If you’re unhappy with the results you can record it again.</li>
                 </ul>
-
             </aside>
         </div>
     </div>
