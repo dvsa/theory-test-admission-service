@@ -46,7 +46,7 @@
     "govuk-elements-sass": "3.1.1",
     "govuk_frontend_toolkit": "7.1.0",
     "govuk_template_jinja": "0.22.3",
-    "helmet": "3.9.0",
+    "helmet": "3.23.3",
     "https": "^1.0.0",
     "json2csv-stream": "^0.1.4",
     "marked": "^0.3.9",
